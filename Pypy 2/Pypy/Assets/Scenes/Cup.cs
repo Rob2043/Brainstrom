@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,30 +9,58 @@ public class Cup : MonoBehaviour
 {
     [SerializeField] KeyCode keyOne;
     [SerializeField] KeyCode keyTwo;
-    [SerializeField] UnityEngine.Vector3 moveDirection;
+    [SerializeField] Vector3 moveDirection;
+    
 
-    private void FixedUpdate()
+    private void Start()
     {
-        if(Input.GetKey(keyOne))
-        {
-            GetComponent<Rigidbody>().velocity += moveDirection;
-        }
-        if(Input.GetKey(keyTwo))
+        SwipeScript.SwipeEvent += HandleSwipe;
+    }
+    private void HandleSwipe(Vector2 direction)
+    {
+        // Здесь вы можете выполнить необходимые действия в зависимости от направления свайпа.
+        if (direction == Vector2.left)
         {
             GetComponent<Rigidbody>().velocity -= moveDirection;
         }
-        if(Input.GetKey(KeyCode.R))
+        else if (direction == Vector2.right)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GetComponent<Rigidbody>().velocity += moveDirection;
+            
         }
-        if (Input.GetKey(KeyCode.Q))
+        else if (direction == Vector2.up)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GetComponent<Rigidbody>().velocity -= moveDirection;
+            
+        }
+        else if (direction == Vector2.down)
+        {
+            GetComponent<Rigidbody>().velocity += moveDirection;
         }
     }
+
+    //private void FixedUpdate()
+    //{
+    //    if (Input.GetKey(keyOne))
+    //    {
+    //        GetComponent<Rigidbody>().velocity += moveDirection;
+    //    }
+    //    if (Input.GetKey(keyTwo))
+    //    {
+    //        GetComponent<Rigidbody>().velocity -= moveDirection;
+    //    }
+    //    if (Input.GetKey(KeyCode.R))
+    //    {
+    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //    }
+    //    if (Input.GetKey(KeyCode.Q))
+    //    {
+    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
-        if(this.CompareTag("Player") && other.CompareTag("Finish"))
+        if (this.CompareTag("Player") && other.CompareTag("Finish"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
