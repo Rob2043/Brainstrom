@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Cup : MonoBehaviour
+public class CupGreen : MonoBehaviour
 {
     [SerializeField] KeyCode keyOne;
     [SerializeField] KeyCode keyTwo;
@@ -27,15 +27,6 @@ public class Cup : MonoBehaviour
         {
             GetComponent<Rigidbody>().velocity += moveDirection;
             
-        }
-        else if (direction == Vector2.up)
-        {
-            GetComponent<Rigidbody>().velocity -= moveDirection;
-            
-        }
-        else if (direction == Vector2.down)
-        {
-            GetComponent<Rigidbody>().velocity += moveDirection;
         }
     }
 
