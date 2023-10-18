@@ -21,8 +21,8 @@ public class CupBlue : MonoBehaviour
         // Здесь вы можете выполнить необходимые действия в зависимости от направления свайпа.
         if (direction == Vector2.up)
         {
-            GetComponent<Rigidbody>().velocity -= moveDirection;
             
+            GetComponent<Rigidbody>().velocity -= moveDirection;
         }
         else if (direction == Vector2.down)
         {

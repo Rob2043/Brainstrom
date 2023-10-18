@@ -19,7 +19,7 @@ public class MainButtons : MonoBehaviour
     }
     public void MainButtonPlayOnClick(){
         int level = PlayerPrefs.GetInt("level",1);
-        SceneManager.LoadScene($"Scene{level}");
+        SceneManager.LoadScene($"Level {level}");
     }
     public void ButtonQuit(){
         Application.Quit();
