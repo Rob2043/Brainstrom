@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CupGreen : MonoBehaviour
 {
+    private float AllStars = 0;
     [SerializeField] KeyCode keyOne;
     [SerializeField] KeyCode keyTwo;
     [SerializeField] Vector3 moveDirection;
@@ -54,6 +55,7 @@ public class CupGreen : MonoBehaviour
         if (this.CompareTag("Player") && other.CompareTag("Finish"))
         {
             PlayerPrefs.SetInt("level",SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetFloat("AllStars",PlayerPrefs.GetFloat("AllStars",0) + AllStars);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
