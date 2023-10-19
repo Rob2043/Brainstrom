@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 3155714620661244069}
   - component: {fileID: 3903062826646332330}
   - component: {fileID: 6286717560943995418}
-  - component: {fileID: 5349912155481688604}
+  - component: {fileID: 4040569009502779015}
   m_Layer: 0
   m_Name: GreenPlayer
   m_TagString: Player
@@ -240,9 +240,9 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 118
   m_CollisionDetection: 1
---- !u!114 &5349912155481688604
+--- !u!114 &4040569009502779015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,9 +251,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4033898288677550028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552e210864dd24dc9875d0af54ec898f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e42e8505b7a3757693ca461b45ede91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keyOne: 0
   keyTwo: 0
-  moveDirection: {x: 10, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 10}
