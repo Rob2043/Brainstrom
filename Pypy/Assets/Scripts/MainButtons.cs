@@ -18,8 +18,9 @@ public class MainButtons : MonoBehaviour
         } else isActiveButtonSound = false;
     }
     public void MainButtonPlayOnClick(){
-        int level = PlayerPrefs.GetInt("level",1);
-        SceneManager.LoadScene($"Level {level}");
+        SceneManager.LoadScene("Level 1");
+        //int level = PlayerPrefs.GetInt("level", 1);
+        //SceneManager.LoadScene($"Level {level}");
     }
     public void ButtonQuit(){
         Application.Quit();
@@ -46,5 +47,9 @@ public class MainButtons : MonoBehaviour
     }
     public void BackToMainMenu(){
         panelSettings.SetActive(false);
+    }
+    public void ScinClic()
+    {
+        SceneManager.LoadScene("Scins");
     }
 }

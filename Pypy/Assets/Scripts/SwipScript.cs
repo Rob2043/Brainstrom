@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,14 +67,22 @@ public class SwipeScript : MonoBehaviour
 
         if (swipeDelta.magnitude > deadZone)
         {
-            if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
-                SwipeEvent(swipeDelta.x > 0 ? Vector2.right : Vector2.left);
-            else
-                SwipeEvent(swipeDelta.y > 0 ? Vector2.up : Vector2.down);
+            if (SwipeEvent != null) // Проверка наличия подписчиков
+            {
+                if (swipeDelta.y > 0 && swipeDelta.x > 0)
+                    SwipeEvent(Vector2.right);
+                if (swipeDelta.y < 0 && swipeDelta.x > 0)
+                    SwipeEvent(Vector2.down);
+                if (swipeDelta.y > 0 && swipeDelta.x < 0)
+                    SwipeEvent(Vector2.up);
+                if (swipeDelta.y < 0 && swipeDelta.x < 0)
+                    SwipeEvent(Vector2.left);
+            }
 
             ResetSwipe();
         }
     }
+
 
     private void ResetSwipe()
     {
