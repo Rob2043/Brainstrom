@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 184317808514732611}
   - component: {fileID: 6757924235096305568}
   - component: {fileID: 2283695067706492847}
-  - component: {fileID: 2298434399693244315}
-  - component: {fileID: 4098829209529763775}
+  - component: {fileID: 6219499426638392498}
   m_Layer: 0
   m_Name: Green Cube
   m_TagString: Cube
@@ -135,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 1
---- !u!114 &2298434399693244315
+--- !u!114 &6219499426638392498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,21 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3310183486870252867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5688b185f8b5b976c8455ac04b5180c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4098829209529763775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3310183486870252867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e42e8505b7a3757693ca461b45ede91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
-  moveDirection: {x: 0, y: 0, z: 10}
+  moveDirection: {x: 0, y: 0, z: 1}
+  speed: 10

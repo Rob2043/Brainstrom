@@ -291,9 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240fdb62b0d52610b961c8a7495c77ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 160660392}
-  initialWidth: 320
-  initialSize: 13
 --- !u!81 &160660391
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2421,12 +2418,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361580239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552e210864dd24dc9875d0af54ec898f, type: 3}
+  m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
-  moveDirection: {x: 10, y: 0, z: 0}
+  moveDirection: {x: 1, y: 0, z: 0}
+  speed: 10
 --- !u!65 &1361580243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3067,8 +3063,8 @@ GameObject:
   - component: {fileID: 1973042924}
   - component: {fileID: 1973042923}
   - component: {fileID: 1973042922}
-  - component: {fileID: 1973042927}
   - component: {fileID: 1973042926}
+  - component: {fileID: 1973042927}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -3198,12 +3194,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973042920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552e210864dd24dc9875d0af54ec898f, type: 3}
+  m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
-  moveDirection: {x: 10, y: 0, z: 0}
+  moveDirection: {x: -1, y: 0, z: 0}
+  speed: 10
 --- !u!1001 &7436076605773154783
 PrefabInstance:
   m_ObjectHideFlags: 0

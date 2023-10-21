@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 791384047884499684}
   - component: {fileID: 402089266392463108}
   - component: {fileID: 7277854041344782382}
-  - component: {fileID: 8996606000300522549}
-  - component: {fileID: 2623003896389067463}
+  - component: {fileID: 5117488152753857680}
   m_Layer: 0
   m_Name: Blue Cube
   m_TagString: Cube
@@ -135,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 1
---- !u!114 &8996606000300522549
+--- !u!114 &5117488152753857680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,21 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3857792646680879432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5688b185f8b5b976c8455ac04b5180c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2623003896389067463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857792646680879432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552e210864dd24dc9875d0af54ec898f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
-  moveDirection: {x: 10, y: 0, z: 0}
+  moveDirection: {x: 1, y: 0, z: 0}
+  speed: 10

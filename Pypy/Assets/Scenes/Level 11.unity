@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: moveDirection.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9
@@ -612,7 +616,6 @@ GameObject:
   m_Component:
   - component: {fileID: 398537760}
   - component: {fileID: 398537759}
-  - component: {fileID: 398537758}
   - component: {fileID: 398537761}
   m_Layer: 0
   m_Name: GameObject
@@ -621,18 +624,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &398537758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398537756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5688b185f8b5b976c8455ac04b5180c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &398537759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -687,12 +678,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 398537756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e42e8505b7a3757693ca461b45ede91, type: 3}
+  m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
-  moveDirection: {x: 0, y: 0, z: 10}
+  moveDirection: {x: 0, y: 0, z: 1}
+  speed: 10
 --- !u!1001 &405065519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,6 +694,10 @@ PrefabInstance:
     - target: {fileID: 3310183486870252867, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_Name
       value: Green Cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
@@ -1127,6 +1121,10 @@ PrefabInstance:
     - target: {fileID: 3310183486870252867, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_Name
       value: Green Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
@@ -1887,9 +1885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240fdb62b0d52610b961c8a7495c77ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1763791908}
-  initialWidth: 320
-  initialSize: 17
 --- !u!81 &1763791907
 AudioListener:
   m_ObjectHideFlags: 0

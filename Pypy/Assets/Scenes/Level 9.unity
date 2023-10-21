@@ -351,9 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240fdb62b0d52610b961c8a7495c77ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 160660392}
-  initialWidth: 320
-  initialSize: 17
 --- !u!81 &160660391
 AudioListener:
   m_ObjectHideFlags: 0
@@ -593,6 +590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5117488152753857680, guid: b0faa2244990e5028aff3d5e8cc5022d, type: 3}
+      propertyPath: moveDirection.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -812,6 +813,10 @@ PrefabInstance:
     - target: {fileID: 4098829209529763775, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: moveDirection.z
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
@@ -1397,6 +1402,10 @@ PrefabInstance:
       propertyPath: moveDirection.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
       value: 4.9
@@ -1505,6 +1514,10 @@ PrefabInstance:
     - target: {fileID: 4966907371970030216, guid: b0faa2244990e5028aff3d5e8cc5022d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117488152753857680, guid: b0faa2244990e5028aff3d5e8cc5022d, type: 3}
+      propertyPath: moveDirection.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1914,6 +1927,10 @@ PrefabInstance:
     - target: {fileID: 3310183486870252867, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_Name
       value: Green Cube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219499426638392498, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
+      propertyPath: moveDirection.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6621683339755364475, guid: 3934e5e0a3046c702934e754d2abdf56, type: 3}
       propertyPath: m_LocalScale.z
