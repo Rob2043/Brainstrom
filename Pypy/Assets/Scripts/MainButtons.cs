@@ -12,42 +12,64 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private GameObject panelSettings;
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
-    private void Start() {
-        if(PlayerPrefs.GetInt("isSoundOn",1) == 1){
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("isSoundOn", 1) == 1)
+        {
             isActiveButtonSound = true;
-        } else isActiveButtonSound = false;
+        }
+        else
+        {
+            isActiveButtonSound = false;
+        }
     }
-    public void MainButtonPlayOnClick(){
-        SceneManager.LoadScene("Level 1");
-        //int level = PlayerPrefs.GetInt("level", 1);
-        //SceneManager.LoadScene($"Level {level}");
+
+    public void MainButtonPlayOnClick()
+    {
+        int currentLevel = PlayerPrefs.GetInt("level", 1);
+        SceneManager.LoadScene($"Level {currentLevel}");
     }
-    public void ButtonQuit(){
+
+    public void ButtonQuit()
+    {
         Application.Quit();
     }
-    public void ButtonSettingsOpen(){
+
+    public void ButtonSettingsOpen()
+    {
         panelSettings.SetActive(true);
     }
-    public void ButtonSoundOnClick(){
-        if(isActiveButtonSound){
+
+    public void ButtonSoundOnClick()
+    {
+        if (isActiveButtonSound)
+        {
             AudioButton.image.sprite = ButtonOffSprite;
-            for(int i = 1; i < Audio.Length; i++){
+            for (int i = 1; i < Audio.Length; i++)
+            {
                 Audio[i].mute = true;
             }
-            PlayerPrefs.SetInt("isSoundOn",0);
+            PlayerPrefs.SetInt("isSoundOn", 0);
             isActiveButtonSound = false;
-        } else {
+        }
+        else
+        {
             AudioButton.image.sprite = ButtonOnSprite;
-            for(int i = 1; i < Audio.Length; i++){
+            for (int i = 1; i < Audio.Length; i++)
+            {
                 Audio[i].mute = false;
             }
-            PlayerPrefs.SetInt("isSoundOn",1);
+            PlayerPrefs.SetInt("isSoundOn", 1);
             isActiveButtonSound = true;
         }
     }
-    public void BackToMainMenu(){
+
+    public void BackToMainMenu()
+    {
         panelSettings.SetActive(false);
     }
+
     public void ScinClic()
     {
         SceneManager.LoadScene("Scins");

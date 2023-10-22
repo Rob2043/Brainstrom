@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class LocalMenuScript : MonoBehaviour
 {
     [SerializeField] private Animator starAnimation;
-    [SerializeField] private GameObject Panel;
+    [SerializeField] private GameObject PanelExit;
+
 
     private void Start()
     {
@@ -15,12 +16,11 @@ public class LocalMenuScript : MonoBehaviour
     }
     public void NextLevel()
     {
-        int Scene = SceneManager.GetActiveScene().buildIndex + 1;
-        if (Scene < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(Scene);
-        }
-        
+        GameManager level = FindObjectOfType<GameManager>();
+        int currentLevel = PlayerPrefs.GetInt("level", 1);
+        currentLevel++; // Увеличиваем текущий уровень.
+        level.SetCurrentLevel(currentLevel); // Сохраняем текущий уровень.
+        SceneManager.LoadScene($"Level {currentLevel}"); // Переход на следующий уровень.
     }
     public void MainMenu()
     {
@@ -29,7 +29,7 @@ public class LocalMenuScript : MonoBehaviour
 
     public void OnExitPanel()
     {
-        Panel.SetActive(true);
+        PanelExit.SetActive(true);
     }
 
     public void YesExit()
@@ -39,6 +39,6 @@ public class LocalMenuScript : MonoBehaviour
 
     public void NoReturn()
     {
-        Panel.SetActive(false);
+        PanelExit.SetActive(false);
     }
 }

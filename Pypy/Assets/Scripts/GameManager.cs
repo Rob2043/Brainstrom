@@ -120,4 +120,9 @@ public class GameManager : MonoBehaviour
     {
         selectedSecondPlayer = secondPlayer;
     }
+
+    public void SetCurrentLevel(int level)
+    {
+        PlayerPrefs.SetInt("level", level);
+    }
 }
