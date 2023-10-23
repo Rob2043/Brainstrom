@@ -16,12 +16,12 @@ public class LocalMenuScript : MonoBehaviour
     }
     public void NextLevel()
     {
-        GameManager level = FindObjectOfType<GameManager>();
-        int currentLevel = PlayerPrefs.GetInt("level", 1);
-        currentLevel++; // Увеличиваем текущий уровень.
-        level.SetCurrentLevel(currentLevel); // Сохраняем текущий уровень.
-        SceneManager.LoadScene($"Level {currentLevel}"); // Переход на следующий уровень.
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("level", currentLevel); // Save the current level to PlayerPrefs
+        PlayerPrefs.Save(); // Save the PlayerPrefs data
+        SceneManager.LoadScene($"Level {currentLevel}"); // Load the next level
     }
+
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
