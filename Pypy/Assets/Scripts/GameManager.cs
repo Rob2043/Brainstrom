@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] ArrayPlayers;
     private GameObject selectedPlayer;
     private GameObject selectedSecondPlayer;
+    private FindModel BasicPlayer;
 
     private void Awake()
     {
@@ -52,27 +54,28 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
-        {
-            ArrayPlayers = GameObject.FindGameObjectsWithTag("Player");
-            foreach (var player in ArrayPlayers)
-            {
-                if (playerSkins.ContainsKey(player) && !playerSkins[player])
-                {
-                    player.SetActive(false);
-                }
-            }
-        }
         if (SceneManager.GetActiveScene().name != "Scins" & SceneManager.GetActiveScene().name != "MainMenu")
         {
             ArrayPlayers = GameObject.FindGameObjectsWithTag("Player");
+            int sum = 0;
             foreach (var player in ArrayPlayers)
             {
                 if (player.name != PlayerPrefs.GetString("SaveScin"))
                 {
+                    sum++;
                     player.SetActive(false);
                 }
+            }
+            if(PlayerPrefs.GetString("SaveScin") == null)
+            {
+                Debug.Log("BasicModel");
+                BasicPlayer = FindObjectOfType<FindModel>();
+                BasicPlayer.gameObject.SetActive(true);
+            }
+            else if(sum == ArrayPlayers.Length - 1)
+            {
+                BasicPlayer = FindObjectOfType<FindModel>();
+                BasicPlayer.gameObject.SetActive(true);
             }
         }
     }

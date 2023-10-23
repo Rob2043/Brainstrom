@@ -27,6 +27,7 @@ public class MainButtons : MonoBehaviour
 
     public void MainButtonPlayOnClick()
     {
+        //SceneManager.LoadScene("Level 1");
         int currentLevel = PlayerPrefs.GetInt("level", 1);
         SceneManager.LoadScene($"Level {currentLevel}");
     }
