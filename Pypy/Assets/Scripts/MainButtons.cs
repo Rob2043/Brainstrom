@@ -31,13 +31,10 @@ public class MainButtons : MonoBehaviour
 
     public void MainButtonPlayOnClick()
     {
-<<<<<<< HEAD
-        panelLevel.SetActive(true);
-=======
-        //SceneManager.LoadScene("Level 1");
-        int currentLevel = PlayerPrefs.GetInt("level", 1);
-        SceneManager.LoadScene($"Level {currentLevel}");
->>>>>>> 946b6dc69fe2c38ca0159d71629be41fac8a3d44
+        SceneManager.LoadScene("Level 1");
+        //panelLevel.SetActive(true);       
+        //int currentLevel = PlayerPrefs.GetInt("level", 1);
+        //SceneManager.LoadScene($"Level {currentLevel}");
     }
 
     public void ButtonQuit()
