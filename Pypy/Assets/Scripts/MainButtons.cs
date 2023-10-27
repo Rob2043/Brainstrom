@@ -31,10 +31,10 @@ public class MainButtons : MonoBehaviour
 
     public void MainButtonPlayOnClick()
     {
-        SceneManager.LoadScene("Level 1");
-        //panelLevel.SetActive(true);       
-        //int currentLevel = PlayerPrefs.GetInt("level", 1);
-        //SceneManager.LoadScene($"Level {currentLevel}");
+        //SceneManager.LoadScene("Level 1");
+        panelLevel.SetActive(true);       
+        //int currentLevel = PlayerPrefs.GetInt("MaxLevel", 1); <-- Устаревшее, не раскоментировать (Сучастный вариант: строка 20)
+        //SceneManager.LoadScene($"Level {MaxLevel}");
     }
 
     public void ButtonQuit()
@@ -80,8 +80,8 @@ public class MainButtons : MonoBehaviour
     {
         SceneManager.LoadScene("Scins");
     }
-    public void LevelButtonOnClick(){
-        int sceneSelect = int.Parse(gameObject.name);
+    public void LevelButtonOnClick(GameObject localeButton){
+        string sceneSelect = localeButton.name;
         Debug.Log(sceneSelect);
         SceneManager.LoadScene($"level {sceneSelect}");
     }
