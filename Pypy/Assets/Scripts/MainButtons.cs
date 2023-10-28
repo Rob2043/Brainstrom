@@ -7,14 +7,18 @@ using UnityEngine.SceneManagement;
 public class MainButtons : MonoBehaviour
 {
     private bool isActiveButtonSound;
+    [SerializeField] private Button[] LevelButtons;
     [SerializeField] private AudioSource[] Audio;
     [SerializeField] private Button AudioButton;
     [SerializeField] private GameObject panelSettings;
+    [SerializeField] private GameObject panelLevel;
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
-
+    int MaxLevel;
     private void Start()
     {
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel",1);
+        ButtonInteractible();
         if (PlayerPrefs.GetInt("isSoundOn", 1) == 1)
         {
             isActiveButtonSound = true;
@@ -28,8 +32,9 @@ public class MainButtons : MonoBehaviour
     public void MainButtonPlayOnClick()
     {
         //SceneManager.LoadScene("Level 1");
-        int currentLevel = PlayerPrefs.GetInt("level", 1);
-        SceneManager.LoadScene($"Level {currentLevel}");
+        panelLevel.SetActive(true);       
+        //int currentLevel = PlayerPrefs.GetInt("MaxLevel", 1); <-- Устаревшее, не раскоментировать (Сучастный вариант: строка 20)
+        //SceneManager.LoadScene($"Level {MaxLevel}");
     }
 
     public void ButtonQuit()
@@ -49,7 +54,7 @@ public class MainButtons : MonoBehaviour
             AudioButton.image.sprite = ButtonOffSprite;
             for (int i = 1; i < Audio.Length; i++)
             {
-                Audio[i].mute = true;
+                Audio[i].enabled = true;
             }
             PlayerPrefs.SetInt("isSoundOn", 0);
             isActiveButtonSound = false;
@@ -59,7 +64,7 @@ public class MainButtons : MonoBehaviour
             AudioButton.image.sprite = ButtonOnSprite;
             for (int i = 1; i < Audio.Length; i++)
             {
-                Audio[i].mute = false;
+                Audio[i].enabled = false;
             }
             PlayerPrefs.SetInt("isSoundOn", 1);
             isActiveButtonSound = true;
@@ -74,5 +79,15 @@ public class MainButtons : MonoBehaviour
     public void ScinClic()
     {
         SceneManager.LoadScene("Scins");
+    }
+    public void LevelButtonOnClick(GameObject localeButton){
+        string sceneSelect = localeButton.name;
+        Debug.Log(sceneSelect);
+        SceneManager.LoadScene($"level {sceneSelect}");
+    }
+    private void ButtonInteractible(){
+        for(int i = MaxLevel; i < LevelButtons.Length;i++){
+            LevelButtons[i].interactable = false;
+        }
     }
 }
