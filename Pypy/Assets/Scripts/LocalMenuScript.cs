@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class LocalMenuScript : MonoBehaviour
+{
+    [SerializeField] private Animator starAnimation;
+    [SerializeField] private GameObject PanelExit;
+    [SerializeField] private GameObject ButtonExit;
+
+
+    private void Start()
+    {
+        starAnimation.SetBool("Star",true);
+    }
+    public void NextLevel()
+    {
+        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        if (currentLevel < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(currentLevel);
+            PlayerPrefs.SetInt("Maxlevel", currentLevel); // Save the current level to PlayerPrefs
+            PlayerPrefs.Save(); // Save the PlayerPrefs data
+        }
+        else
+        {
+            // Если это последняя сцена в сборке, то можно загрузить меню или что-то другое.
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnExitPanel()
+    {
+        ButtonExit.SetActive(false);
+        PanelExit.SetActive(true);
+    }
+
+    public void NoReturn()
+    {
+        PanelExit.SetActive(false);
+        ButtonExit.SetActive(true);
+    }
+}
