@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private GameObject selectedPlayer;
     private GameObject selectedSecondPlayer;
     [SerializeField] private GameObject EmptyPlayer;
-    [SerializeField] public GameObject BasicPlayer;
 
     private void Awake()
     {
@@ -59,20 +58,15 @@ public class GameManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
         {
-            bool check = true;
             EmptyPlayer = GameObject.FindGameObjectWithTag("SpawnEmpty");
             foreach (var player in ArrayPlayers)
             {
                 if (player.name == PlayerPrefs.GetString("SaveScin"))
                 {
-                    check = false;
                     GameObject newScin = Instantiate(player, EmptyPlayer.transform.position, EmptyPlayer.transform.rotation);
                     newScin.tag = player.tag;
+                    Destroy(EmptyPlayer);
                 }
-            }
-            if (check)
-            {
-                Instantiate(BasicPlayer, EmptyPlayer.transform.position, EmptyPlayer.transform.rotation);
             }
         }
     }

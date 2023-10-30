@@ -20,7 +20,7 @@ public class MovePlayerScript : MonoBehaviour
             rb.useGravity = true;
             rb.isKinematic = false;
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
-            panel = GameObject.Find("Panel");
+            panel = GameObject.FindGameObjectWithTag("localPanel");
             panel.SetActive(false);
         }
     }
@@ -56,6 +56,11 @@ public class MovePlayerScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
+        {
+            panel.SetActive(true);
+            speed = 0f;
+        }
+        else if (gameObject.CompareTag("SpawnEmpty") && other.CompareTag("Finish"))
         {
             panel.SetActive(true);
             speed = 0f;

@@ -14,5 +14,11 @@ public class StarActivetes : MonoBehaviour
             animator.SetBool("Star", false);
             gameObject.SetActive(false);
         }
+        else if(other.CompareTag("SpawnEmpty"))
+        {
+            ImageStar2.SetActive(true);
+            animator.SetBool("Star", false);
+            gameObject.SetActive(false);
+        }
     }
 }
