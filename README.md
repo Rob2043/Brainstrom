@@ -1,3 +1,0 @@
-# Brainstrom
-First actives
-Hello
