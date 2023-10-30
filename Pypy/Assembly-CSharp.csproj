@@ -60,14 +60,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
+    <Compile Include="Assets\Scripts\LocalMunu.cs" />
     <Compile Include="Assets\CameraScaler\CameraScaler.cs" />
     <Compile Include="Assets\Scripts\CheckScin.cs" />
     <Compile Include="Assets\Scripts\StarActivetes.cs" />
     <Compile Include="Assets\Scripts\Cup.cs" />
     <Compile Include="Assets\Scripts\ChooseScinScript.cs" />
+    <Compile Include="Assets\Scripts\TestSwaip.cs" />
     <Compile Include="Assets\Scripts\SwipScript.cs" />
     <Compile Include="Assets\Scripts\MovePlayerScript.cs" />
-    <Compile Include="Assets\Scripts\FindModel.cs" />
     <Compile Include="Assets\Scripts\MainButtons.cs" />
     <Compile Include="Assets\Scripts\LocalMenuScript.cs" />
   </ItemGroup>
@@ -756,20 +757,20 @@
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
