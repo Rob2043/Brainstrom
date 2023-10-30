@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovePlayerScript : MonoBehaviour
 {
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private float speed;
-    [SerializeField] private GameObject panel;
+    public GameObject panel;
 
     public bool checkScin = false;
     private Rigidbody rb;
@@ -14,12 +15,21 @@ public class MovePlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
-
+        if (SceneManager.GetActiveScene().name != "Scins")
+        {
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            panel = GameObject.Find("Panel");
+            panel.SetActive(false);
+        }
     }
+
     private void HandleSwipePlayer(Vector2 direction)
     {
         if (rb != null)
         {
+
             Vector3 force = Vector3.zero;
 
             if (direction == Vector2.left)
@@ -45,7 +55,7 @@ public class MovePlayerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Player") && other.CompareTag("Finish"))
+        if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
             panel.SetActive(true);
             speed = 0f;

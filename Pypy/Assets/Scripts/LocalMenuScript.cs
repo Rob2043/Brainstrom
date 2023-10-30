@@ -16,7 +16,7 @@ public class LocalMenuScript : MonoBehaviour
     }
     public void NextLevel()
     {
-        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
         PlayerPrefs.SetInt("level", currentLevel); // Save the current level to PlayerPrefs
         PlayerPrefs.Save(); // Save the PlayerPrefs data
         SceneManager.LoadScene($"Level {currentLevel}"); // Load the next level
