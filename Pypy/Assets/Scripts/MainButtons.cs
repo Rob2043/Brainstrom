@@ -28,6 +28,15 @@ public class MainButtons : MonoBehaviour
             isActiveButtonSound = false;
         }
     }
+    private void Update() {
+        if(MaxLevel != PlayerPrefs.GetInt("MaxLevel",1)){
+            for(int j = 0; j < LevelButtons.Length; j++){
+                LevelButtons[j].interactable = true;
+            }
+            MaxLevel = PlayerPrefs.GetInt("MaxLevel",1);
+            ButtonInteractible();
+        }
+    }
 
     public void MainButtonPlayOnClick()
     {

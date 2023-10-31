@@ -64,6 +64,8 @@ public class MovePlayerScript : MonoBehaviour
         {
             panel.SetActive(true);
             speed = 0f;
+            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
+            PlayerPrefs.Save(); // Save the PlayerPrefs data
         }
         else if (gameObject.CompareTag("SpawnEmpty") && other.CompareTag("Finish"))
         {
