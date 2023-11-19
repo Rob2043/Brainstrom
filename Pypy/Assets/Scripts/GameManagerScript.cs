@@ -1,17 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
-    [SerializeField] GameObject[] ArrayPlayers;
+    [SerializeField] private GameObject[] ArrayPlayers;
     private GameObject selectedPlayer;
     private GameObject selectedSecondPlayer;
     [SerializeField] private GameObject EmptyPlayer;
+    public int CountStars;
+    public GameObject TextCountStars;
+    [SerializeField] private GameObject BasicPlayer;
+    public bool StopCount = false;
 
     private void Awake()
     {
@@ -23,53 +26,106 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
-        // Подписываем метод на событие загрузки сцены
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Отписываем метод при уничтожении объекта
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string SkinName = "";
         if (scene.name == "Scins")
         {
             if (PlayerPrefs.HasKey("SaveScin"))
             {
-                SkinName = PlayerPrefs.GetString("SaveScin");
+                string SkinName = PlayerPrefs.GetString("SaveScin");
+
+                // Add a debug statement to print the retrieved SkinName
+                Debug.Log("Saved Skin Name: " + SkinName);
+
                 foreach (var player in ArrayPlayers)
                 {
                     if (playerSkins.ContainsKey(player))
                     {
                         playerSkins[player] = player.name == SkinName;
+
+                        // Add a debug statement to print the updated player skin information
+                        Debug.Log("Player: " + player.name + ", Skin: " + playerSkins[player]);
                     }
                     else
                     {
                         playerSkins.Add(player, player.name == SkinName);
+
+                        // Add a debug statement to print the newly added player skin information
+                        Debug.Log("New Player: " + player.name + ", Skin: " + playerSkins[player]);
                     }
                 }
             }
         }
-        if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
+
+        else if (scene.name != "MainMenu")
         {
+            bool check = true;
             EmptyPlayer = GameObject.FindGameObjectWithTag("SpawnEmpty");
             foreach (var player in ArrayPlayers)
             {
                 if (player.name == PlayerPrefs.GetString("SaveScin"))
                 {
+                    check = false;
                     GameObject newScin = Instantiate(player, EmptyPlayer.transform.position, EmptyPlayer.transform.rotation);
                     newScin.tag = player.tag;
                     Destroy(EmptyPlayer);
                 }
             }
+            if (check)
+            {
+                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y + 0.5f, EmptyPlayer.transform.position.z);
+                Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
+            }
+            TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
         }
     }
+
+
+    private void LateUpdate()
+    {
+
+    }
+    //private void FixedUpdate()
+    //{
+    //    try
+    //    {
+
+    //    }
+    //    if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
+    //    {
+    //        GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
+
+    //        if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
+    //        {
+    //            MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
+
+    //            if (movePlayerScript.checkStar && !StopCount)
+    //            {
+    //                if (TextCountStars != null)
+    //                {
+    //                    TextMeshPro textMeshProComponent = TextCountStars.GetComponent<TextMeshPro>();
+    //                    if (textMeshProComponent != null)
+    //                    {
+    //                        CountStars++;
+    //                        textMeshProComponent.text = CountStars.ToString();
+    //                    }
+    //                }
+    //                StopCount = true;
+    //            }
+    //        }
+    //    }
+    //}
 
 
     public void SetPlayerSkin(GameObject player, bool hasSkin)
