@@ -11,11 +11,6 @@ public class LocalMenuScript : MonoBehaviour
     [SerializeField] private GameObject PanelExit;
     [SerializeField] private GameObject ButtonExit;
 
-
-    private void Start()
-    {
-        starAnimation.SetBool("Star",true);
-    }
     public void NextLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;

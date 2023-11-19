@@ -58,13 +58,12 @@ public class CheckScin : MonoBehaviour
         {
             gameManager.SetSelectedPlayer(player);
             IsClickPlayer = true;
-            // Если первый игрок выбран, устанавливаем его состояние скина в true
+
+            // Set the skin state for the selected player immediately
             MovePlayerScript movePlayerScript = player.GetComponent<MovePlayerScript>();
             movePlayerScript.checkScin = true;
             gameManager.SetPlayerSkin(player, movePlayerScript.checkScin);
 
-            // Если второй игрок также выбран и переменная check равна 1,
-            // устанавливаем состояние скина второго игрока в false и обнуляем secondPlayer
             if (secondPlayer != null && check == 1)
             {
                 check = 0;
@@ -75,12 +74,13 @@ public class CheckScin : MonoBehaviour
                 IsClickSecondPlayer = false;
             }
         }
+
         if (secondPlayer != null && check == 0)
         {
             gameManager.SetSelectedSecondPlayer(secondPlayer);
             IsClickSecondPlayer = true;
-            // Если второй игрок выбран и переменная check равна 0,
-            // устанавливаем состояние скина второго игрока в true и обнуляем первого игрока
+
+            // Set the skin state for the selected second player immediately
             MovePlayerScript movePlayerScriptSecond = secondPlayer.GetComponent<MovePlayerScript>();
             movePlayerScriptSecond.checkScin = true;
             gameManager.SetPlayerSkin(secondPlayer, movePlayerScriptSecond.checkScin);
@@ -96,6 +96,7 @@ public class CheckScin : MonoBehaviour
             }
         }
     }
+
 
 
     public void ExitClic()

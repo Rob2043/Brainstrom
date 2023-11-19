@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -44,25 +45,15 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.HasKey("SaveScin"))
             {
                 string SkinName = PlayerPrefs.GetString("SaveScin");
-
-                // Add a debug statement to print the retrieved SkinName
-                Debug.Log("Saved Skin Name: " + SkinName);
-
                 foreach (var player in ArrayPlayers)
                 {
                     if (playerSkins.ContainsKey(player))
                     {
                         playerSkins[player] = player.name == SkinName;
-
-                        // Add a debug statement to print the updated player skin information
-                        Debug.Log("Player: " + player.name + ", Skin: " + playerSkins[player]);
                     }
                     else
                     {
                         playerSkins.Add(player, player.name == SkinName);
-
-                        // Add a debug statement to print the newly added player skin information
-                        Debug.Log("New Player: " + player.name + ", Skin: " + playerSkins[player]);
                     }
                 }
             }
@@ -94,40 +85,46 @@ public class GameManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        try
+        {
+            if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
+            {
+                GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
+
+                if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
+                {
+                    MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
+
+                    if (movePlayerScript.checkStar && !StopCount)
+                    {
+                        if (TextCountStars != null)
+                        {
+                            TextMeshPro textMeshProComponent = TextCountStars.GetComponent<TextMeshPro>();
+                            if (textMeshProComponent != null)
+                            {
+                                CountStars++;
+                                textMeshProComponent.text = CountStars.ToString();
+                                // Add a debug statement to print the updated CountStars
+                                Debug.Log("CountStars: " + CountStars);
+                            }
+                        }
+                        StopCount = true;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            // Catch and log any exceptions that occur
+            Debug.LogError("Exception caught: " + e.Message);
+
+            // Add debug statements to print information for debugging
+            Debug.Log("PlayerForStar: " );
+            Debug.Log("movePlayerScript: ");
+            Debug.Log("TextCountStars: " + TextCountStars);
+        }
 
     }
-    //private void FixedUpdate()
-    //{
-    //    try
-    //    {
-
-    //    }
-    //    if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
-    //    {
-    //        GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
-
-    //        if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
-    //        {
-    //            MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
-
-    //            if (movePlayerScript.checkStar && !StopCount)
-    //            {
-    //                if (TextCountStars != null)
-    //                {
-    //                    TextMeshPro textMeshProComponent = TextCountStars.GetComponent<TextMeshPro>();
-    //                    if (textMeshProComponent != null)
-    //                    {
-    //                        CountStars++;
-    //                        textMeshProComponent.text = CountStars.ToString();
-    //                    }
-    //                }
-    //                StopCount = true;
-    //            }
-    //        }
-    //    }
-    //}
-
-
     public void SetPlayerSkin(GameObject player, bool hasSkin)
     {
         if (playerSkins.ContainsKey(player))

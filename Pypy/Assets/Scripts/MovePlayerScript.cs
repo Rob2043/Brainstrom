@@ -3,13 +3,13 @@ using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class MovePlayerScript : MonoBehaviour
 {
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private float speed;
     public GameObject panel;
-    [SerializeField] private int Time;
     public bool checkScin = false;
     private Rigidbody rb;
     public bool checkStar;
@@ -68,34 +68,27 @@ public class MovePlayerScript : MonoBehaviour
             panel.SetActive(true);
             speed = 0f;
             checkStar = true;
-            GameObject time = GameObject.FindGameObjectWithTag("Time");
-        //    if(time.GetComponent<TextStarScript>().DieTime > 0)
-        //    {
-        //        GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
-        //        gameManager.GetComponent<GameManager>().CountStars += 1;
-        //    }
-        //    else 
-        //    {
-        //        GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
-        //        gameManager.GetComponent<GameManager>().CountStars += 0;
-        //    }
-        //}
-        //else if (gameObject.CompareTag("SpawnEmpty") && other.CompareTag("Finish"))
-        //{
-        //    panel.SetActive(true);
-        //    speed = 0f;
-        //    checkStar = true;
-        //    GameObject time = GameObject.FindGameObjectWithTag("Time");
-        //    if (time.GetComponent<TextStarScript>().DieTime > 0)
-        //    {
-        //        GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
-        //        gameManager.GetComponent<GameManager>().CountStars += 1;
-        //    }
-        //    else
-        //    {
-        //        GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
-        //        gameManager.GetComponent<GameManager>().CountStars += 0;
-        //    }
+
+            GameObject Time = GameObject.FindGameObjectWithTag("Time");
+            GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
+            GameObject ThirdStar = GameObject.FindGameObjectWithTag("GlobalManager");
+
+            if (Time != null && gameManager != null)
+            {
+                float dieTime = Time.GetComponent<TextStarScript>().DieTime;
+
+                if (dieTime > 0)
+                {
+                    ThirdStar.SetActive(true);
+                    gameManager.GetComponent<GameManager>().CountStars += 1;
+                }
+                else
+                {
+                    gameManager.GetComponent<GameManager>().CountStars += 0;
+                }
+
+                Time.SetActive(false);
+            }
         }
     }
 }

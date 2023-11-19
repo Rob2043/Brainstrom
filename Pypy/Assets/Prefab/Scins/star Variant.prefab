@@ -74,40 +74,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6234170649794333243}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7144966979266933328}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6340049691234732049}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9220930539874878684}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
 --- !u!1 &2538140401812846131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f9433909eb703c4aaa27526c9a73e48, type: 3}
   m_PrefabInstance: {fileID: 3456548923065371490}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &6234170649794333243
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2538140401812846131}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b3c89eac84dbd3449b30bcdd4980a7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &7144966979266933328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,3 +122,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImageStar2: {fileID: 0}
   animator: {fileID: 0}
+--- !u!114 &9220930539874878684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538140401812846131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd7348618ae08047bfac71fee7df66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: 0
+  Amp: 0.25
+  Freq: 2
+  Offset: 0
+  StartPos: {x: 0, y: 0, z: 0}
+  checkAnimation: 1
