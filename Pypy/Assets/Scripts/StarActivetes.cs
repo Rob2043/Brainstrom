@@ -7,7 +7,7 @@ public class StarActivetes : MonoBehaviour
     [SerializeField] private GameObject ImageStar2;
     public Animator animator;
     private GameObject starsEarned;
-    private StarAnimation OffAnimation;
+    //private StarAnimation OffAnimation;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +25,7 @@ public class StarActivetes : MonoBehaviour
                 Debug.LogWarning("GameManager component not found on the 'starsEarned' object.");
             }
             ImageStar2.SetActive(true);
-            OffAnimation.checkAnimation  = false;
+            //OffAnimation.checkAnimation  = false;
             gameObject.SetActive(false);
         }
     }

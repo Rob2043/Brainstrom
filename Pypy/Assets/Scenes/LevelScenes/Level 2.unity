@@ -348,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 6340049691234732049, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 185742396}
+      objectReference: {fileID: 0}
     - target: {fileID: 6340049691234732049, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
       propertyPath: ImageStar2
       value: 
@@ -358,11 +358,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
---- !u!95 &185742396 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6234170649794333243, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
-  m_PrefabInstance: {fileID: 185742395}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &197254926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,10 +2524,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3260,7 +3255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e1f6a58895224abe8632d42a6cb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starAnimation: {fileID: 185742396}
   PanelExit: {fileID: 760063327}
   ButtonExit: {fileID: 658948341}
 --- !u!114 &1673464296

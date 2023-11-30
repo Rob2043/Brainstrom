@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class LocalMenuScript : MonoBehaviour
 {
-    [SerializeField] private Animator starAnimation;
     [SerializeField] private GameObject PanelExit;
     [SerializeField] private GameObject ButtonExit;
 

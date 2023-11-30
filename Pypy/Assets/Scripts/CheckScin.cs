@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CheckScin : MonoBehaviour
 {
-    public static GameObject player;
-    public static GameObject secondPlayer;
+    public GameObject player;
+    private GameObject secondPlayer;
     private int check = 0;
     public GameManager gameManager;
     private bool IsClickPlayer;
     private bool IsClickSecondPlayer;
+    private bool confirmationBuy = true;
 
     // Пример логирования в методе Start() класса CheckScin
     private void Start()
@@ -28,6 +30,21 @@ public class CheckScin : MonoBehaviour
             InitializePlayer(gameManager.GetSelectedSecondPlayer());
         }
     }
+
+    //private void Update()
+    //{
+    //    MovePlayerScript Scin = player.GetComponent<MovePlayerScript>();
+    //    if (gameManager.CountStars >= Scin.dataScins.Price)
+    //    {
+    //        gameManager.CountStars -= Scin.dataScins.Price;
+    //        Scin.allowForBuy = true;
+    //    }
+    //    else
+    //    {
+    //        Scin.allowForBuy = false;
+    //    }
+    //}
+
     private void InitializePlayer(GameObject playerObject)
     {
         MovePlayerScript movePlayerScript = playerObject.GetComponent<MovePlayerScript>();
@@ -54,7 +71,7 @@ public class CheckScin : MonoBehaviour
     }
     public void ChooseClick()
     {
-        if (player != null)
+        if (player != null & confirmationBuy)
         {
             gameManager.SetSelectedPlayer(player);
             IsClickPlayer = true;

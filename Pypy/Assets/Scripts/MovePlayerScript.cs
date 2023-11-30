@@ -1,9 +1,6 @@
-﻿using System;
-using System.Xml;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class MovePlayerScript : MonoBehaviour
 {
@@ -13,6 +10,8 @@ public class MovePlayerScript : MonoBehaviour
     public bool checkScin = false;
     private Rigidbody rb;
     public bool checkStar;
+    public bool allowForBuy = false;
+    public DataItems dataScins;
 
     private void Awake()
     {

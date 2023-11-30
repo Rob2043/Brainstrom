@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
         else if (scene.name != "MainMenu")
         {
             bool check = true;
@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void LateUpdate()
     {
         try
@@ -99,14 +98,11 @@ public class GameManager : MonoBehaviour
                     {
                         if (TextCountStars != null)
                         {
-                            TextMeshPro textMeshProComponent = TextCountStars.GetComponent<TextMeshPro>();
-                            if (textMeshProComponent != null)
-                            {
-                                CountStars++;
-                                textMeshProComponent.text = CountStars.ToString();
-                                // Add a debug statement to print the updated CountStars
-                                Debug.Log("CountStars: " + CountStars);
-                            }
+                            Text text = TextCountStars.GetComponent<Text>();
+                            CountStars++;
+                            text.text = CountStars.ToString();
+                            // Add a debug statement to print the updated CountStars
+                            Debug.Log("CountStars: " + CountStars);
                         }
                         StopCount = true;
                     }
@@ -119,12 +115,12 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Exception caught: " + e.Message);
 
             // Add debug statements to print information for debugging
-            Debug.Log("PlayerForStar: " );
+            Debug.Log("PlayerForStar: ");
             Debug.Log("movePlayerScript: ");
             Debug.Log("TextCountStars: " + TextCountStars);
         }
-
     }
+
     public void SetPlayerSkin(GameObject player, bool hasSkin)
     {
         if (playerSkins.ContainsKey(player))
@@ -173,5 +169,4 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("level", level);
     }
-
 }
