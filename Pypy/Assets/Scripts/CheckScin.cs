@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CheckScin : MonoBehaviour
 {
+    public GameObject ScanObjct;
     public GameObject player;
     private GameObject secondPlayer;
     private int check = 0;
@@ -30,21 +31,6 @@ public class CheckScin : MonoBehaviour
             InitializePlayer(gameManager.GetSelectedSecondPlayer());
         }
     }
-
-    //private void Update()
-    //{
-    //    MovePlayerScript Scin = player.GetComponent<MovePlayerScript>();
-    //    if (gameManager.CountStars >= Scin.dataScins.Price)
-    //    {
-    //        gameManager.CountStars -= Scin.dataScins.Price;
-    //        Scin.allowForBuy = true;
-    //    }
-    //    else
-    //    {
-    //        Scin.allowForBuy = false;
-    //    }
-    //}
-
     private void InitializePlayer(GameObject playerObject)
     {
         MovePlayerScript movePlayerScript = playerObject.GetComponent<MovePlayerScript>();
@@ -53,22 +39,14 @@ public class CheckScin : MonoBehaviour
         Debug.Log("Player not null: " + playerObject.name);
     }
 
-
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag($"Player"))
+        if (gameObject.CompareTag("Colision") && other.CompareTag("Player"))
         {
-            if (!IsClickPlayer)
-            {
-                player = other.gameObject;
-            }
-            else if (!IsClickSecondPlayer)
-            {
-                secondPlayer = other.gameObject;
-            }
+            ScanObjct = other.gameObject;
         }
     }
+
     public void ChooseClick()
     {
         if (player != null & confirmationBuy)
@@ -105,6 +83,10 @@ public class CheckScin : MonoBehaviour
             if (player != null)
             {
                 check = 1;
+
+
+
+
                 MovePlayerScript movePlayerScript = player.GetComponent<MovePlayerScript>();
                 movePlayerScript.checkScin = false;
                 gameManager.SetPlayerSkin(secondPlayer, movePlayerScriptSecond.checkScin);
@@ -114,7 +96,19 @@ public class CheckScin : MonoBehaviour
         }
     }
 
-
+    public void BuyButton()
+    {
+        MovePlayerScript Scin = player.GetComponent<MovePlayerScript>();
+        if (gameManager.CountStars >= Scin.dataScins.Price)
+        {
+            gameManager.CountStars -= Scin.dataScins.Price;
+            Scin.allowForBuy = true;
+        }
+        else
+        {
+            Scin.allowForBuy = false;
+        }
+    }
 
     public void ExitClic()
     {
