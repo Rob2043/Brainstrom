@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
-    [SerializeField] private GameObject[] ArrayPlayers;
+    public Dictionary<GameObject, bool> playerBuy = new Dictionary<GameObject, bool>();
+    [SerializeField] public GameObject[] ArrayPlayers;
     private GameObject selectedPlayer;
     private GameObject selectedSecondPlayer;
     [SerializeField] private GameObject EmptyPlayer;
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Scins")
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
             // Catch and log any exceptions that occur
             Debug.LogError("Exception caught: " + e.Message);
@@ -120,12 +121,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CheckPlayerBuy(GameObject player, bool buy)
+    {
+        if (playerBuy.ContainsKey(player))
+        {
+            playerBuy[player] = buy;
+            Debug.Log(buy);
+            PlayerPrefs.SetString("DataBuy", player.name);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            playerBuy.Add(player, buy);
+        }
+    }
+
     public void SetPlayerSkin(GameObject player, bool hasSkin)
     {
         if (playerSkins.ContainsKey(player))
         {
             playerSkins[player] = hasSkin;
-            Debug.Log(hasSkin);
             PlayerPrefs.SetString("SaveScin", player.name);
             PlayerPrefs.Save();
         }

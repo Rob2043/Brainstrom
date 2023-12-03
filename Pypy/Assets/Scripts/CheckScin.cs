@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.ReorderableList;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CheckScin : MonoBehaviour
 {
     public GameObject ScanObjct;
-    public GameObject player;
-    private GameObject secondPlayer;
+    public static GameObject player;
+    private static GameObject secondPlayer;
     private int check = 0;
     public GameManager gameManager;
     private bool IsClickPlayer;
@@ -31,6 +29,7 @@ public class CheckScin : MonoBehaviour
             InitializePlayer(gameManager.GetSelectedSecondPlayer());
         }
     }
+
     private void InitializePlayer(GameObject playerObject)
     {
         MovePlayerScript movePlayerScript = playerObject.GetComponent<MovePlayerScript>();
@@ -49,7 +48,7 @@ public class CheckScin : MonoBehaviour
 
     public void ChooseClick()
     {
-        if (player != null & confirmationBuy)
+        if (player != null)
         {
             gameManager.SetSelectedPlayer(player);
             IsClickPlayer = true;
@@ -83,10 +82,6 @@ public class CheckScin : MonoBehaviour
             if (player != null)
             {
                 check = 1;
-
-
-
-
                 MovePlayerScript movePlayerScript = player.GetComponent<MovePlayerScript>();
                 movePlayerScript.checkScin = false;
                 gameManager.SetPlayerSkin(secondPlayer, movePlayerScriptSecond.checkScin);
@@ -98,14 +93,17 @@ public class CheckScin : MonoBehaviour
 
     public void BuyButton()
     {
-        MovePlayerScript Scin = player.GetComponent<MovePlayerScript>();
-        if (gameManager.CountStars >= Scin.dataScins.Price)
+        MovePlayerScript Scin = ScanObjct.GetComponent<MovePlayerScript>();
+
+        if (gameManager.CountStars >= Scin.dataScins.Price && !Scin.allowForBuy)
         {
             gameManager.CountStars -= Scin.dataScins.Price;
             Scin.allowForBuy = true;
+            gameManager.CheckPlayerBuy(ScanObjct, Scin.allowForBuy);
         }
         else
         {
+            gameManager.CheckPlayerBuy(ScanObjct, Scin.allowForBuy);
             Scin.allowForBuy = false;
         }
     }
@@ -127,5 +125,4 @@ public class CheckScin : MonoBehaviour
 
         SceneManager.LoadScene("MainMenu");
     }
-
 }
