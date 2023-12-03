@@ -18,25 +18,6 @@ public class ChooseScinScript : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-
-        if (PlayerPrefs.HasKey("DataBuy"))
-        {
-            string transition = PlayerPrefs.GetString("DataBuy");
-            foreach (var player in gameManager.ArrayPlayers)
-            {
-                if (gameManager.playerBuy.ContainsKey(player))
-                {
-                    player.GetComponent<MovePlayerScript>().allowForBuy = player.name == transition;
-                    gameManager.playerBuy[player] = player.name == transition;
-                    Debug.Log(player.GetComponent<MovePlayerScript>().allowForBuy);
-                }
-                else
-                {
-                    gameManager.playerBuy.Add(player, player.name == transition);
-                }
-
-            }
-        }
     }
 
     private void LateUpdate()

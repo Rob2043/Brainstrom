@@ -110,19 +110,6 @@ public class CheckScin : MonoBehaviour
 
     public void ExitClic()
     {
-        if (player != null)
-        {
-            PlayerPrefs.SetString("SavePlayer", player.name);
-            PlayerPrefs.SetInt("Player1_checkScin", player.GetComponent<MovePlayerScript>().checkScin ? 1 : 0);
-            PlayerPrefs.Save();
-        }
-        if (secondPlayer != null)
-        {
-            PlayerPrefs.SetString("SavePlayerSecond", secondPlayer.name);
-            PlayerPrefs.SetInt("Player2_checkScin", secondPlayer.GetComponent<MovePlayerScript>().checkScin ? 1 : 0);
-            PlayerPrefs.Save();
-        }
-
         SceneManager.LoadScene("MainMenu");
     }
 }

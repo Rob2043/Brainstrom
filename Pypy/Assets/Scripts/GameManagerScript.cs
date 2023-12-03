@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
-    public Dictionary<GameObject, bool> playerBuy = new Dictionary<GameObject, bool>();
+    public static Dictionary<GameObject, bool> playerBuy = new Dictionary<GameObject, bool>();
     [SerializeField] public GameObject[] ArrayPlayers;
     private GameObject selectedPlayer;
     private GameObject selectedSecondPlayer;
@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject TextCountStars;
     [SerializeField] private GameObject BasicPlayer;
     public bool StopCount = false;
+    public static bool FirstAddToPlayerBuy = true;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        //PlayerPrefs.DeleteAll();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -43,6 +44,33 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Scins")
         {
+            foreach (var player in ArrayPlayers)
+            {
+                if (playerBuy.ContainsKey(player) == false)
+                {
+                    string key = "PlayerBuy_" + player.name;
+                    PlayerPrefs.SetInt(key, 0);
+                    playerBuy.Add(player, false);
+                    PlayerPrefs.Save();
+                }
+                else
+                {
+                    int amount = PlayerPrefs.GetInt("PlayerBuy_" + player.name);
+                    bool transition = amount == 1 || amount == 0;
+                }
+
+                if (PlayerPrefs.HasKey("PlayerBuy_" + player.name))
+                {
+                    Debug.Log(player.name + PlayerPrefs.HasKey("PlayerBuy_" + player.name));
+                    bool transition = PlayerPrefs.GetInt("PlayerBuy_" + player.name, 1) == 1;
+                    if (playerBuy.ContainsKey(player))
+                    {
+                        player.GetComponent<MovePlayerScript>().allowForBuy = transition;
+                        playerBuy[player] = transition;
+                    }
+                }
+            }
+
             if (PlayerPrefs.HasKey("SaveScin"))
             {
                 string SkinName = PlayerPrefs.GetString("SaveScin");
@@ -84,40 +112,27 @@ public class GameManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        try
+        if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
         {
-            if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
+            GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
+
+            if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
             {
-                GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
+                MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
 
-                if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
+                if (movePlayerScript.checkStar && !StopCount)
                 {
-                    MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
-
-                    if (movePlayerScript.checkStar && !StopCount)
+                    if (TextCountStars != null)
                     {
-                        if (TextCountStars != null)
-                        {
-                            Text text = TextCountStars.GetComponent<Text>();
-                            CountStars++;
-                            text.text = CountStars.ToString();
-                            // Add a debug statement to print the updated CountStars
-                            Debug.Log("CountStars: " + CountStars);
-                        }
-                        StopCount = true;
+                        Text text = TextCountStars.GetComponent<Text>();
+                        CountStars++;
+                        text.text = CountStars.ToString();
+                        // Add a debug statement to print the updated CountStars
+                        Debug.Log("CountStars: " + CountStars);
                     }
+                    StopCount = true;
                 }
             }
-        }
-        catch (System.Exception e)
-        {
-            // Catch and log any exceptions that occur
-            Debug.LogError("Exception caught: " + e.Message);
-
-            // Add debug statements to print information for debugging
-            Debug.Log("PlayerForStar: ");
-            Debug.Log("movePlayerScript: ");
-            Debug.Log("TextCountStars: " + TextCountStars);
         }
     }
 
@@ -127,12 +142,13 @@ public class GameManager : MonoBehaviour
         {
             playerBuy[player] = buy;
             Debug.Log(buy);
-            PlayerPrefs.SetString("DataBuy", player.name);
+            PlayerPrefs.SetInt("PlayerBuy_" + player.name, 1);
             PlayerPrefs.Save();
         }
         else
         {
             playerBuy.Add(player, buy);
+            Debug.Log("Else " + buy);
         }
     }
 
@@ -183,4 +199,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("level", level);
     }
+
 }
+
+
