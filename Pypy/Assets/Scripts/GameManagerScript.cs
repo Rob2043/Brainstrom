@@ -8,16 +8,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
-    public static Dictionary<GameObject, bool> playerBuy = new Dictionary<GameObject, bool>();
     [SerializeField] public GameObject[] ArrayPlayers;
-    private GameObject selectedPlayer;
-    private GameObject selectedSecondPlayer;
+    public GameObject selectedPlayer;
+    public GameObject selectedSecondPlayer;
     [SerializeField] private GameObject EmptyPlayer;
     public int CountStars;
     public GameObject TextCountStars;
     [SerializeField] private GameObject BasicPlayer;
     public bool StopCount = false;
     public static bool FirstAddToPlayerBuy = true;
+    public GameObject ThirdStar;
 
     private void Awake()
     {
@@ -46,28 +46,14 @@ public class GameManager : MonoBehaviour
         {
             foreach (var player in ArrayPlayers)
             {
-                if (playerBuy.ContainsKey(player) == false)
-                {
-                    string key = "PlayerBuy_" + player.name;
-                    PlayerPrefs.SetInt(key, 0);
-                    playerBuy.Add(player, false);
-                    PlayerPrefs.Save();
-                }
-                else
-                {
-                    int amount = PlayerPrefs.GetInt("PlayerBuy_" + player.name);
-                    bool transition = amount == 1 || amount == 0;
-                }
-
+                //Debug.Log(player.name + playerBuy.ContainsKey(player));
                 if (PlayerPrefs.HasKey("PlayerBuy_" + player.name))
                 {
                     Debug.Log(player.name + PlayerPrefs.HasKey("PlayerBuy_" + player.name));
                     bool transition = PlayerPrefs.GetInt("PlayerBuy_" + player.name, 1) == 1;
-                    if (playerBuy.ContainsKey(player))
-                    {
-                        player.GetComponent<MovePlayerScript>().allowForBuy = transition;
-                        playerBuy[player] = transition;
-                    }
+                    Debug.Log(transition);
+                    GameObject transitionPlayer = GameObject.Find(player.name);
+                    transitionPlayer.GetComponent<MovePlayerScript>().allowForBuy = transition;
                 }
             }
 
@@ -91,6 +77,8 @@ public class GameManager : MonoBehaviour
         {
             bool check = true;
             EmptyPlayer = GameObject.FindGameObjectWithTag("SpawnEmpty");
+            ThirdStar = GameObject.FindGameObjectWithTag("ThirdStar");
+            ThirdStar.SetActive(false);
             foreach (var player in ArrayPlayers)
             {
                 if (player.name == PlayerPrefs.GetString("SaveScin"))
@@ -138,18 +126,8 @@ public class GameManager : MonoBehaviour
 
     public void CheckPlayerBuy(GameObject player, bool buy)
     {
-        if (playerBuy.ContainsKey(player))
-        {
-            playerBuy[player] = buy;
-            Debug.Log(buy);
-            PlayerPrefs.SetInt("PlayerBuy_" + player.name, 1);
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            playerBuy.Add(player, buy);
-            Debug.Log("Else " + buy);
-        }
+        PlayerPrefs.SetInt("PlayerBuy_" + player.name, 1);
+        PlayerPrefs.Save();
     }
 
     public void SetPlayerSkin(GameObject player, bool hasSkin)
@@ -175,31 +153,10 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    public GameObject GetSelectedPlayer()
-    {
-        return selectedPlayer;
-    }
-
-    public GameObject GetSelectedSecondPlayer()
-    {
-        return selectedSecondPlayer;
-    }
-
-    public void SetSelectedPlayer(GameObject player)
-    {
-        selectedPlayer = player;
-    }
-
-    public void SetSelectedSecondPlayer(GameObject secondPlayer)
-    {
-        selectedSecondPlayer = secondPlayer;
-    }
-
     public void SetCurrentLevel(int level)
     {
         PlayerPrefs.SetInt("level", level);
     }
 
 }
-
 

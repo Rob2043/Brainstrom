@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -70,7 +71,7 @@ public class MovePlayerScript : MonoBehaviour
 
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
-            GameObject ThirdStar = GameObject.FindGameObjectWithTag("GlobalManager");
+            GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
 
             if (Time != null && gameManager != null)
             {

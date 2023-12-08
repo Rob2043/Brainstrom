@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,23 +9,20 @@ public class CheckScin : MonoBehaviour
     private static GameObject secondPlayer;
     private int check = 0;
     public GameManager gameManager;
-    private bool IsClickPlayer;
-    private bool IsClickSecondPlayer;
-    private bool confirmationBuy = true;
 
     // Пример логирования в методе Start() класса CheckScin
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
 
-        if (gameManager.GetSelectedPlayer() != null)
+        if (gameManager.selectedPlayer != null)
         {
-            InitializePlayer(gameManager.GetSelectedPlayer());
+            InitializePlayer(gameManager.selectedPlayer);
         }
 
-        if (gameManager.GetSelectedSecondPlayer() != null)
+        if (gameManager.selectedSecondPlayer != null)
         {
-            InitializePlayer(gameManager.GetSelectedSecondPlayer());
+            InitializePlayer(gameManager.selectedSecondPlayer);
         }
     }
 
@@ -50,14 +46,11 @@ public class CheckScin : MonoBehaviour
     {
         if (player != null)
         {
-            gameManager.SetSelectedPlayer(player);
-            IsClickPlayer = true;
-
+            player = gameManager.selectedPlayer;
             // Set the skin state for the selected player immediately
             MovePlayerScript movePlayerScript = player.GetComponent<MovePlayerScript>();
             movePlayerScript.checkScin = true;
             gameManager.SetPlayerSkin(player, movePlayerScript.checkScin);
-
             if (secondPlayer != null && check == 1)
             {
                 check = 0;
@@ -65,20 +58,16 @@ public class CheckScin : MonoBehaviour
                 movePlayerScriptSecond.checkScin = false;
                 gameManager.SetPlayerSkin(player, movePlayerScript.checkScin);
                 secondPlayer = null;
-                IsClickSecondPlayer = false;
             }
         }
 
         if (secondPlayer != null && check == 0)
         {
-            gameManager.SetSelectedSecondPlayer(secondPlayer);
-            IsClickSecondPlayer = true;
-
+            secondPlayer = gameManager.selectedSecondPlayer;
             // Set the skin state for the selected second player immediately
             MovePlayerScript movePlayerScriptSecond = secondPlayer.GetComponent<MovePlayerScript>();
             movePlayerScriptSecond.checkScin = true;
             gameManager.SetPlayerSkin(secondPlayer, movePlayerScriptSecond.checkScin);
-
             if (player != null)
             {
                 check = 1;
@@ -86,7 +75,6 @@ public class CheckScin : MonoBehaviour
                 movePlayerScript.checkScin = false;
                 gameManager.SetPlayerSkin(secondPlayer, movePlayerScriptSecond.checkScin);
                 player = null;
-                IsClickPlayer = false;
             }
         }
     }
