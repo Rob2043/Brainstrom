@@ -10,6 +10,7 @@ public class ChooseScinScript : MonoBehaviour
     private GameObject playerCheck;
     private MovePlayerScript CheckBuy;
     [SerializeField] private GameObject ButtonBuy;
+    [SerializeField] private TMP_Text TextButtonBuy;
     [SerializeField] private GameObject ButtonChoose;
     [SerializeField] private TMP_Text TextForPrice;
     [SerializeField] private Text TextForCountStars;
@@ -34,6 +35,14 @@ public class ChooseScinScript : MonoBehaviour
 
                 if (CheckBuy != null)
                 {
+                    if (CheckBuy.checkScin == true)
+                    {
+                        TextButtonBuy.text = "Selected";
+                    }
+                    else
+                    {
+                        TextButtonBuy.text = "Choose";
+                    }
                     if (CheckBuy.allowForBuy == false)
                     {
                         ButtonBuy.SetActive(true);
