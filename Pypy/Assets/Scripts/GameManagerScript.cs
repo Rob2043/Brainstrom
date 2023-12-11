@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,7 +11,6 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
     [SerializeField] public GameObject[] ArrayPlayers;
     public GameObject selectedPlayer;
-    public GameObject selectedSecondPlayer;
     [SerializeField] private GameObject EmptyPlayer;
     public int CountStars;
     public GameObject TextCountStars;
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Scins")
         {
+            playerSkins.Clear();
             foreach (var player in ArrayPlayers)
             {
                 //Debug.Log(player.name + playerBuy.ContainsKey(player));
@@ -55,23 +56,31 @@ public class GameManager : MonoBehaviour
                     GameObject transitionPlayer = GameObject.Find(player.name);
                     transitionPlayer.GetComponent<MovePlayerScript>().allowForBuy = transition;
                 }
-            }
-
-            if (PlayerPrefs.HasKey("SaveScin"))
-            {
-                string SkinName = PlayerPrefs.GetString("SaveScin");
-                foreach (var player in ArrayPlayers)
+                if (PlayerPrefs.HasKey(player.name))
                 {
+                    bool value = PlayerPrefs.GetString(player.name) == player.name;
+                    playerSkins.Add(player, value);
                     if (playerSkins.ContainsKey(player))
                     {
-                        playerSkins[player] = player.name == SkinName;
+                        Debug.Log(player.name + "Has Key");
+                        playerSkins[player] = value;
                     }
                     else
                     {
-                        playerSkins.Add(player, player.name == SkinName);
+                        Debug.Log(player.name + "Not Has Key");
+                        playerSkins.Add(player, value);
                     }
                 }
             }
+
+            //if (PlayerPrefs.HasKey("SaveScin"))
+            //{
+            //    string SkinName = PlayerPrefs.GetString("SaveScin");
+            //    foreach (var player in ArrayPlayers)
+            //    {
+
+            //    }
+            //}
         }
         else if (scene.name != "MainMenu")
         {
@@ -132,15 +141,17 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerSkin(GameObject player, bool hasSkin)
     {
+
         if (playerSkins.ContainsKey(player))
         {
             playerSkins[player] = hasSkin;
-            PlayerPrefs.SetString("SaveScin", player.name);
-            PlayerPrefs.Save();
+            Debug.Log(hasSkin);
         }
         else
         {
+            Debug.Log("DesConect script");
             playerSkins.Add(player, hasSkin);
+            SaveDictionaryToPlayerPrefs();
         }
     }
 
@@ -157,6 +168,18 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("level", level);
     }
+
+    private void SaveDictionaryToPlayerPrefs()
+    {
+        // Сохранение каждой пары ключ-значение в PlayerPrefs
+        foreach (var player in playerSkins)
+        {
+            PlayerPrefs.SetString(player.Key.ToString(), player.Value.ToString());
+        }
+
+        PlayerPrefs.Save();
+    }
+
 
 }
 

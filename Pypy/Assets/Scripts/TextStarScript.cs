@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextStarScript : MonoBehaviour
 {
     [SerializeField] public float DieTime;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private Text text;
     [SerializeField] private GameObject ThirdStar;
     private bool check = true;
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class TextStarScript : MonoBehaviour
         }
         int sum = (int)DieTime;
         text.text = "Time: " + sum.ToString();
-        if(DieTime <= 0)
+        if(DieTime <= 0 && check)
         {
             check = false;
             ThirdStar.SetActive(false);

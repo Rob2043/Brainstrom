@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class MovePlayerScript : MonoBehaviour
     public bool checkStar;
     public bool allowForBuy = false;
     public DataItems dataScins;
+    private GameObject[] Box = {};
 
     private void Awake()
     {
@@ -33,6 +35,11 @@ public class MovePlayerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        GameObject BoxInScene = GameObject.FindGameObjectWithTag("Cube");
+        Box.Append(BoxInScene);
+    }
     private void HandleSwipePlayer(Vector2 direction)
     {
         if (rb != null)
@@ -68,6 +75,11 @@ public class MovePlayerScript : MonoBehaviour
             panel.SetActive(true);
             speed = 0f;
             checkStar = true;
+            
+            foreach (GameObject b in Box)
+            {
+                b.GetComponent<Cup>().checkLevel = false;
+            }
 
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");

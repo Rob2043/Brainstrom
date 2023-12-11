@@ -11,15 +11,17 @@ public class Cup : MonoBehaviour
     [SerializeField] Vector3 moveDirection;
     private Rigidbody rb;
     [SerializeField] private float speed;
+    public bool checkLevel;
+
     private void Start()
     {
         SwipeScript.SwipeEvent += HandleSwipe;
         rb = GetComponent<Rigidbody>();
-
+        checkLevel = true;
     }
     private void HandleSwipe(Vector2 direction)
     {
-        if (rb != null)
+        if (rb != null && checkLevel)
         {
             bool isPositionXFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionX) != 0;
             bool isPositionYFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionY) != 0;

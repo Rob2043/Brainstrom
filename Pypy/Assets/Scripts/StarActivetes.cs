@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StarActivetes : MonoBehaviour
 {
     [SerializeField] private GameObject ImageStar2;
-    public Animator animator;
+    //public Animator animator;
     private GameObject starsEarned;
     //private StarAnimation OffAnimation;
 
