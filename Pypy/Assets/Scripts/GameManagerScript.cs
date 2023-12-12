@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         //PlayerPrefs.DeleteAll();
+        //playerSkins.Clear();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -49,8 +50,8 @@ public class GameManager : MonoBehaviour
                 bool FirstValue = PlayerPrefs.GetString(player.name) == "True";
                 bool Secondvalue = PlayerPrefs.GetInt(player.name) == 0;
                 bool accurateValue = FirstValue == Secondvalue;
-                Debug.Log(accurateValue);
-                Debug.Log(Secondvalue);
+                Debug.Log(player.name +  accurateValue);
+                Debug.Log("Second: " + player.name + Secondvalue);
                 if (accurateValue)
                 {
                     if (!playerSkins.ContainsKey(player))
@@ -72,12 +73,14 @@ public class GameManager : MonoBehaviour
         }
         if (scene.name == "Scins")
         {
+            //playerSkins.Clear();
             foreach (var player in ArrayPlayers)
             {
                 if(playerSkins.ContainsKey(player) && playerSkins[player] == true)
                 {
                     GameObject Scin = GameObject.Find(player.name);
                     Scin.GetComponent<MovePlayerScript>().checkScin = playerSkins[player];
+                    Debug.Log("Test if");
                 }
                 
                 //Debug.Log(player.name + playerBuy.ContainsKey(player));
@@ -100,7 +103,7 @@ public class GameManager : MonoBehaviour
             ThirdStar.SetActive(false);
             foreach (var player in ArrayPlayers)
             {
-                if (playerSkins.ContainsKey(player) && playerSkins.ContainsValue(player))
+                if (playerSkins.ContainsKey(player) && playerSkins.ContainsValue(player) == true)
                 {
                     check = false;
                     GameObject newScin = Instantiate(player, EmptyPlayer.transform.position, EmptyPlayer.transform.rotation);
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
         {
             playerSkins[key] = false;
             Debug.Log(key.name + " false");
-            PlayerPrefs.SetInt(player.name, 0);
+            PlayerPrefs.SetInt(player.name, 1);
             PlayerPrefs.Save();
         }
 
