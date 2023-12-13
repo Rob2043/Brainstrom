@@ -221,6 +221,8 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     playerSkins[keyValuePair.Key] = transition;
+                    GameObject Scin = GameObject.Find(keyValuePair.Key.name);
+                    Scin.GetComponent<MovePlayerScript>().checkScin = transition;
                     Debug.Log(keyValuePair.Key.name + " False");
                     PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
                 }
@@ -228,6 +230,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 playerSkins[keyValuePair.Key] = transition;
+                GameObject Scin = GameObject.Find(keyValuePair.Key.name);
+                Scin.GetComponent<MovePlayerScript>().checkScin = transition;
                 Debug.Log(keyValuePair.Key.name + " False");
                 PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
             }
