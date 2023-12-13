@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
                 {
                     bool Secondvalue = PlayerPrefs.GetString("SaveFalse" + player.name) != "False";
                     bool accurateValue = FirstValue == Secondvalue;
+                    //Debug.Log("First" + player.name + FirstValue);
+                    //Debug.Log("Second" + player.name + Secondvalue);
                     Debug.Log(player.name + accurateValue);
                     if (accurateValue)
                     {
@@ -105,15 +108,12 @@ public class GameManager : MonoBehaviour
                 {
                     GameObject Scin = GameObject.Find(SecondPlayer.name);
                     Scin.GetComponent<MovePlayerScript>().checkScin = playerSkins[SecondPlayer];
-                    Debug.Log("Test if");
                 }
 
                 //Debug.Log(player.name + playerBuy.ContainsKey(player));
                 if (PlayerPrefs.HasKey("PlayerBuy_" + SecondPlayer.name))
                 {
-                    Debug.Log(SecondPlayer.name + PlayerPrefs.HasKey("PlayerBuy_" + SecondPlayer.name));
                     bool transition = PlayerPrefs.GetInt("PlayerBuy_" + SecondPlayer.name, 1) == 1;
-                    Debug.Log(transition);
                     GameObject transitionPlayer = GameObject.Find(SecondPlayer.name);
                     transitionPlayer.GetComponent<MovePlayerScript>().allowForBuy = transition;
                 }
@@ -179,46 +179,64 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerSkin(GameObject player, bool hasSkin)
     {
-        if (player != null)
+        if (player == null)
         {
-            List<GameObject> keysToUpdate = new List<GameObject>();
+            Debug.LogError("Player object is null.");
+            return;
+        }
 
-            if (playerSkins.ContainsKey(player))
+        List<KeyValuePair<GameObject, bool>> keysToUpdate = new List<KeyValuePair<GameObject, bool>>();
+
+        if (playerSkins.ContainsKey(player))
+        {
+            playerSkins[player] = hasSkin;
+        }
+        else
+        {
+            playerSkins.Add(player, hasSkin);
+        }
+
+        // Создаем список ключей для обхода словаря
+        foreach (var objectInDict in playerSkins)
+        {
+            if (objectInDict.Value == true && objectInDict.Key != null)
             {
-                playerSkins[player] = hasSkin;
+                keysToUpdate.Add(objectInDict);
+            }
+        }
+
+        // Обновляем значения после завершения итерации
+        foreach (var keyValuePair in keysToUpdate)
+        {
+            bool transition = false;
+
+            if (PlayerPrefs.HasKey("SaveFalse" + keyValuePair.Key.name))
+            {
+                if (player != null && keyValuePair.Key.name == player.name)
+                {
+                    Debug.Log("Change bool" + keyValuePair.Key.name);
+                    playerSkins[keyValuePair.Key] = true;
+                    PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, "True");
+                }
+                else
+                {
+                    playerSkins[keyValuePair.Key] = transition;
+                    Debug.Log(keyValuePair.Key.name + " False");
+                    PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
+                }
             }
             else
             {
-                playerSkins.Add(player, hasSkin);
+                playerSkins[keyValuePair.Key] = transition;
+                Debug.Log(keyValuePair.Key.name + " False");
+                PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
             }
-
-            // Создаем список ключей для обхода словаря
-            foreach (var objectInDict in playerSkins)
-            {
-                if (objectInDict.Value == true && objectInDict.Key != null && objectInDict.Key.name != player.name)
-                {
-                    keysToUpdate.Add(objectInDict.Key);
-                }
-            }
-
-            // Обновляем значения после завершения итерации
-            foreach (var key in keysToUpdate)
-            {
-                if (key != null)
-                {
-                    bool transition = false;
-                    playerSkins[key] = transition;
-                    Debug.Log(key.name + " False");
-                    PlayerPrefs.SetString("SaveFalse" + key.name, transition.ToString());
-                    PlayerPrefs.Save();
-                }
-            }
-
-            PlayerPrefs.SetString(player.name, hasSkin.ToString());
-            PlayerPrefs.Save();
-            keysToUpdate.Clear();
         }
+
+        PlayerPrefs.SetString(player.name, hasSkin.ToString());
+        PlayerPrefs.Save();
     }
+
 
 
 

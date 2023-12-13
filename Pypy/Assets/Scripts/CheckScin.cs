@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class CheckScin : MonoBehaviour
 {
     public GameObject ScanObjct;
-    public  GameObject player;
-    private  GameObject secondPlayer;
     private int check = 0;
     public GameManager gameManager;
 
