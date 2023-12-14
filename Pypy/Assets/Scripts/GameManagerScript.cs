@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,14 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
-    [SerializeField] public GameObject[] ArrayPlayers;
-    public GameObject selectedPlayer;
     [SerializeField] private GameObject EmptyPlayer;
-    public int CountStars;
-    public GameObject TextCountStars;
     [SerializeField] private GameObject BasicPlayer;
+    public GameObject TextCountStars;
     public bool StopCount = false;
     public static bool FirstAddToPlayerBuy = true;
+    public int CountStars;
+    public GameObject[] ArrayPlayers;
+    public GameObject selectedPlayer;
     public GameObject ThirdStar;
 
     private void Awake()
@@ -248,6 +245,32 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("level", level);
     }
-
+ class CheckAmountStar
+ {
+    public GameObject[] stars = new GameObject[3];
+    public void SaveStartData(bool isOneStar,bool isTwoStar, bool isThreeStar){
+        if(isOneStar){
+            PlayerPrefs.SetInt($"OneStar{SceneManager.GetActiveScene()}",1);
+        }
+        if(isTwoStar){
+            PlayerPrefs.SetInt($"TwoStar{SceneManager.GetActiveScene()}",1);
+        }
+        if(isThreeStar){
+            PlayerPrefs.SetInt($"ThreeStar{SceneManager.GetActiveScene()}",1);
+        }
+        PlayerPrefs.Save();
+    }
+    public void CheckStarsData(){
+        if(PlayerPrefs.GetInt($"OneStar{SceneManager.GetActiveScene()}",0) == 1){
+            stars[0].SetActive(true);
+        }
+        if(PlayerPrefs.GetInt($"TwoStar{SceneManager.GetActiveScene()}",0) == 1){
+            stars[1].SetActive(true);
+        }
+        if(PlayerPrefs.GetInt($"ThreeStar{SceneManager.GetActiveScene()}",0) == 1){
+            stars[2].SetActive(true);
+        }
+    }
+ }
 }
 

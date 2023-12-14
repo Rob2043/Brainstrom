@@ -20,7 +20,7 @@ public class StarAnimation : MonoBehaviour
     {
         if (checkAnimation)
         {
-            t = t + Time.deltaTime;
+            t += Time.deltaTime;
             Offset = Amp * Mathf.Sin(t * Freq);
 
             transform.position = StartPos + new Vector3(0, Offset, 0);
