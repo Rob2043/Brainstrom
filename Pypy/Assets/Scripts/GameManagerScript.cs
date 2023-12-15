@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
     [SerializeField] private GameObject EmptyPlayer;
     [SerializeField] private GameObject BasicPlayer;
-    public GameObject TextCountStars;
+    [SerializeField] private MovePlayerScript movePlayerScript;
+    [SerializeField] private  TMP_Text TextCountStars;
     public bool StopCount = false;
     public static bool FirstAddToPlayerBuy = true;
     public int CountStars;
@@ -120,8 +122,6 @@ public class GameManager : MonoBehaviour
         else if (scene.name != "MainMenu")
         {
             bool check = true;
-            EmptyPlayer = GameObject.FindGameObjectWithTag("SpawnEmpty");
-            ThirdStar = GameObject.FindGameObjectWithTag("ThirdStar");
             ThirdStar.SetActive(false);
             foreach (var ThirdPlayer in ArrayPlayers)
             {
@@ -135,10 +135,9 @@ public class GameManager : MonoBehaviour
             }
             if (check)
             {
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y + 0.5f, EmptyPlayer.transform.position.z);
+                Vector3 newPosition = new(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y + 0.5f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
             }
-            TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
         }
 
     }
@@ -146,24 +145,13 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
         {
-            GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
-
-            if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
+            if (movePlayerScript.checkStar && !StopCount)
             {
-                MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
-
-                if (movePlayerScript.checkStar && !StopCount)
-                {
-                    if (TextCountStars != null)
-                    {
-                        Text text = TextCountStars.GetComponent<Text>();
-                        CountStars++;
-                        text.text = CountStars.ToString();
-                        // Add a debug statement to print the updated CountStars
-                        Debug.Log("CountStars: " + CountStars);
-                    }
-                    StopCount = true;
-                }
+                CountStars++;
+                TextCountStars.text = $"{CountStars}";
+                // Add a debug statement to print the updated CountStars
+                Debug.Log("CountStars: " + CountStars);
+                StopCount = true;
             }
         }
     }
@@ -218,19 +206,17 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     playerSkins[keyValuePair.Key] = transition;
-                    GameObject Scin = GameObject.Find(keyValuePair.Key.name);
-                    Scin.GetComponent<MovePlayerScript>().checkScin = transition;
+                    keyValuePair.Key.GetComponent<MovePlayerScript>().checkScin = transition;
                     Debug.Log(keyValuePair.Key.name + " False");
-                    PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
+                    PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, $"{transition}");
                 }
             }
             else
             {
                 playerSkins[keyValuePair.Key] = transition;
-                GameObject Scin = GameObject.Find(keyValuePair.Key.name);
-                Scin.GetComponent<MovePlayerScript>().checkScin = transition;
+                keyValuePair.Key.GetComponent<MovePlayerScript>().checkScin = transition;
                 Debug.Log(keyValuePair.Key.name + " False");
-                PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
+                PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, $"{transition}");
             }
         }
 
@@ -247,27 +233,28 @@ public class GameManager : MonoBehaviour
     }
  class CheckAmountStar
  {
+    private readonly string activeScene = SceneManager.GetActiveScene().name;
     public GameObject[] stars = new GameObject[3];
     public void SaveStartData(bool isOneStar,bool isTwoStar, bool isThreeStar){
         if(isOneStar){
-            PlayerPrefs.SetInt($"OneStar{SceneManager.GetActiveScene()}",1);
+            PlayerPrefs.SetInt($"OneStar{activeScene}",1);
         }
         if(isTwoStar){
-            PlayerPrefs.SetInt($"TwoStar{SceneManager.GetActiveScene()}",1);
+            PlayerPrefs.SetInt($"TwoStar{activeScene}",1);
         }
         if(isThreeStar){
-            PlayerPrefs.SetInt($"ThreeStar{SceneManager.GetActiveScene()}",1);
+            PlayerPrefs.SetInt($"ThreeStar{activeScene}",1);
         }
         PlayerPrefs.Save();
     }
     public void CheckStarsData(){
-        if(PlayerPrefs.GetInt($"OneStar{SceneManager.GetActiveScene()}",0) == 1){
+        if(PlayerPrefs.GetInt($"OneStar{activeScene}",0) == 1){
             stars[0].SetActive(true);
         }
-        if(PlayerPrefs.GetInt($"TwoStar{SceneManager.GetActiveScene()}",0) == 1){
+        if(PlayerPrefs.GetInt($"TwoStar{activeScene}",0) == 1){
             stars[1].SetActive(true);
         }
-        if(PlayerPrefs.GetInt($"ThreeStar{SceneManager.GetActiveScene()}",0) == 1){
+        if(PlayerPrefs.GetInt($"ThreeStar{activeScene}",0) == 1){
             stars[2].SetActive(true);
         }
     }
