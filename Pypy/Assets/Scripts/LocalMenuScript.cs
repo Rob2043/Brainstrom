@@ -40,4 +40,8 @@ public class LocalMenuScript : MonoBehaviour
         PanelExit.SetActive(false);
         ButtonExit.SetActive(true);
     }
+    public void Again()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
