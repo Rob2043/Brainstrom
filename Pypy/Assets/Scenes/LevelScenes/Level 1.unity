@@ -238,6 +238,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3797411558694191421, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
   m_PrefabInstance: {fileID: 23802167716942963}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &143307255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 761267820247290500, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
+  m_PrefabInstance: {fileID: 23802167716942963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &161367304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,6 +1716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PanelExit: {fileID: 261485778}
   ButtonExit: {fileID: 36244324}
+  MainPanel: {fileID: 143307255}
 --- !u!114 &1660340185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,7 +1807,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1844,9 +1850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1652d3a86a533f42983ade3abea0d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
-  TargetPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1995914375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1918,6 +1921,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1223334069444139897, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361321470964083765, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2656033035713392306, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}

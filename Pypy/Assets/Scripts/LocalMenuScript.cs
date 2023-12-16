@@ -9,6 +9,7 @@ public class LocalMenuScript : MonoBehaviour
 {
     [SerializeField] private GameObject PanelExit;
     [SerializeField] private GameObject ButtonExit;
+    [SerializeField] private GameObject MainPanel;
 
     public void NextLevel()
     {
@@ -31,8 +32,11 @@ public class LocalMenuScript : MonoBehaviour
 
     public void OnExitPanel()
     {
-        ButtonExit.SetActive(false);
-        PanelExit.SetActive(true);
+        if (MainPanel.active == false)
+        {
+            ButtonExit.SetActive(false);
+            PanelExit.SetActive(true);
+        }
     }
 
     public void NoReturn()

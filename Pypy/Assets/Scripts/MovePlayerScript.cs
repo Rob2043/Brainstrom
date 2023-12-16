@@ -14,7 +14,8 @@ public class MovePlayerScript : MonoBehaviour
     public bool checkStar;
     public bool allowForBuy = false;
     public DataItems dataScins;
-    private GameObject[] Box = {};
+    private GameObject[] Box = { };
+
 
     private void Awake()
     {
@@ -44,7 +45,6 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (rb != null)
         {
-
             Vector3 force = Vector3.zero;
 
             if (direction == Vector2.left)
@@ -73,11 +73,12 @@ public class MovePlayerScript : MonoBehaviour
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
             panel.SetActive(true);
+
             speed = 0f;
             checkStar = true;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
             PlayerPrefs.Save(); // Save the PlayerPrefs data
-            
+
             foreach (GameObject b in Box)
             {
                 b.GetComponent<Cup>().checkLevel = false;
@@ -102,6 +103,7 @@ public class MovePlayerScript : MonoBehaviour
                 }
 
                 Time.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }
