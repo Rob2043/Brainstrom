@@ -14,6 +14,7 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private GameObject ButtonChoose;
     [SerializeField] private TMP_Text TextForPrice;
     [SerializeField] private Text TextForCountStars;
+    [SerializeField] private Text TextName;
     private GameManager gameManager;
 
     private void Start()
@@ -35,6 +36,7 @@ public class ChooseScinScript : MonoBehaviour
 
                 if (CheckBuy != null)
                 {
+                    TextName.text = CheckBuy.dataScins.Name.ToString();
                     if (CheckBuy.checkScin == true)
                     {
                         TextButtonBuy.text = "Selected";
@@ -63,7 +65,7 @@ public class ChooseScinScript : MonoBehaviour
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 72, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 51, 0)));
         }
     }
 
@@ -71,7 +73,7 @@ public class ChooseScinScript : MonoBehaviour
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 72, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 51, 0)));
         }
     }
 
