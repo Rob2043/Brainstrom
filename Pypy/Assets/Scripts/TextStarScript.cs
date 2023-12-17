@@ -10,27 +10,32 @@ public class TextStarScript : MonoBehaviour
     private Text text;
     [SerializeField] private GameObject ThirdStar;
     private bool check = true;
+    public bool CanTime = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        text.text = DieTime.ToString();
         text = GetComponent<Text>();
+        text.text = DieTime.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DieTime > 0 && check)
+        if (CanTime == true)
         {
-            DieTime -= Time.deltaTime;
-        }
-        int sum = (int)DieTime;
-        text.text = "Time: " + sum.ToString();
-        if(DieTime <= 0 && check)
-        {
-            Debug.Log("Test Star");
-            check = false;
-            ThirdStar.SetActive(false);
+            if (DieTime > 0 && check)
+            {
+                DieTime -= Time.deltaTime;
+            }
+            int sum = (int)DieTime;
+            text.text = "Time: " + sum.ToString();
+            if (DieTime <= 0 && check)
+            {
+                Debug.Log("Test Star");
+                check = false;
+                ThirdStar.SetActive(false);
+            }
         }
     }
 }
