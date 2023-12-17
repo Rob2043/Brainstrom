@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, bool> playerSkins = new Dictionary<GameObject, bool>();
     [SerializeField] private GameObject EmptyPlayer;
     [SerializeField] private GameObject BasicPlayer;
-    public GameObject TextCountStars;
     public bool StopCount = false;
     public static bool FirstAddToPlayerBuy = true;
     public int CountStars;
@@ -128,7 +127,7 @@ public class GameManager : MonoBehaviour
                 if (playerSkins.ContainsKey(ThirdPlayer) && playerSkins[ThirdPlayer] == true)
                 {
                     check = false;
-                    GameObject newScin = Instantiate(ThirdPlayer, EmptyPlayer.transform.position, EmptyPlayer.transform.rotation);
+                    GameObject newScin = Instantiate(ThirdPlayer, EmptyPlayer.transform.position, ThirdPlayer.transform.rotation);
                     newScin.tag = ThirdPlayer.tag;
                     Destroy(EmptyPlayer);
                 }
@@ -138,34 +137,8 @@ public class GameManager : MonoBehaviour
                 Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y + 0.5f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
             }
-            TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
         }
 
-    }
-    private void LateUpdate()
-    {
-        if (SceneManager.GetActiveScene().name != "Scins" && SceneManager.GetActiveScene().name != "MainMenu")
-        {
-            GameObject PlayerForStar = GameObject.FindGameObjectWithTag("Player");
-
-            if (PlayerForStar != null && PlayerForStar.GetComponent<MovePlayerScript>() != null)
-            {
-                MovePlayerScript movePlayerScript = PlayerForStar.GetComponent<MovePlayerScript>();
-
-                if (movePlayerScript.checkStar && !StopCount)
-                {
-                    if (TextCountStars != null)
-                    {
-                        Text text = TextCountStars.GetComponent<Text>();
-                        CountStars++;
-                        text.text = CountStars.ToString();
-                        // Add a debug statement to print the updated CountStars
-                        Debug.Log("CountStars: " + CountStars);
-                    }
-                    StopCount = true;
-                }
-            }
-        }
     }
 
     public void CheckPlayerBuy(GameObject player, bool buy)

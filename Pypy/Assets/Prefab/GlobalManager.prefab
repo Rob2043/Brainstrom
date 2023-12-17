@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5946633419044296949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 773.76465, y: 981.4296, z: -95.81754}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805b2d057a3007246b00aa6a8071428a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArrayPlayers: []
   EmptyPlayer: {fileID: 0}
-  CountStars: 0
+  BasicPlayer: {fileID: 0}
   TextCountStars: {fileID: 0}
   StopCount: 0
+  CountStars: 0
+  ArrayPlayers: []
+  selectedPlayer: {fileID: 0}
+  ThirdStar: {fileID: 0}

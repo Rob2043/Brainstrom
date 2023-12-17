@@ -65,7 +65,7 @@ public class ChooseScinScript : MonoBehaviour
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 51, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 40, 0)));
         }
     }
 
@@ -73,7 +73,7 @@ public class ChooseScinScript : MonoBehaviour
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 51, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 40, 0)));
         }
     }
 

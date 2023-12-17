@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MovePlayerScript : MonoBehaviour
 {
     [SerializeField] private Vector3 moveDirection;
+    private GameObject TextCountStars;
     [SerializeField] private float speed;
     public GameObject panel;
     public bool checkScin = false;
@@ -21,7 +22,7 @@ public class MovePlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
-
+        TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
     }
 
     private void Start()
@@ -73,21 +74,17 @@ public class MovePlayerScript : MonoBehaviour
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
             panel.SetActive(true);
-
             speed = 0f;
-            checkStar = true;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
             PlayerPrefs.Save(); // Save the PlayerPrefs data
-
             foreach (GameObject b in Box)
             {
                 b.GetComponent<Cup>().checkLevel = false;
             }
-
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
             GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
-
+            gameManager.GetComponent<GameManager>().CountStars += 1;
             if (Time != null && gameManager != null)
             {
                 float dieTime = Time.GetComponent<TextStarScript>().DieTime;
@@ -101,9 +98,9 @@ public class MovePlayerScript : MonoBehaviour
                 {
                     gameManager.GetComponent<GameManager>().CountStars += 0;
                 }
-
                 Time.SetActive(false);
                 gameObject.SetActive(false);
+                TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
             }
         }
     }
