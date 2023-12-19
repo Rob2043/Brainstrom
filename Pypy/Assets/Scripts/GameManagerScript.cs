@@ -146,12 +146,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        PlayerPrefs.SetInt("CountStars", CountStars);
-        PlayerPrefs.Save();
         if (PlayerPrefs.HasKey("CountStars"))
         {
             int sum = PlayerPrefs.GetInt("CountStars", CountStars);
             CountStars = sum;
+            Debug.Log(CountStars);
         }
     }
 

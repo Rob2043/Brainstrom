@@ -15,29 +15,29 @@ public class CheckAmountStar : MonoBehaviour
     {
         if (isOneStar)
         {
-            PlayerPrefs.SetInt($"OneStar{SceneManager.GetActiveScene()}", 1);
+            PlayerPrefs.SetInt($"OneStar{SceneManager.GetActiveScene().name}", 1);
         }
         if (isTwoStar)
         {
-            PlayerPrefs.SetInt($"TwoStar{SceneManager.GetActiveScene()}", 1);
+            PlayerPrefs.SetInt($"TwoStar{SceneManager.GetActiveScene().name}", 1);
         }
         if (isThreeStar)
         {
-            PlayerPrefs.SetInt($"ThreeStar{SceneManager.GetActiveScene()}", 1);
+            PlayerPrefs.SetInt($"ThreeStar{SceneManager.GetActiveScene().name}", 1);
         }
         PlayerPrefs.Save();
     }
     public void CheckStarsData()
     {
-        if (PlayerPrefs.GetInt($"OneStar{SceneManager.GetActiveScene()}", 0) == 1)
+        if (PlayerPrefs.GetInt($"OneStar{SceneManager.GetActiveScene().name}", 0) == 1)
         {
             stars[0].SetActive(true);
         }
-        if (PlayerPrefs.GetInt($"TwoStar{SceneManager.GetActiveScene()}", 0) == 1)
+        if (PlayerPrefs.GetInt($"TwoStar{SceneManager.GetActiveScene().name}", 0) == 1)
         {
             stars[1].SetActive(true);
         }
-        if (PlayerPrefs.GetInt($"ThreeStar{SceneManager.GetActiveScene()}", 0) == 1)
+        if (PlayerPrefs.GetInt($"ThreeStar{SceneManager.GetActiveScene().name}", 0) == 1)
         {
             stars[2].SetActive(true);
         }

@@ -86,7 +86,7 @@ public class MovePlayerScript : MonoBehaviour
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
             CheckAmountStar checkAmountStar = gameManager.GetComponent<CheckAmountStar>();
-            if (!PlayerPrefs.HasKey($"OneStar{SceneManager.GetActiveScene()}"))
+            if (!PlayerPrefs.HasKey($"OneStar{SceneManager.GetActiveScene().name}"))
             {
                 gameManager.GetComponent<GameManager>().CountStars += 1;
                 checkAmountStar.SaveStartData(true, false, false);
@@ -97,7 +97,7 @@ public class MovePlayerScript : MonoBehaviour
                 if (dieTime > 0)
                 {
                     ThirdStar.SetActive(true);
-                    if (!PlayerPrefs.HasKey($"ThreeStar{SceneManager.GetActiveScene()}"))
+                    if (!PlayerPrefs.HasKey($"ThreeStar{SceneManager.GetActiveScene().name}"))
                     {
                         gameManager.GetComponent<GameManager>().CountStars += 1;
                         checkAmountStar.SaveStartData(false, false, true);
@@ -112,7 +112,8 @@ public class MovePlayerScript : MonoBehaviour
 
             }
             TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
-
+            PlayerPrefs.SetInt("CountStars", gameManager.GetComponent<GameManager>().CountStars);
+            PlayerPrefs.Save();
         }
     }
 }

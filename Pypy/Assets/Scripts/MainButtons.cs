@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.VisualScripting;
+using System.Linq;
+using TMPro;
 
 public class MainButtons : MonoBehaviour
 {
@@ -37,10 +40,35 @@ public class MainButtons : MonoBehaviour
     {
         if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
         {
-            for (int j = 0; j < LevelButtons.Length; j++)
+            for (int j = 1; j <= LevelButtons.Length; j++)
             {
+                GameObject[] stars = new GameObject[3];
                 LevelButtons[j].GetComponent<Button>().enabled = true;
                 LevelButtons[j].image.sprite = ButtonOnLevel;
+                for (int i = 0; i < 3; i++)
+                {
+                    Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars" + i);
+                    GameObject transitiohnObject = transitionTransform.gameObject;
+                    stars.Append(transitiohnObject);
+                    Debug.Log(transitiohnObject.name);
+                    stars[i].gameObject.SetActive(false);
+                    stars[i + 1].gameObject.SetActive(false);
+                    stars[i + 2].gameObject.SetActive(false);
+                    if (PlayerPrefs.HasKey($"OneStarLevel " + j))
+                    {
+                        stars[i].gameObject.SetActive(true);
+                    }
+                    else if (PlayerPrefs.HasKey($"TwoStarLevel " + j))
+                    {
+                        stars[i + 1].gameObject.SetActive(true);
+                    }
+                    else if (PlayerPrefs.HasKey($"ThreeStarLevel " + j))
+                    {
+                        stars[i + 2].gameObject.SetActive(true);
+                    }
+                }
+
+
             }
             MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
             ButtonInteractible();

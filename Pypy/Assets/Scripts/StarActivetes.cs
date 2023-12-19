@@ -19,7 +19,7 @@ public class StarActivetes : MonoBehaviour
             GameManager gameManager = starsEarned.GetComponent<GameManager>();
             if (gameManager != null)
             {
-                if (!PlayerPrefs.HasKey($"TwoStar{SceneManager.GetActiveScene()}"))
+                if (!PlayerPrefs.HasKey($"TwoStar{SceneManager.GetActiveScene().name}"))
                 {
                     gameManager.CountStars++;
                     checkAmountStar.SaveStartData(false, true, false);
