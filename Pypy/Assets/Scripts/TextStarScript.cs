@@ -10,7 +10,7 @@ public class TextStarScript : MonoBehaviour
     private Text text;
     [SerializeField] private GameObject ThirdStar;
     private bool check = true;
-    public bool CanTime = false;
+    public bool CanTime = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class TextStarScript : MonoBehaviour
             {
                 Debug.Log("Test Star");
                 check = false;
+                CanTime = false;
                 ThirdStar.SetActive(false);
             }
         }

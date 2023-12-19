@@ -6,28 +6,30 @@ using UnityEngine.SceneManagement;
 public class StarActivetes : MonoBehaviour
 {
     [SerializeField] private GameObject ImageStar2;
-    //public Animator animator;
     private GameObject starsEarned;
-    //private StarAnimation OffAnimation;
 
     private void OnTriggerEnter(Collider other)
     {
         starsEarned = GameObject.FindGameObjectWithTag("GlobalManager");
+        CheckAmountStar checkAmountStar = starsEarned.GetComponent<CheckAmountStar>();
 
         if (other.CompareTag("Player") || other.CompareTag("SpawnEmpty"))
         {
+            gameObject.SetActive(false);
             GameManager gameManager = starsEarned.GetComponent<GameManager>();
             if (gameManager != null)
             {
-                gameManager.CountStars++;
+                if (!PlayerPrefs.HasKey($"TwoStar{SceneManager.GetActiveScene()}"))
+                {
+                    gameManager.CountStars++;
+                    checkAmountStar.SaveStartData(false, true, false);
+                }
             }
             else
             {
                 Debug.LogWarning("GameManager component not found on the 'starsEarned' object.");
             }
             ImageStar2.SetActive(true);
-            //OffAnimation.checkAnimation  = false;
-            gameObject.SetActive(false);
         }
     }
 

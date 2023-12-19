@@ -73,26 +73,35 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
+
             panel.SetActive(true);
             speed = 0f;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
             PlayerPrefs.Save(); // Save the PlayerPrefs data
+            GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
             foreach (GameObject b in Box)
             {
                 b.GetComponent<Cup>().checkLevel = false;
             }
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
-            GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
             GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
-            gameManager.GetComponent<GameManager>().CountStars += 1;
+            CheckAmountStar checkAmountStar = gameManager.GetComponent<CheckAmountStar>();
+            if (!PlayerPrefs.HasKey($"OneStar{SceneManager.GetActiveScene()}"))
+            {
+                gameManager.GetComponent<GameManager>().CountStars += 1;
+                checkAmountStar.SaveStartData(true, false, false);
+            }
             if (Time != null && gameManager != null)
             {
                 float dieTime = Time.GetComponent<TextStarScript>().DieTime;
-
                 if (dieTime > 0)
                 {
                     ThirdStar.SetActive(true);
-                    gameManager.GetComponent<GameManager>().CountStars += 1;
+                    if (!PlayerPrefs.HasKey($"ThreeStar{SceneManager.GetActiveScene()}"))
+                    {
+                        gameManager.GetComponent<GameManager>().CountStars += 1;
+                        checkAmountStar.SaveStartData(false, false, true);
+                    }
                 }
                 else
                 {
@@ -100,8 +109,10 @@ public class MovePlayerScript : MonoBehaviour
                 }
                 Time.SetActive(false);
                 gameObject.SetActive(false);
-                TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
+
             }
+            TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
+
         }
     }
 }
