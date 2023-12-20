@@ -1,10 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Linq;
 using TMPro;
+using System;
 
 public class MainButtons : MonoBehaviour
 {
@@ -42,34 +43,45 @@ public class MainButtons : MonoBehaviour
         if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
         {
             Debug.Log("Max Level");
-            for (int j = 1; j <= LevelButtons.Length; j++)
-            {
-                Debug.Log("Level");
-                GameObject[] stars = new GameObject[3];
-                LevelButtons[j].GetComponent<Button>().enabled = true;
-                LevelButtons[j].image.sprite = ButtonOnLevel;
-                for (int i = 0; i < 3; i++)
-                {
-                    Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars" + i);
-                    GameObject transitiohnObject = transitionTransform.gameObject;
-                    stars.Append(transitiohnObject);
-                    Debug.Log(transitiohnObject.name);
-                    stars[i].gameObject.SetActive(false);
-                    stars[i + 1].gameObject.SetActive(false);
-                    stars[i + 2].gameObject.SetActive(false);
-                }
-                
-                checkAmountStar.CheckStarsData(stars,j);
+        }
+        else
+        {
 
-            }
-            MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
-            ButtonInteractible();
         }
     }
 
     public void MainButtonPlayOnClick()
     {
         panelLevel.SetActive(true);
+        GameObject[] stars = new GameObject[3];
+
+        for (int j = 0; j < LevelButtons.Length; j++)
+        {
+            Debug.Log("Level");
+            LevelButtons[j].GetComponent<Button>().enabled = true;
+            LevelButtons[j].image.sprite = ButtonOnLevel;
+
+            // Очистка массива перед использованием
+            Array.Clear(stars, 0, stars.Length);
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars " + i);
+                if (transitionTransform != null)
+                {
+                    GameObject transitiohnObject = transitionTransform.gameObject;
+                    // Используйте массив stars как есть, без Append
+                    stars[i - 1] = transitiohnObject;
+                    Debug.Log(transitiohnObject.name);
+                    transitiohnObject.gameObject.SetActive(false);
+                }
+            }
+
+            checkAmountStar.CheckStarsData(stars, j + 1);
+        }
+
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+        ButtonInteractible();
     }
 
     public void ButtonQuit()

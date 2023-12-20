@@ -23,6 +23,8 @@ public class StarActivetes : MonoBehaviour
                 {
                     gameManager.CountStars++;
                     checkAmountStar.SaveStartData(false, true, false);
+                    PlayerPrefs.SetInt("CountStars", gameManager.CountStars);
+                    PlayerPrefs.Save();
                 }
             }
             else

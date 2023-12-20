@@ -23,17 +23,21 @@ public class CheckAmountStar : MonoBehaviour
     }
     public void CheckStarsData(GameObject[] stars, int indexLevel)
     {
-        if (PlayerPrefs.GetInt($"OneStarLevel " + indexLevel, 0) == 1)
+        if (stars != null)
         {
-            stars[0].SetActive(true);
-        }
-        if (PlayerPrefs.GetInt($"TwoStarLevel " + indexLevel, 0) == 1)
-        {
-            stars[1].SetActive(true);
-        }
-        if (PlayerPrefs.GetInt($"ThreeStarLevel" + indexLevel, 0) == 1)
-        {
-            stars[2].SetActive(true);
+            Debug.Log(stars[0].name);
+            if (PlayerPrefs.GetInt($"OneStarLevel " + indexLevel, 0) == 1)
+            {
+                stars[0].SetActive(true);
+            }
+            if (PlayerPrefs.GetInt($"TwoStarLevel " + indexLevel, 0) == 1)
+            {
+                stars[1].SetActive(true);
+            }
+            if (PlayerPrefs.GetInt($"ThreeStarLevel " + indexLevel, 0) == 1)
+            {
+                stars[2].SetActive(true);
+            }
         }
     }
 }

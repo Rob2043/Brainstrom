@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
             }
             if (check)
             {
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y + 0.5f, EmptyPlayer.transform.position.z);
+                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
             }
         }
