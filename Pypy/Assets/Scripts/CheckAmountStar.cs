@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class CheckAmountStar : MonoBehaviour
 {
-    public GameObject[] stars = new GameObject[3];
-
-    private void Start()
-    {
-        CheckStarsData();
-    }
     public void SaveStartData(bool isOneStar, bool isTwoStar, bool isThreeStar)
     {
         if (isOneStar)
@@ -27,17 +21,17 @@ public class CheckAmountStar : MonoBehaviour
         }
         PlayerPrefs.Save();
     }
-    public void CheckStarsData()
+    public void CheckStarsData(GameObject[] stars, int indexLevel)
     {
-        if (PlayerPrefs.GetInt($"OneStar{SceneManager.GetActiveScene().name}", 0) == 1)
+        if (PlayerPrefs.GetInt($"OneStarLevel " + indexLevel, 0) == 1)
         {
             stars[0].SetActive(true);
         }
-        if (PlayerPrefs.GetInt($"TwoStar{SceneManager.GetActiveScene().name}", 0) == 1)
+        if (PlayerPrefs.GetInt($"TwoStarLevel " + indexLevel, 0) == 1)
         {
             stars[1].SetActive(true);
         }
-        if (PlayerPrefs.GetInt($"ThreeStar{SceneManager.GetActiveScene().name}", 0) == 1)
+        if (PlayerPrefs.GetInt($"ThreeStarLevel" + indexLevel, 0) == 1)
         {
             stars[2].SetActive(true);
         }

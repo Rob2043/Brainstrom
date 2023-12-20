@@ -23,6 +23,7 @@ public class MainButtons : MonoBehaviour
     int MaxLevel;
     private bool checkAnimation = false;
     private string sceneSelect;
+    public CheckAmountStar checkAmountStar;
     private void Start()
     {
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
@@ -40,8 +41,10 @@ public class MainButtons : MonoBehaviour
     {
         if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
         {
+            Debug.Log("Max Level");
             for (int j = 1; j <= LevelButtons.Length; j++)
             {
+                Debug.Log("Level");
                 GameObject[] stars = new GameObject[3];
                 LevelButtons[j].GetComponent<Button>().enabled = true;
                 LevelButtons[j].image.sprite = ButtonOnLevel;
@@ -54,20 +57,9 @@ public class MainButtons : MonoBehaviour
                     stars[i].gameObject.SetActive(false);
                     stars[i + 1].gameObject.SetActive(false);
                     stars[i + 2].gameObject.SetActive(false);
-                    if (PlayerPrefs.HasKey($"OneStarLevel " + j))
-                    {
-                        stars[i].gameObject.SetActive(true);
-                    }
-                    else if (PlayerPrefs.HasKey($"TwoStarLevel " + j))
-                    {
-                        stars[i + 1].gameObject.SetActive(true);
-                    }
-                    else if (PlayerPrefs.HasKey($"ThreeStarLevel " + j))
-                    {
-                        stars[i + 2].gameObject.SetActive(true);
-                    }
                 }
-
+                
+                checkAmountStar.CheckStarsData(stars,j);
 
             }
             MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);

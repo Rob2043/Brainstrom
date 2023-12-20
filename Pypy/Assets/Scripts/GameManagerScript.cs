@@ -223,13 +223,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString(player.name, hasSkin.ToString());
         PlayerPrefs.Save();
     }
-
-
-
-
-    public void SetCurrentLevel(int level)
-    {
-        PlayerPrefs.SetInt("level", level);
-    }
 }
 
