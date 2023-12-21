@@ -49,21 +49,43 @@ public class MainButtons : MonoBehaviour
 
     public void OnAnotherMapLevels()
     {
+        bool checkCountPanel = true;
         for (int i = 1; i <= PanelLevelArray.Length; i++)
         {
-            if (PanelLevelArray[i].active == true)
+            if (i >= 0 && i <= PanelLevelArray.Length)
             {
-                if (i != 4)
+                if (PanelLevelArray[i].active == true && checkCountPanel)
                 {
-                    PanelLevelArray[i].SetActive(false);
-                    PanelLevelArray[i + 1].SetActive(true);
+                    if (i != 4)
+                    {
+                        PanelLevelArray[i].SetActive(false);
+                        PanelLevelArray[i + 1].SetActive(true);
+                        checkCountPanel = false;
+                    }
+                    else
+                    {
+                        PanelLevelArray[i].SetActive(false);
+                        PanelLevelArray[i - 1].SetActive(true);
+                        checkCountPanel = false;
+                    }
                 }
-                else
-                {
-                    PanelLevelArray[i].SetActive(false);
-                    PanelLevelArray[i -1].SetActive(true);
-                }
+            }
 
+        }
+    }
+    public void BackLevelPanel()
+    {
+        bool checkCountPanel = true;
+        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        {
+            if (PanelLevelArray[i].active == true && checkCountPanel)
+            {
+                if (i != 1)
+                {
+                    PanelLevelArray[i].SetActive(false);
+                    PanelLevelArray[i - 1].SetActive(true);
+                    checkCountPanel = false;
+                }
             }
         }
     }
