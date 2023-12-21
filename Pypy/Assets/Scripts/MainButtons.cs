@@ -21,6 +21,7 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private Sprite ButtonOffLevel;
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
+    [SerializeField] private GameObject[] PanelLevelArray;
     int MaxLevel;
     private bool checkAnimation = false;
     private string sceneSelect;
@@ -46,6 +47,27 @@ public class MainButtons : MonoBehaviour
         }
     }
 
+    public void OnAnotherMapLevels()
+    {
+        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        {
+            if (PanelLevelArray[i].active == true)
+            {
+                if (i != 4)
+                {
+                    PanelLevelArray[i].SetActive(false);
+                    PanelLevelArray[i + 1].SetActive(true);
+                }
+                else
+                {
+                    PanelLevelArray[i].SetActive(false);
+                    PanelLevelArray[i -1].SetActive(true);
+                }
+
+            }
+        }
+    }
+
     public void MainButtonPlayOnClick()
     {
         panelLevel.SetActive(true);
@@ -66,7 +88,6 @@ public class MainButtons : MonoBehaviour
                 if (transitionTransform != null)
                 {
                     GameObject transitiohnObject = transitionTransform.gameObject;
-                    // Используйте массив stars как есть, без Append
                     stars[i - 1] = transitiohnObject;
                     Debug.Log(transitiohnObject.name);
                     transitiohnObject.gameObject.SetActive(false);
