@@ -135,11 +135,6 @@ public class GameManager : MonoBehaviour
                     Destroy(EmptyPlayer);
                 }
             }
-            if (check)
-            {
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
-                Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
-            }
         }
 
     }

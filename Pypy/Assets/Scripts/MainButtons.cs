@@ -44,10 +44,6 @@ public class MainButtons : MonoBehaviour
         {
             Debug.Log("Max Level");
         }
-        else
-        {
-
-        }
     }
 
     public void MainButtonPlayOnClick()
