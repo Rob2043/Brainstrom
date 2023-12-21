@@ -54,7 +54,7 @@ public class LocalMenuScript : MonoBehaviour
 
     public void OnExitPanel()
     {
-        if (MainPanel.active == false)
+        if (MainPanel.activeSelf == false)
         {
             ButtonExit.SetActive(false);
             PanelExit.SetActive(true);

@@ -54,7 +54,7 @@ public class MainButtons : MonoBehaviour
         {
             if (i >= 0 && i <= PanelLevelArray.Length)
             {
-                if (PanelLevelArray[i].active == true && checkCountPanel)
+                if (PanelLevelArray[i].activeSelf && checkCountPanel)
                 {
                     if (i != 4)
                     {
@@ -78,7 +78,7 @@ public class MainButtons : MonoBehaviour
         bool checkCountPanel = true;
         for (int i = 1; i <= PanelLevelArray.Length; i++)
         {
-            if (PanelLevelArray[i].active == true && checkCountPanel)
+            if (PanelLevelArray[i].activeSelf && checkCountPanel)
             {
                 if (i != 1)
                 {

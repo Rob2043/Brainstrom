@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -134,6 +133,12 @@ public class GameManager : MonoBehaviour
                     newScin.tag = ThirdPlayer.tag;
                     Destroy(EmptyPlayer);
                 }
+                if (check)
+                {
+                    Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
+                    Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
+                    check = false;
+                }
             }
         }
 
@@ -219,4 +224,3 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 }
-

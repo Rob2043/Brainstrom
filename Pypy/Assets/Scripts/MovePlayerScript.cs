@@ -23,10 +23,6 @@ public class MovePlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
         TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
-    }
-
-    private void Start()
-    {
         if (SceneManager.GetActiveScene().name != "Scins")
         {
             rb.useGravity = true;

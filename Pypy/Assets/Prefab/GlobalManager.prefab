@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4131700621610364957}
-  - component: {fileID: 2785894598012749116}
+  - component: {fileID: 8782904441126939835}
   - component: {fileID: 2196859147077960714}
+  - component: {fileID: 230328410115948837}
   m_Layer: 0
   m_Name: GlobalManager
   m_TagString: GlobalManager
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2785894598012749116
+--- !u!114 &8782904441126939835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5946633419044296949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805b2d057a3007246b00aa6a8071428a, type: 3}
+  m_Script: {fileID: 11500000, guid: 79d206347720554499cf984be0f4803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EmptyPlayer: {fileID: 0}
@@ -64,7 +65,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f655ffd3fed4bf40b1888b38c5fb7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stars:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!114 &230328410115948837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946633419044296949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2213908e96989f48a06338c7c32940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 
+  _iOSGameId: 
+  _testMode: 1

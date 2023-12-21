@@ -22081,6 +22081,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 230328410115948837, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: _testMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 230328410115948837, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: _iOSGameId
+      value: 5504064
+      objectReference: {fileID: 0}
+    - target: {fileID: 230328410115948837, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: _androidGameId
+      value: 5504065
+      objectReference: {fileID: 0}
     - target: {fileID: 2196859147077960714, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
       propertyPath: stars.Array.data[0]
       value: 
@@ -22185,11 +22197,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: BasicPlayer
+      value: 
+      objectReference: {fileID: 5710957474220187629, guid: fa3a73abaea94364d87732d31da63b7f, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[0]
+      value: 
+      objectReference: {fileID: 5710957474220187629, guid: fa3a73abaea94364d87732d31da63b7f, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[1]
+      value: 
+      objectReference: {fileID: 6620145257227910919, guid: 98041ea724b767a4d8bac06f465c4200, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[2]
+      value: 
+      objectReference: {fileID: 2612474289024833157, guid: ac081ef117b21744088b61b18a029d68, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[3]
+      value: 
+      objectReference: {fileID: 2034889874669386044, guid: 1cc2ae23b6bfe4344839eaa8c9a83c45, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[4]
+      value: 
+      objectReference: {fileID: 6976764176191105516, guid: 2a68836a5af241341803426788e0aab2, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[5]
+      value: 
+      objectReference: {fileID: 7630635517973691131, guid: e6eb3264370d9424288289171a394548, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[6]
+      value: 
+      objectReference: {fileID: 1538144682620127352, guid: 26762e897a671f74ba0d07dfe217db09, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[7]
+      value: 
+      objectReference: {fileID: 4863260150807879660, guid: df26e2a781af3514cac0c91f02df8075, type: 3}
+    - target: {fileID: 8782904441126939835, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
+      propertyPath: ArrayPlayers.Array.data[8]
+      value: 
+      objectReference: {fileID: 1572312916413729018, guid: 3f3c8f6db8dc55d4eb3d501cf7a064e6, type: 3}
     - target: {fileID: 8846571872390722594, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
       propertyPath: TextCountStars
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2785894598012749116, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
