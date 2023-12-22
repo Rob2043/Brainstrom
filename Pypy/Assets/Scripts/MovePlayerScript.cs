@@ -69,7 +69,15 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
-
+            float Level = (float)(SceneManager.GetActiveScene().buildIndex  - 1) / 3;
+            Debug.Log(Level);
+            float EndLevelValue = Level - (int)Level;
+            Debug.Log(EndLevelValue);
+            if(EndLevelValue == 0)
+            {
+                InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
+                Ads.ShowAd();
+            }
             panel.SetActive(true);
             speed = 0f;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
