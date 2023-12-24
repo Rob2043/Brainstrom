@@ -1,11 +1,4 @@
-﻿using Microsoft.Unity.VisualStudio.Editor;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
+﻿using UnityEngine;
 public class Cup : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;

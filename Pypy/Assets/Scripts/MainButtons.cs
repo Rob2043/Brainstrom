@@ -2,9 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Unity.VisualScripting;
-using System.Linq;
-using TMPro;
 using System;
 
 public class MainButtons : MonoBehaviour

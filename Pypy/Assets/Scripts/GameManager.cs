@@ -133,12 +133,13 @@ public class GameManager : MonoBehaviour
                     newScin.tag = ThirdPlayer.tag;
                     Destroy(EmptyPlayer);
                 }
-                if (check)
-                {
-                    Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
-                    Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
-                    check = false;
-                }
+            }
+            if (check == true)
+            {
+                Debug.Log("Basick Player");
+                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
+                Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
+                check = false;
             }
         }
 

@@ -23,6 +23,11 @@ public class MovePlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
         TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
+
+    }
+
+    private void Start()
+    {
         if (SceneManager.GetActiveScene().name != "Scins")
         {
             rb.useGravity = true;
@@ -69,11 +74,11 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
-            float Level = (float)(SceneManager.GetActiveScene().buildIndex  - 1) / 3;
+            float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
             Debug.Log(Level);
             float EndLevelValue = Level - (int)Level;
             Debug.Log(EndLevelValue);
-            if(EndLevelValue == 0)
+            if (EndLevelValue == 0)
             {
                 InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
                 Ads.ShowAd();

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class CheckScin : MonoBehaviour
 {
     public GameObject ScanObjct;
-    private int check = 0;
     public GameManager gameManager;
 
     // Пример логирования в методе Start() класса CheckScin
@@ -41,6 +40,9 @@ public class CheckScin : MonoBehaviour
         {
             gameManager.CountStars -= Scin.dataScins.Price;
             Scin.allowForBuy = true;
+            int sum = PlayerPrefs.GetInt("CountStars", gameManager.CountStars);
+            gameManager.CountStars = sum;
+            Debug.Log(gameManager.CountStars);
             gameManager.CheckPlayerBuy(ScanObjct, Scin.allowForBuy);
         }
         else

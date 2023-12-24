@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using TMPro.EditorUtilities;
 
 public class ChooseScinScript : MonoBehaviour
 {
@@ -10,9 +8,9 @@ public class ChooseScinScript : MonoBehaviour
     private GameObject playerCheck;
     private MovePlayerScript CheckBuy;
     [SerializeField] private GameObject ButtonBuy;
-    [SerializeField] private TMP_Text TextButtonBuy;
+    [SerializeField] private Text TextButtonBuy;
     [SerializeField] private GameObject ButtonChoose;
-    [SerializeField] private TMP_Text TextForPrice;
+    [SerializeField] private Text TextForPrice;
     [SerializeField] private Text TextForCountStars;
     [SerializeField] private Text TextName;
     private GameManager gameManager;
