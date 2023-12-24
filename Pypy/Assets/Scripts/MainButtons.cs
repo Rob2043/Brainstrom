@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System;
 
 public class MainButtons : MonoBehaviour
 {
@@ -14,10 +14,18 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private GameObject panelLevel;
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
+    [SerializeField] private Sprite ButtonOnLevel;
+    [SerializeField] private Sprite ButtonOffLevel;
+    [SerializeField] private Animator Cloud1Animator;
+    [SerializeField] private Animator Cloud2Animator;
+    [SerializeField] private GameObject[] PanelLevelArray;
     int MaxLevel;
+    private bool checkAnimation = false;
+    private string sceneSelect;
+    public CheckAmountStar checkAmountStar;
     private void Start()
     {
-        MaxLevel = PlayerPrefs.GetInt("MaxLevel",1);
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         ButtonInteractible();
         if (PlayerPrefs.GetInt("isSoundOn", 1) == 1)
         {
@@ -28,22 +36,88 @@ public class MainButtons : MonoBehaviour
             isActiveButtonSound = false;
         }
     }
-    private void Update() {
-        if(MaxLevel != PlayerPrefs.GetInt("MaxLevel",1)){
-            for(int j = 0; j < LevelButtons.Length; j++){
-                LevelButtons[j].interactable = true;
+    private void Update()
+    {
+        if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
+        {
+            Debug.Log("Max Level");
+        }
+    }
+
+    public void OnAnotherMapLevels()
+    {
+        bool checkCountPanel = true;
+        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        {
+            if (i >= 0 && i <= PanelLevelArray.Length)
+            {
+                if (PanelLevelArray[i].activeSelf && checkCountPanel)
+                {
+                    if (i != 4)
+                    {
+                        PanelLevelArray[i].SetActive(false);
+                        PanelLevelArray[i + 1].SetActive(true);
+                        checkCountPanel = false;
+                    }
+                    else
+                    {
+                        PanelLevelArray[i].SetActive(false);
+                        PanelLevelArray[i - 1].SetActive(true);
+                        checkCountPanel = false;
+                    }
+                }
             }
-            MaxLevel = PlayerPrefs.GetInt("MaxLevel",1);
-            ButtonInteractible();
+
+        }
+    }
+    public void BackLevelPanel()
+    {
+        bool checkCountPanel = true;
+        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        {
+            if (PanelLevelArray[i].activeSelf && checkCountPanel)
+            {
+                if (i != 1)
+                {
+                    PanelLevelArray[i].SetActive(false);
+                    PanelLevelArray[i - 1].SetActive(true);
+                    checkCountPanel = false;
+                }
+            }
         }
     }
 
     public void MainButtonPlayOnClick()
     {
-        //SceneManager.LoadScene("Level 1");
-        panelLevel.SetActive(true);       
-        //int currentLevel = PlayerPrefs.GetInt("MaxLevel", 1); <-- Устаревшее, не раскоментировать (Сучастный вариант: строка 20)
-        //SceneManager.LoadScene($"Level {MaxLevel}");
+        panelLevel.SetActive(true);
+        GameObject[] stars = new GameObject[3];
+
+        for (int j = 0; j < LevelButtons.Length; j++)
+        {
+            Debug.Log("Level");
+            LevelButtons[j].GetComponent<Button>().enabled = true;
+            LevelButtons[j].image.sprite = ButtonOnLevel;
+
+            // Очистка массива перед использованием
+            Array.Clear(stars, 0, stars.Length);
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars " + i);
+                if (transitionTransform != null)
+                {
+                    GameObject transitiohnObject = transitionTransform.gameObject;
+                    stars[i - 1] = transitiohnObject;
+                    Debug.Log(transitiohnObject.name);
+                    transitiohnObject.gameObject.SetActive(false);
+                }
+            }
+
+            checkAmountStar.CheckStarsData(stars, j + 1);
+        }
+
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+        ButtonInteractible();
     }
 
     public void ButtonQuit()
@@ -89,14 +163,30 @@ public class MainButtons : MonoBehaviour
     {
         SceneManager.LoadScene("Scins");
     }
-    public void LevelButtonOnClick(GameObject localeButton){
-        string sceneSelect = localeButton.name;
+    public void LevelButtonOnClick(GameObject localeButton)
+    {
+        sceneSelect = localeButton.name;
+        StartCoroutine(Animation());
+    }
+
+    public IEnumerator Animation()
+    {
+        Debug.Log("Test Active");
+        Cloud1Animator.SetBool("IsActiveCloud", true);
+        Cloud2Animator.SetBool("IsCloundActive2", true);
+        yield return new WaitForSeconds(1);
+        checkAnimation = true;
+        Debug.Log(checkAnimation);
         Debug.Log(sceneSelect);
         SceneManager.LoadScene($"Level {sceneSelect}");
     }
-    private void ButtonInteractible(){
-        for(int i = MaxLevel; i < LevelButtons.Length;i++){
-            LevelButtons[i].interactable = false;
+
+    private void ButtonInteractible()
+    {
+        for (int i = MaxLevel; i < LevelButtons.Length; i++)
+        {
+            LevelButtons[i].GetComponent<Button>().enabled = false;
+            LevelButtons[i].image.sprite = ButtonOffLevel;
         }
     }
 }
