@@ -1,16 +1,71 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using TMPro.EditorUtilities;
 
 public class ChooseScinScript : MonoBehaviour
 {
     private bool isRotating = false;
+    private GameObject playerCheck;
+    private MovePlayerScript CheckBuy;
+    [SerializeField] private GameObject ButtonBuy;
+    [SerializeField] private TMP_Text TextButtonBuy;
+    [SerializeField] private GameObject ButtonChoose;
+    [SerializeField] private TMP_Text TextForPrice;
+    [SerializeField] private Text TextForCountStars;
+    [SerializeField] private Text TextName;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
+    private void LateUpdate()
+    {
+        TextForCountStars.text = gameManager.CountStars.ToString();
+        CheckScin find = FindObjectOfType<CheckScin>();
+        if (find != null)
+        {
+            playerCheck = find.ScanObjct;
+
+            if (playerCheck != null)
+            {
+                CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
+
+                if (CheckBuy != null)
+                {
+                    TextName.text = CheckBuy.dataScins.Name.ToString();
+                    if (CheckBuy.checkScin == true)
+                    {
+                        TextButtonBuy.text = "Selected";
+                    }
+                    else
+                    {
+                        TextButtonBuy.text = "Choose";
+                    }
+                    if (CheckBuy.allowForBuy == false)
+                    {
+                        ButtonBuy.SetActive(true);
+                        TextForPrice.text = "Buy " + CheckBuy.dataScins.Price.ToString();
+                        ButtonChoose.SetActive(false);
+                    }
+                    else
+                    {
+                        ButtonBuy.SetActive(false);
+                        ButtonChoose.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
+
     public void LeftChoose()
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 72, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 40, 0)));
         }
     }
 
@@ -18,7 +73,7 @@ public class ChooseScinScript : MonoBehaviour
     {
         if (!isRotating)
         {
-            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 72, 0)));
+            StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 40, 0)));
         }
     }
 
@@ -40,4 +95,3 @@ public class ChooseScinScript : MonoBehaviour
         isRotating = false;
     }
 }
-
