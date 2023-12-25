@@ -43,7 +43,8 @@ public class MainButtons : MonoBehaviour
         {
             for (int j = 0; j < LevelButtons.Length; j++)
             {
-                LevelButtons[j].interactable = true;
+                LevelButtons[j].enabled = true;
+                LevelButtons[j].image.sprite = ButtonOnLevel;
             }
             MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
             ButtonInteractible();
@@ -100,9 +101,6 @@ public class MainButtons : MonoBehaviour
         for (int j = 0; j < LevelButtons.Length; j++)
         {
             Debug.Log("Level");
-            LevelButtons[j].enabled = true;
-            LevelButtons[j].image.sprite = ButtonOnLevel;
-
             // Очистка массива перед использованием
             Array.Clear(stars, 0, stars.Length);
 
@@ -185,7 +183,7 @@ public class MainButtons : MonoBehaviour
 
     private void ButtonInteractible()
     {
-        for (int i = 60; i < LevelButtons.Length; i++)
+        for (int i = MaxLevel; i < LevelButtons.Length; i++)
         {
             LevelButtons[i].enabled = false;
             LevelButtons[i].image.sprite = ButtonOffLevel;
