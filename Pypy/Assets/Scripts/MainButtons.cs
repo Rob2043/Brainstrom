@@ -6,7 +6,7 @@ using System;
 
 public class MainButtons : MonoBehaviour
 {
-    private bool isActiveButtonSound;
+
     [SerializeField] private Button[] LevelButtons;
     [SerializeField] private AudioSource[] Audio;
     [SerializeField] private Button AudioButton;
@@ -23,6 +23,7 @@ public class MainButtons : MonoBehaviour
     private bool checkAnimation = false;
     private string sceneSelect;
     public CheckAmountStar checkAmountStar;
+    private bool isActiveButtonSound;
     private void Start()
     {
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
@@ -36,11 +37,11 @@ public class MainButtons : MonoBehaviour
             isActiveButtonSound = false;
         }
     }
-    private void Update()
+    private void LateUpdate()
     {
         if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
         {
-            Debug.Log("Max Level");
+            ButtonInteractible();
         }
     }
 
@@ -95,7 +96,7 @@ public class MainButtons : MonoBehaviour
         for (int j = 0; j < LevelButtons.Length; j++)
         {
             Debug.Log("Level");
-            LevelButtons[j].GetComponent<Button>().enabled = true;
+            LevelButtons[j].enabled = true;
             LevelButtons[j].image.sprite = ButtonOnLevel;
 
             // Очистка массива перед использованием
@@ -115,9 +116,6 @@ public class MainButtons : MonoBehaviour
 
             checkAmountStar.CheckStarsData(stars, j + 1);
         }
-
-        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
-        ButtonInteractible();
     }
 
     public void ButtonQuit()
@@ -185,7 +183,7 @@ public class MainButtons : MonoBehaviour
     {
         for (int i = 60; i < LevelButtons.Length; i++)
         {
-            LevelButtons[i].GetComponent<Button>().enabled = false;
+            LevelButtons[i].enabled = false;
             LevelButtons[i].image.sprite = ButtonOffLevel;
         }
     }

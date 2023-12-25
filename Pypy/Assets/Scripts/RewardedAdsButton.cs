@@ -7,6 +7,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
+    [SerializeField] private GameManager gameManager;
     string _adUnitId = null; // This will remain null for unsupported platforms
 
     void Awake()
@@ -89,8 +90,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     private void GrantReward()
     {
         // Ваш код для выдачи вознаграждения здесь.
-        GameObject GameManagerObject = GameObject.FindGameObjectWithTag("GlobalManager");
-        GameManager gameManager = GameManagerObject.GetComponent<GameManager>();
         gameManager.CountStars += 2;
         Debug.Log(gameManager.CountStars);
         PlayerPrefs.SetInt("CountStars", gameManager.CountStars);

@@ -1,19 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class CheckScin : MonoBehaviour
 {
     public GameObject ScanObjct;
-    public GameManager gameManager;
-
-    // Пример логирования в методе Start() класса CheckScin
-    private void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
-
-
+    [SerializeField] private  GameManager gameManager;
+    [SerializeField] private MovePlayerScript movePlayerScript;
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject.CompareTag("Colision") && other.CompareTag("Player"))
@@ -24,9 +16,8 @@ public class CheckScin : MonoBehaviour
 
     public void ChooseClick()
     {
-        if(ScanObjct != null && ScanObjct.GetComponent<MovePlayerScript>().allowForBuy == true)
+        if(ScanObjct != null && movePlayerScript.allowForBuy == true)
         {
-            MovePlayerScript movePlayerScript = ScanObjct.GetComponent<MovePlayerScript>();
             movePlayerScript.checkScin = true;
             gameManager.SetPlayerSkin(ScanObjct, movePlayerScript.checkScin);
         }
@@ -34,21 +25,18 @@ public class CheckScin : MonoBehaviour
 
     public void BuyButton()
     {
-        MovePlayerScript Scin = ScanObjct.GetComponent<MovePlayerScript>();
 
-        if (gameManager.CountStars >= Scin.dataScins.Price && !Scin.allowForBuy)
+        if (gameManager.CountStars >= movePlayerScript.dataScins.Price && !movePlayerScript.allowForBuy)
         {
-            gameManager.CountStars -= Scin.dataScins.Price;
-            Scin.allowForBuy = true;
-            int sum = PlayerPrefs.GetInt("CountStars", gameManager.CountStars);
-            gameManager.CountStars = sum;
+            gameManager.CountStars -= movePlayerScript.dataScins.Price;
+            movePlayerScript.allowForBuy = true;
             Debug.Log(gameManager.CountStars);
-            gameManager.CheckPlayerBuy(ScanObjct, Scin.allowForBuy);
+            gameManager.CheckPlayerBuy(ScanObjct, movePlayerScript.allowForBuy);
         }
         else
         {
-            gameManager.CheckPlayerBuy(ScanObjct, Scin.allowForBuy);
-            Scin.allowForBuy = false;
+            gameManager.CheckPlayerBuy(ScanObjct, movePlayerScript.allowForBuy);
+            movePlayerScript.allowForBuy = false;
         }
     }
 
