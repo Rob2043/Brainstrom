@@ -8,6 +8,7 @@ public class Cup : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>(); 
         SwipeScript.SwipeEvent += HandleSwipe;
         checkLevel = true;
     }

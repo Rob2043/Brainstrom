@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void Start() {
-        CountStars = PlayerPrefs.GetInt("CountStars", 0);
+        CountStars = PlayerPrefs.GetInt("CountStars");
     }
     private void OnDestroy()
     {

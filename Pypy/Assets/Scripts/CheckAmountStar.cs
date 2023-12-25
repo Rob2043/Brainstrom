@@ -4,20 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class CheckAmountStar : MonoBehaviour
 {
-    private readonly string scene = SceneManager.GetActiveScene().name;
     public void SaveStartData(bool isOneStar, bool isTwoStar, bool isThreeStar)
     {
         if (isOneStar)
         {
-            PlayerPrefs.SetInt($"OneStar{scene}", 1);
+            PlayerPrefs.SetInt($"OneStar{SceneManager.GetActiveScene().name}", 1);
         }
         if (isTwoStar)
         {
-            PlayerPrefs.SetInt($"TwoStar{scene}", 1);
+            PlayerPrefs.SetInt($"TwoStar{SceneManager.GetActiveScene().name}", 1);
         }
         if (isThreeStar)
         {
-            PlayerPrefs.SetInt($"ThreeStar{scene}", 1);
+            PlayerPrefs.SetInt($"ThreeStar{SceneManager.GetActiveScene().name}", 1);
         }
         PlayerPrefs.Save();
     }

@@ -387,7 +387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -537, y: 1197}
+  m_AnchoredPosition: {x: -537, y: 964}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233308739
@@ -405,6 +405,7 @@ MonoBehaviour:
   _showAdButton: {fileID: 1280931343}
   _androidAdUnitId: Rewarded_Android
   _iOSAdUnitId: Rewarded_iOS
+  gameManager: {fileID: 0}
 --- !u!1001 &289088589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,7 +1055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: f1503d4c518ea224f81403614f25bf9d, type: 3}
+  m_Texture: {fileID: 2800000, guid: c0698400c8c95204a86b0d73474ec2b5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1523,6 +1524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScanObjct: {fileID: 0}
   gameManager: {fileID: 0}
+  movePlayerScript: {fileID: 0}
 --- !u!1 &996446876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,12 +1554,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0df9868bba50e459785e3623c6908b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckBuy: {fileID: 0}
   ButtonBuy: {fileID: 492139160}
   TextButtonBuy: {fileID: 1492034881}
   ButtonChoose: {fileID: 1235187465}
   TextForPrice: {fileID: 841226925}
   TextForCountStars: {fileID: 1787702682}
   TextName: {fileID: 1090514537}
+  gameManager: {fileID: 0}
+  checkScin: {fileID: 902988105}
 --- !u!4 &996446878
 Transform:
   m_ObjectHideFlags: 0
@@ -2550,7 +2555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -469}
+  m_AnchoredPosition: {x: 960, y: -692}
   m_SizeDelta: {x: 992.4855, y: 420.2986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787702682
@@ -2566,7 +2571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.7626005, b: 0.36037737, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2574,7 +2579,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e30b3997eb8665e4bb2fe3b9843c5fa3, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0

@@ -13,36 +13,43 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private Text TextName;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private CheckScin checkScin;
+    private GameObject playerCheck;
 
     private bool isRotating = false;
 
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     private void LateUpdate()
     {
+        playerCheck = checkScin.ScanObjct;
+        CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
         TextForCountStars.text = $"{gameManager.CountStars}";
-                if (CheckBuy != null)
-                {
-                    TextName.text = $"{CheckBuy.dataScins.Name}";
-                    if (CheckBuy.checkScin == true)
-                    {
-                        TextButtonBuy.text = "Selected";
-                    }
-                    else
-                    {
-                        TextButtonBuy.text = "Choose";
-                    }
-                    if (CheckBuy.allowForBuy == false)
-                    {
-                        ButtonBuy.SetActive(true);
-                        TextForPrice.text = $"Buy  + {CheckBuy.dataScins.Price}";
-                        ButtonChoose.SetActive(false);
-                    }
-                    else
-                    {
-                        ButtonBuy.SetActive(false);
-                        ButtonChoose.SetActive(true);
-                    }
-                }
-            
+        if (CheckBuy != null)
+        {
+            TextName.text = $"{CheckBuy.dataScins.Name}";
+            if (CheckBuy.checkScin == true)
+            {
+                TextButtonBuy.text = "Selected";
+            }
+            else
+            {
+                TextButtonBuy.text = "Choose";
+            }
+            if (CheckBuy.allowForBuy == false)
+            {
+                ButtonBuy.SetActive(true);
+                TextForPrice.text = $"Buy  + {CheckBuy.dataScins.Price}";
+                ButtonChoose.SetActive(false);
+            }
+            else
+            {
+                ButtonBuy.SetActive(false);
+                ButtonChoose.SetActive(true);
+            }
+        }
     }
 
     public void LeftChoose()

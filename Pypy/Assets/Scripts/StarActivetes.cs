@@ -1,20 +1,36 @@
-﻿using UnityEngine;
+﻿
+using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StarActivetes : MonoBehaviour
 {
     [SerializeField] private GameObject ImageStar2;
-    [SerializeField] private CheckAmountStar checkAmountStar;
-    [SerializeField] private GameManager gameManager;
+    private GameObject starsEarned;
 
     private void OnTriggerEnter(Collider other)
     {
+        starsEarned = GameObject.FindGameObjectWithTag("GlobalManager");
+        CheckAmountStar checkAmountStar = starsEarned.GetComponent<CheckAmountStar>();
+
         if (other.CompareTag("Player") || other.CompareTag("SpawnEmpty"))
         {
-            gameObject.SetActive(false);                 
-            gameManager.CountStars++;
-            checkAmountStar.SaveStartData(false, true, false);
-            PlayerPrefs.SetInt("CountStars", gameManager.CountStars);
-            PlayerPrefs.Save();
+            gameObject.SetActive(false);
+            GameManager gameManager = starsEarned.GetComponent<GameManager>();
+            if (gameManager != null)
+            {
+                if (!PlayerPrefs.HasKey($"TwoStar{SceneManager.GetActiveScene().name}"))
+                {
+                    gameManager.CountStars++;
+                    checkAmountStar.SaveStartData(false, true, false);
+                    PlayerPrefs.SetInt("CountStars", gameManager.CountStars);
+                    PlayerPrefs.Save();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("GameManager component not found on the 'starsEarned' object.");
+            }
             ImageStar2.SetActive(true);
         }
     }
