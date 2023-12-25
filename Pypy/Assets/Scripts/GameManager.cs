@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
         //playerSkins.Clear();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
+    private void Start() {
+        CountStars = PlayerPrefs.GetInt("CountStars", 0);
+    }
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -144,17 +146,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    private void Update()
-    {
-        if (PlayerPrefs.HasKey("CountStars"))
-        {
-            int sum = PlayerPrefs.GetInt("CountStars", CountStars);
-            CountStars = sum;
-            Debug.Log(CountStars);
-        }
-    }
-
     public void CheckPlayerBuy(GameObject player, bool buy)
     {
         PlayerPrefs.SetInt("PlayerBuy_" + player.name, 1);

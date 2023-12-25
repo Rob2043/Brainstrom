@@ -36,6 +36,8 @@ public class LocalMenuScript : MonoBehaviour
         int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
         if (currentLevel < SceneManager.sceneCountInBuildSettings)
         {
+            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
+            PlayerPrefs.Save(); // Save the PlayerPrefs data
             SceneManager.LoadScene(currentLevel);
         }
         else

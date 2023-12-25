@@ -9,15 +9,9 @@ public class SwipeScript : MonoBehaviour
     private Vector2 swipeDelta;
     [SerializeField] private float deadZone = 10f;
     private bool isSwiping;
-    private bool isMobile;
-
+    private readonly bool isMobile = Application.isMobilePlatform;
     public static event OnSwipeInput SwipeEvent;
     public delegate void OnSwipeInput(Vector2 direction);
-
-    private void Start()
-    {
-        isMobile = Application.isMobilePlatform;
-    }
 
     private void Update()
     {

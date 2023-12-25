@@ -4,37 +4,24 @@ using UnityEngine.UI;
 
 public class ChooseScinScript : MonoBehaviour
 {
-    private bool isRotating = false;
-    private GameObject playerCheck;
-    private MovePlayerScript CheckBuy;
+    [SerializeField] private MovePlayerScript CheckBuy;
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private Text TextButtonBuy;
     [SerializeField] private GameObject ButtonChoose;
     [SerializeField] private Text TextForPrice;
     [SerializeField] private Text TextForCountStars;
     [SerializeField] private Text TextName;
-    private GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private CheckScin checkScin;
 
-    private void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
+    private bool isRotating = false;
 
     private void LateUpdate()
     {
-        TextForCountStars.text = gameManager.CountStars.ToString();
-        CheckScin find = FindObjectOfType<CheckScin>();
-        if (find != null)
-        {
-            playerCheck = find.ScanObjct;
-
-            if (playerCheck != null)
-            {
-                CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
-
+        TextForCountStars.text = $"{gameManager.CountStars}";
                 if (CheckBuy != null)
                 {
-                    TextName.text = CheckBuy.dataScins.Name.ToString();
+                    TextName.text = $"{CheckBuy.dataScins.Name}";
                     if (CheckBuy.checkScin == true)
                     {
                         TextButtonBuy.text = "Selected";
@@ -46,7 +33,7 @@ public class ChooseScinScript : MonoBehaviour
                     if (CheckBuy.allowForBuy == false)
                     {
                         ButtonBuy.SetActive(true);
-                        TextForPrice.text = "Buy " + CheckBuy.dataScins.Price.ToString();
+                        TextForPrice.text = $"Buy  + {CheckBuy.dataScins.Price}";
                         ButtonChoose.SetActive(false);
                     }
                     else
@@ -55,8 +42,7 @@ public class ChooseScinScript : MonoBehaviour
                         ButtonChoose.SetActive(true);
                     }
                 }
-            }
-        }
+            
     }
 
     public void LeftChoose()
