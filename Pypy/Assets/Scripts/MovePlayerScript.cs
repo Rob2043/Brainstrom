@@ -1,20 +1,28 @@
-﻿using System;
+﻿using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MovePlayerScript : MonoBehaviour
 {
     [SerializeField] private Vector3 moveDirection;
+    private GameObject TextCountStars;
     [SerializeField] private float speed;
     public GameObject panel;
-
     public bool checkScin = false;
     private Rigidbody rb;
+    public bool checkStar;
+    public bool allowForBuy = false;
+    public DataItems dataScins;
+    private GameObject[] Box = { };
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
+        TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
 
     }
 
@@ -30,11 +38,15 @@ public class MovePlayerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        GameObject BoxInScene = GameObject.FindGameObjectWithTag("Cube");
+        Box.Append(BoxInScene);
+    }
     private void HandleSwipePlayer(Vector2 direction)
     {
         if (rb != null)
         {
-
             Vector3 force = Vector3.zero;
 
             if (direction == Vector2.left)
@@ -66,11 +78,49 @@ public class MovePlayerScript : MonoBehaviour
             speed = 0f;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
             PlayerPrefs.Save(); // Save the PlayerPrefs data
-        }
-        else if (gameObject.CompareTag("SpawnEmpty") && other.CompareTag("Finish"))
-        {
-            panel.SetActive(true);
-            speed = 0f;
+            GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
+            GameObject Time = GameObject.FindGameObjectWithTag("Time");
+            GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
+            CheckAmountStar checkAmountStar = gameManager.GetComponent<CheckAmountStar>();
+            float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
+            float EndLevelValue = Level - (int)Level;
+            if (EndLevelValue == 0)
+            {
+                InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
+                Ads.ShowAd();
+            }
+            foreach (GameObject b in Box)
+            {
+                b.GetComponent<Cup>().checkLevel = false;
+            }
+            if (!PlayerPrefs.HasKey($"OneStar{SceneManager.GetActiveScene().name}"))
+            {
+                gameManager.GetComponent<GameManager>().CountStars += 1;
+                checkAmountStar.SaveStartData(true, false, false);
+            }
+            if (Time != null && gameManager != null)
+            {
+                float dieTime = Time.GetComponent<TextStarScript>().DieTime;
+                if (dieTime > 0)
+                {
+                    ThirdStar.SetActive(true);
+                    if (!PlayerPrefs.HasKey($"ThreeStar{SceneManager.GetActiveScene().name}"))
+                    {
+                        gameManager.GetComponent<GameManager>().CountStars += 1;
+                        checkAmountStar.SaveStartData(false, false, true);
+                    }
+                }
+                else
+                {
+                    gameManager.GetComponent<GameManager>().CountStars += 0;
+                }
+                Time.SetActive(false);
+                gameObject.SetActive(false);
+
+            }
+            TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
+            PlayerPrefs.SetInt("CountStars", gameManager.GetComponent<GameManager>().CountStars);
+            PlayerPrefs.Save();
         }
     }
 }
