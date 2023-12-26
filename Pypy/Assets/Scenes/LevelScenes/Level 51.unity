@@ -820,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwipeDetective
       objectReference: {fileID: 0}
+    - target: {fileID: 6777374688076148400, guid: 862fc000884d36f459c7d0acc05fe963, type: 3}
+      propertyPath: deadZone
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1361,13 +1365,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106993254}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.52, y: 29.41, z: -1.58}
+  m_LocalRotation: {x: 0.25216368, y: -0.6348471, z: 0.2310654, w: 0.6928142}
+  m_LocalPosition: {x: 32.3, y: 25.7, z: -2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: -85, z: 0}
 --- !u!4 &1129732324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4966907371970030216, guid: b0faa2244990e5028aff3d5e8cc5022d, type: 3}
@@ -5223,7 +5227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4450b16706560eb46aeb6bbe2a6ebaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DieTime: 10
+  DieTime: 60
   ThirdStar: {fileID: 2656033036327673548}
   CanTime: 0
 --- !u!114 &8551420651947243589
