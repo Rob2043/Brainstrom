@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &28878716
@@ -426,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &71987830
@@ -776,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &324150502
@@ -898,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914560769438739593, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.07
+      value: -9.11
       objectReference: {fileID: 0}
     - target: {fileID: 2914560769438739593, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1125,6 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &602834985
@@ -1825,6 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1547190410
@@ -1974,6 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1661608235
@@ -2123,6 +2129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1701111845
@@ -2272,6 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1863883122
@@ -3001,6 +3009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!1 &1361321471309798475
@@ -3663,6 +3672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!222 &2526310182964529322
@@ -4011,6 +4021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!114 &3075166371900718621
@@ -4115,6 +4126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!1 &3095493886431882165
@@ -4228,6 +4240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!1 &3370540398665374173
@@ -4665,6 +4678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!114 &4308675904810722785
@@ -4987,6 +5001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!222 &4799222099206291676
@@ -5708,6 +5723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!114 &5639862718108982447
@@ -5825,6 +5841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!33 &5769964805485548672
@@ -6669,6 +6686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
+  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!33 &7604981671754282032
@@ -7103,9 +7121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4450b16706560eb46aeb6bbe2a6ebaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DieTime: 80
   ThirdStar: {fileID: 2656033036327673548}
   CanTime: 0
+  DieTime: 80
 --- !u!114 &8551420651947243589
 MonoBehaviour:
   m_ObjectHideFlags: 0
