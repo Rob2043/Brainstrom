@@ -1,26 +1,43 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LocalMenuScript : MonoBehaviour
 {
-    [SerializeField] private Animator starAnimation;
     [SerializeField] private GameObject PanelExit;
+    [SerializeField] private GameObject PanelClound;
     [SerializeField] private GameObject ButtonExit;
-
+    [SerializeField] private GameObject MainPanel;
+    [SerializeField] private Animator Cloud1Animator;
+    [SerializeField] private Animator Cloud2Animator;
+    [SerializeField] private TextStarScript time;
 
     private void Start()
     {
-        starAnimation.SetBool("Star",true);
+        StartCoroutine(AnimationClound());
     }
+
+    public IEnumerator AnimationClound()
+    {
+        Debug.Log("Test Local");
+        Cloud1Animator.SetBool("CloseClound", true);
+        Cloud2Animator.SetBool("CloseClound2", true);
+        yield return new WaitForSeconds(1);
+        Cloud1Animator.SetBool("CloseClound", false);
+        Cloud2Animator.SetBool("CloseClound2", false);
+        yield return new WaitForSeconds(1);
+        time.CanTime = true;
+        PanelClound.SetActive(false);
+    }
+
     public void NextLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
         if (currentLevel < SceneManager.sceneCountInBuildSettings)
         {
+            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
+            PlayerPrefs.Save(); // Save the PlayerPrefs data
             SceneManager.LoadScene(currentLevel);
         }
         else
@@ -37,13 +54,20 @@ public class LocalMenuScript : MonoBehaviour
 
     public void OnExitPanel()
     {
-        ButtonExit.SetActive(false);
-        PanelExit.SetActive(true);
+        if (MainPanel.activeSelf == false)
+        {
+            ButtonExit.SetActive(false);
+            PanelExit.SetActive(true);
+        }
     }
 
     public void NoReturn()
     {
         PanelExit.SetActive(false);
         ButtonExit.SetActive(true);
+    }
+    public void Again()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
