@@ -183,7 +183,7 @@ public class MainButtons : MonoBehaviour
 
     private void ButtonInteractible()
     {
-        for (int i = MaxLevel; i < LevelButtons.Length; i++)
+        for (int i = 60; i < LevelButtons.Length; i++)
         {
             LevelButtons[i].enabled = false;
             LevelButtons[i].image.sprite = ButtonOffLevel;

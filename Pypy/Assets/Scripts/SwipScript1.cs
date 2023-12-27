@@ -59,23 +59,26 @@ public class SwipeScript1 : MonoBehaviour
                 swipeDelta = Input.GetTouch(0).position - tapPosition;
         }
 
-        if (swipeDelta.magnitude > deadZone)
+        if (Mathf.Abs(swipeDelta.x) > deadZone || Mathf.Abs(swipeDelta.y) > deadZone)
         {
             if (SwipeEvent != null) // Проверка наличия подписчиков
             {
-                if (swipeDelta.x > 0)
-                    SwipeEvent(Vector2.right);
-                if (swipeDelta.y < 0)
-                    SwipeEvent(Vector2.down);
-                if (swipeDelta.y > 0)
-                    SwipeEvent(Vector2.up);
-                if (swipeDelta.x < 0)
-                    SwipeEvent(Vector2.left);
+                if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
+                {
+                    // Горизонтальный свайп
+                    SwipeEvent(swipeDelta.x > 0 ? Vector2.right : Vector2.left);
+                }
+                else
+                {
+                    // Вертикальный свайп
+                    SwipeEvent(swipeDelta.y > 0 ? Vector2.up : Vector2.down);
+                }
             }
 
             ResetSwipe();
         }
     }
+
 
 
     private void ResetSwipe()
