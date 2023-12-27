@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17805964, g: 0.22294226, b: 0.3050419, a: 1}
+  m_IndirectSpecularColor: {r: 0.17805919, g: 0.22294158, b: 0.3050406, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2023,6 +2023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4995257070677560304, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6877454521221133155, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3062,17 +3066,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4045790616045078389, guid: 063594ecad5cee84792b5f7699e102cc, type: 3}
+      propertyPath: orthographic size
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5829449855737984625, guid: 063594ecad5cee84792b5f7699e102cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.2
+      value: 31.34
       objectReference: {fileID: 0}
     - target: {fileID: 5829449855737984625, guid: 063594ecad5cee84792b5f7699e102cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.7
+      value: 53.36
       objectReference: {fileID: 0}
     - target: {fileID: 5829449855737984625, guid: 063594ecad5cee84792b5f7699e102cc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.1
+      value: -54.35
       objectReference: {fileID: 0}
     - target: {fileID: 5829449855737984625, guid: 063594ecad5cee84792b5f7699e102cc, type: 3}
       propertyPath: m_LocalRotation.w

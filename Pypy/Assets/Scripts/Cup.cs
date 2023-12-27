@@ -10,6 +10,7 @@ public class Cup : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); 
         SwipeScript.SwipeEvent += HandleSwipe;
+        SwipeScript1.SwipeEvent += HandleSwipe;
         checkLevel = true;
     }
     private void HandleSwipe(Vector2 direction)

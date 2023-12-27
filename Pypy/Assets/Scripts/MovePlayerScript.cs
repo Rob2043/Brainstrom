@@ -22,6 +22,7 @@ public class MovePlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
+        SwipeScript1.SwipeEvent += HandleSwipePlayer;
         TextCountStars = GameObject.FindGameObjectWithTag("CountStar");
 
     }
