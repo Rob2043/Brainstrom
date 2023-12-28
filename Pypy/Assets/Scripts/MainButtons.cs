@@ -26,15 +26,27 @@ public class MainButtons : MonoBehaviour
     private bool isActiveButtonSound;
     private void Start()
     {
-        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
-        ButtonInteractible();
-        if (PlayerPrefs.GetInt("isSoundOn", 1) == 1)
+        //PlayerPrefs.DeleteAll();
+        Time.timeScale = 1f;
+        if (PlayerPrefs.GetInt("isSoundOn") == 0)
         {
-            isActiveButtonSound = true;
+            AudioButton.image.sprite = ButtonOffSprite;
+            isActiveButtonSound = false;
+            for (int i = 0; i < Audio.Length; i++)
+            {
+                Audio[i].enabled = false;
+            }
         }
         else
         {
-            isActiveButtonSound = false;
+            AudioButton.image.sprite = ButtonOnSprite;
+            float SaveValueSlider = PlayerPrefs.GetFloat("SliderVolume");
+            isActiveButtonSound = true;
+            for (int i = 0; i < Audio.Length; i++)
+            {
+                Audio[i].enabled = true;
+                Audio[i].volume = SaveValueSlider;
+            }
         }
     }
     private void LateUpdate()
@@ -134,24 +146,25 @@ public class MainButtons : MonoBehaviour
     {
         if (isActiveButtonSound)
         {
-            AudioButton.image.sprite = ButtonOffSprite;
-            for (int i = 1; i < Audio.Length; i++)
+            AudioButton.image.sprite = ButtonOnSprite;
+            for (int i = 0; i < Audio.Length; i++)
             {
                 Audio[i].enabled = true;
             }
-            PlayerPrefs.SetInt("isSoundOn", 0);
+            PlayerPrefs.SetInt("isSoundOn", 1);
             isActiveButtonSound = false;
         }
         else
         {
-            AudioButton.image.sprite = ButtonOnSprite;
-            for (int i = 1; i < Audio.Length; i++)
+            AudioButton.image.sprite = ButtonOffSprite;
+            for (int i = 0; i < Audio.Length; i++)
             {
                 Audio[i].enabled = false;
             }
-            PlayerPrefs.SetInt("isSoundOn", 1);
+            PlayerPrefs.SetInt("isSoundOn", 0);
             isActiveButtonSound = true;
         }
+        PlayerPrefs.Save();
     }
 
     public void BackToMainMenu()
