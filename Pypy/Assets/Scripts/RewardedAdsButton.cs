@@ -37,7 +37,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     private void Start()
     {
-        gameManager = GetComponent<GameManager>();
+        gameManager = GameObject.Find("GlobalManager").GetComponent<GameManager>();
     }
 
     // Call this public method when you want to get an ad ready to show.
