@@ -2,7 +2,7 @@
 public class Cup : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;
-    [SerializeField] private Rigidbody rb;
+    private Rigidbody rb;
     [SerializeField] private float speed;
     public bool checkLevel;
 

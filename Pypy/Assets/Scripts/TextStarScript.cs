@@ -31,6 +31,6 @@ public class TextStarScript : MonoBehaviour
         }
     }
     private void LateUpdate() {
-        text.text = $"Time: {(int)DieTime}";
+        text.text = $"{(int)DieTime}";
     }
 }

@@ -65,7 +65,7 @@ public class MainButtons : MonoBehaviour
     public void OnAnotherMapLevels()
     {
         bool checkCountPanel = true;
-        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        for (int i = 0; i < PanelLevelArray.Length; i++)
         {
             if (i >= 0 && i <= PanelLevelArray.Length)
             {
@@ -88,6 +88,15 @@ public class MainButtons : MonoBehaviour
 
         }
     }
+
+    public void ToHome()
+    {
+        for (int i = 0; i < PanelLevelArray.Length; i++)
+        {
+            PanelLevelArray[i].SetActive(false);
+        }
+    }
+
     public void BackLevelPanel()
     {
         bool checkCountPanel = true;

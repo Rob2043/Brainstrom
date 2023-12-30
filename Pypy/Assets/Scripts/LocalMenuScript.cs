@@ -54,6 +54,7 @@ public class LocalMenuScript : MonoBehaviour
 
     public void OnExitPanel()
     {
+        Time.timeScale = 0;
         if (MainPanel.activeSelf == false)
         {
             ButtonExit.SetActive(false);
@@ -63,6 +64,7 @@ public class LocalMenuScript : MonoBehaviour
 
     public void NoReturn()
     {
+        Time.timeScale = 1;
         PanelExit.SetActive(false);
         ButtonExit.SetActive(true);
     }
