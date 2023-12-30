@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
         //playerSkins.Clear();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Start() {
+    private void Start()
+    {
         CountStars = PlayerPrefs.GetInt("CountStars");
     }
     private void OnDestroy()
@@ -131,15 +132,26 @@ public class GameManager : MonoBehaviour
                 if (playerSkins.ContainsKey(ThirdPlayer) && playerSkins[ThirdPlayer] == true)
                 {
                     check = false;
-                    GameObject newScin = Instantiate(ThirdPlayer, EmptyPlayer.transform.position, ThirdPlayer.transform.rotation);
-                    newScin.tag = ThirdPlayer.tag;
-                    Destroy(EmptyPlayer);
+                    if (ThirdPlayer.name == "Player" || ThirdPlayer.name == "White Player")
+                    {
+                        Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
+                        GameObject newScin = Instantiate(ThirdPlayer, newPosition, ThirdPlayer.transform.rotation);
+                        newScin.tag = ThirdPlayer.tag;
+                        Destroy(EmptyPlayer);
+                    }
+                    else
+                    {
+                        Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0f, EmptyPlayer.transform.position.z);
+                        GameObject newScin = Instantiate(ThirdPlayer, newPosition, ThirdPlayer.transform.rotation);
+                        newScin.tag = ThirdPlayer.tag;
+                        Destroy(EmptyPlayer);
+                    }
                 }
             }
             if (check == true)
             {
                 Debug.Log("Basick Player");
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, EmptyPlayer.transform.position.y, EmptyPlayer.transform.position.z);
+                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.3f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
                 check = false;
             }
