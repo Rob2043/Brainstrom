@@ -28,26 +28,37 @@ public class MainButtons : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         Time.timeScale = 1f;
-        if (PlayerPrefs.GetInt("isSoundOn") == 0)
+        if (PlayerPrefs.HasKey("isSoundOn"))
         {
-            AudioButton.image.sprite = ButtonOffSprite;
-            isActiveButtonSound = false;
-            for (int i = 0; i < Audio.Length; i++)
+            if (PlayerPrefs.GetInt("isSoundOn") == 0)
             {
-                Audio[i].enabled = false;
+                AudioButton.image.sprite = ButtonOffSprite;
+                isActiveButtonSound = false;
+                for (int i = 0; i < Audio.Length; i++)
+                {
+                    Audio[i].enabled = false;
+                }
+            }
+            else
+            {
+                AudioButton.image.sprite = ButtonOnSprite;
+                isActiveButtonSound = true;
+                for (int i = 0; i < Audio.Length; i++)
+                {
+                    Audio[i].enabled = true;
+                }
             }
         }
         else
         {
             AudioButton.image.sprite = ButtonOnSprite;
-            float SaveValueSlider = PlayerPrefs.GetFloat("SliderVolume");
             isActiveButtonSound = true;
             for (int i = 0; i < Audio.Length; i++)
             {
                 Audio[i].enabled = true;
-                Audio[i].volume = SaveValueSlider;
             }
         }
+
     }
     private void LateUpdate()
     {
@@ -205,7 +216,7 @@ public class MainButtons : MonoBehaviour
 
     private void ButtonInteractible()
     {
-        for (int i = 60; i < LevelButtons.Length; i++)
+        for (int i = 100; i < LevelButtons.Length; i++)
         {
             LevelButtons[i].enabled = false;
             LevelButtons[i].image.sprite = ButtonOffLevel;

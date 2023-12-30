@@ -41,7 +41,7 @@ public class ChooseScinScript : MonoBehaviour
             if (CheckBuy.allowForBuy == false)
             {
                 ButtonBuy.SetActive(true);
-                TextForPrice.text = $"Buy  + {CheckBuy.dataScins.Price}";
+                TextForPrice.text = $"Buy {CheckBuy.dataScins.Price}";
                 ButtonChoose.SetActive(false);
             }
             else

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LocalMenuScript : MonoBehaviour
 {
@@ -12,10 +13,27 @@ public class LocalMenuScript : MonoBehaviour
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
     [SerializeField] private TextStarScript time;
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
         StartCoroutine(AnimationClound());
+        if (PlayerPrefs.HasKey("isSoundOn"))
+        {
+            if (PlayerPrefs.GetInt("isSoundOn") == 0)
+            {
+                audioSource.enabled = false;
+            }
+            else
+            {
+                audioSource.enabled = true;
+            }
+        }
+        else
+        {
+            audioSource.enabled = true;
+        }
+
     }
 
     public IEnumerator AnimationClound()
