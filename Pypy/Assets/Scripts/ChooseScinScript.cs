@@ -13,6 +13,7 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private Text TextName;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private CheckScin checkScin;
+    [SerializeField] private AudioSource audioSource;
     private GameObject playerCheck;
 
     private bool isRotating = false;
@@ -20,6 +21,22 @@ public class ChooseScinScript : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        if (PlayerPrefs.HasKey("isSoundOn"))
+        {
+            if (PlayerPrefs.GetInt("isSoundOn") == 0)
+            {
+                audioSource.enabled = false;
+            }
+            else
+            {
+                audioSource.enabled = true;
+            }
+        }
+        else
+        {
+            audioSource.enabled = true;
+        }
+
     }
 
     private void LateUpdate()
