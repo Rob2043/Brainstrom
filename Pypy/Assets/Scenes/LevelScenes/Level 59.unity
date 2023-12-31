@@ -333,6 +333,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33846118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &45886565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 45886568}
+  - component: {fileID: 45886567}
+  - component: {fileID: 45886566}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &45886566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45886565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &45886567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45886565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &45886568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45886565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &73266176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,7 +612,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &135450727
@@ -892,7 +959,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &203049693
@@ -1088,7 +1154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &287161294
@@ -1343,7 +1408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &311765712
@@ -1493,7 +1557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &323666547
@@ -1643,7 +1706,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &359589594
@@ -2108,7 +2170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &385366362
@@ -2363,7 +2424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &422800663
@@ -2608,7 +2668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &538027228
@@ -2863,7 +2922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &625825791
@@ -3013,7 +3071,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &676545223
@@ -3211,7 +3268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &805981261
@@ -3636,7 +3692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1010205201
@@ -4002,7 +4057,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1064559171
@@ -4257,7 +4311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1118549589
@@ -4617,7 +4670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1190701823
@@ -4872,7 +4924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1386861150
@@ -5126,7 +5177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1601665119
@@ -5276,7 +5326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1758161418
@@ -5426,7 +5475,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1847980846
@@ -5681,7 +5729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1903644110
@@ -5831,7 +5878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &1931224582
@@ -5981,7 +6027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &2011463727
@@ -6131,7 +6176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &2082208981
@@ -6281,7 +6325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!54 &2134312682
@@ -6689,7 +6732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!33 &1394792192171120185
@@ -6934,7 +6976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!65 &3470070461454023353
@@ -7015,7 +7056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 1}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!1 &4370431915771875679
@@ -7117,7 +7157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!23 &5086439609549219357
@@ -7388,7 +7427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!114 &5727416334897245928
@@ -7404,7 +7442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 0}
-  rb: {fileID: 0}
   speed: 10
   checkLevel: 0
 --- !u!33 &5769964805485548672
@@ -7876,3 +7913,4 @@ SceneRoots:
   - {fileID: 819429877}
   - {fileID: 1490451212}
   - {fileID: 154959956}
+  - {fileID: 45886568}
