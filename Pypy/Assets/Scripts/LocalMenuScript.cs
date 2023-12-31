@@ -14,6 +14,7 @@ public class LocalMenuScript : MonoBehaviour
     [SerializeField] private Animator Cloud2Animator;
     [SerializeField] private TextStarScript time;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource AudioForButton;
 
     private void Start()
     {
@@ -23,15 +24,18 @@ public class LocalMenuScript : MonoBehaviour
             if (PlayerPrefs.GetInt("isSoundOn") == 0)
             {
                 audioSource.enabled = false;
+                AudioForButton.enabled = false;
             }
             else
             {
                 audioSource.enabled = true;
+                AudioForButton.enabled = true;
             }
         }
         else
         {
             audioSource.enabled = true;
+            AudioForButton.enabled = true;
         }
 
     }
@@ -51,6 +55,7 @@ public class LocalMenuScript : MonoBehaviour
 
     public void NextLevel()
     {
+        AudioForButton.Play();
         int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
         if (currentLevel < SceneManager.sceneCountInBuildSettings)
         {
@@ -67,11 +72,13 @@ public class LocalMenuScript : MonoBehaviour
 
     public void ToMainMenu()
     {
+        AudioForButton.Play();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void OnExitPanel()
     {
+        AudioForButton.Play();
         Time.timeScale = 0;
         if (MainPanel.activeSelf == false)
         {
@@ -82,12 +89,14 @@ public class LocalMenuScript : MonoBehaviour
 
     public void NoReturn()
     {
+        AudioForButton.Play();
         Time.timeScale = 1;
         PanelExit.SetActive(false);
         ButtonExit.SetActive(true);
     }
     public void Again()
     {
+        AudioForButton.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

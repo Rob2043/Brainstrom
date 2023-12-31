@@ -102,6 +102,7 @@ public class MainButtons : MonoBehaviour
 
     public void ToHome()
     {
+        Audio[2].Play();
         for (int i = 0; i < PanelLevelArray.Length; i++)
         {
             PanelLevelArray[i].SetActive(false);
@@ -110,6 +111,7 @@ public class MainButtons : MonoBehaviour
 
     public void BackLevelPanel()
     {
+        Audio[2].Play();
         bool checkCountPanel = true;
         for (int i = 1; i <= PanelLevelArray.Length; i++)
         {
@@ -127,6 +129,7 @@ public class MainButtons : MonoBehaviour
 
     public void MainButtonPlayOnClick()
     {
+        Audio[2].Play();
         panelLevel.SetActive(true);
         GameObject[] stars = new GameObject[3];
 
@@ -154,16 +157,19 @@ public class MainButtons : MonoBehaviour
 
     public void ButtonQuit()
     {
+        Audio[2].Play();
         Application.Quit();
     }
 
     public void ButtonSettingsOpen()
     {
+        Audio[2].Play();
         panelSettings.SetActive(true);
     }
 
     public void ButtonSoundOnClick()
     {
+        Audio[2].Play();
         if (isActiveButtonSound)
         {
             AudioButton.image.sprite = ButtonOnSprite;
@@ -189,15 +195,18 @@ public class MainButtons : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        Audio[2].Play();
         panelSettings.SetActive(false);
     }
 
     public void ScinClic()
     {
+        Audio[2].Play();
         SceneManager.LoadScene("Scins");
     }
     public void LevelButtonOnClick(GameObject localeButton)
     {
+        Audio[2].Play();
         sceneSelect = localeButton.name;
         StartCoroutine(Animation());
     }

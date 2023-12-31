@@ -6,6 +6,7 @@ public class CheckScin : MonoBehaviour
     public GameObject ScanObjct;
     [SerializeField] private  GameManager gameManager;
     [SerializeField] private MovePlayerScript movePlayerScript;
+    [SerializeField] AudioSource AudioForButton;
 
     private void Start()
     {
@@ -23,7 +24,8 @@ public class CheckScin : MonoBehaviour
 
     public void ChooseClick()
     {
-        if(ScanObjct != null && movePlayerScript.allowForBuy == true)
+        AudioForButton.Play();
+        if (ScanObjct != null && movePlayerScript.allowForBuy == true)
         {
             movePlayerScript.checkScin = true;
             gameManager.SetPlayerSkin(ScanObjct, movePlayerScript.checkScin);
@@ -32,7 +34,7 @@ public class CheckScin : MonoBehaviour
 
     public void BuyButton()
     {
-
+        AudioForButton.Play();
         if (gameManager.CountStars >= movePlayerScript.dataScins.Price && !movePlayerScript.allowForBuy)
         {
             gameManager.CountStars -= movePlayerScript.dataScins.Price;
@@ -51,6 +53,7 @@ public class CheckScin : MonoBehaviour
 
     public void ExitClic()
     {
+        AudioForButton.Play();
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         //playerSkins.Clear();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
             if (check == true)
             {
                 Debug.Log("Basick Player");
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.3f, EmptyPlayer.transform.position.z);
+                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
                 check = false;
             }

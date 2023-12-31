@@ -14,6 +14,7 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private CheckScin checkScin;
     [SerializeField] private AudioSource audioSource;
+    public AudioSource AudioForButton;
     private GameObject playerCheck;
 
     private bool isRotating = false;
@@ -26,17 +27,19 @@ public class ChooseScinScript : MonoBehaviour
             if (PlayerPrefs.GetInt("isSoundOn") == 0)
             {
                 audioSource.enabled = false;
+                AudioForButton.enabled = false;
             }
             else
             {
                 audioSource.enabled = true;
+                AudioForButton.enabled = true;
             }
         }
         else
         {
             audioSource.enabled = true;
+            AudioForButton.enabled = true;
         }
-
     }
 
     private void LateUpdate()
@@ -71,6 +74,7 @@ public class ChooseScinScript : MonoBehaviour
 
     public void LeftChoose()
     {
+        AudioForButton.Play();
         if (!isRotating)
         {
             StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 40, 0)));
@@ -79,6 +83,7 @@ public class ChooseScinScript : MonoBehaviour
 
     public void RightChoose()
     {
+        AudioForButton.Play();
         if (!isRotating)
         {
             StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 40, 0)));
