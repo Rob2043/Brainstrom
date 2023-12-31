@@ -14,7 +14,7 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private CheckScin checkScin;
     [SerializeField] private AudioSource audioSource;
-    public AudioSource AudioForButton;
+    [SerializeField]  AudioSource AudioForButton;
     private GameObject playerCheck;
 
     private bool isRotating = false;
