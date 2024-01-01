@@ -19,14 +19,20 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
     [SerializeField] private GameObject[] PanelLevelArray;
-    int MaxLevel;
+    [SerializeField] private CheckAmountStar checkAmountStar;
+
+    private int MaxLevel;
     private bool checkAnimation = false;
-    private string sceneSelect;
-    public CheckAmountStar checkAmountStar;
     private bool isActiveButtonSound;
+    private string sceneSelect;
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+        for (int i = MaxLevel; i < LevelButtons.Length; i++)
+        {
+            LevelButtons[i].enabled = false;
+            LevelButtons[i].image.sprite = ButtonOffLevel;
+        }
         Time.timeScale = 1f;
         if (PlayerPrefs.HasKey("isSoundOn"))
         {
@@ -64,12 +70,6 @@ public class MainButtons : MonoBehaviour
     {
         if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
         {
-            for (int j = 0; j < LevelButtons.Length; j++)
-            {
-                LevelButtons[j].enabled = true;
-                LevelButtons[j].image.sprite = ButtonOnLevel;
-            }
-            MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
             ButtonInteractible();
         }
     }
@@ -144,10 +144,9 @@ public class MainButtons : MonoBehaviour
                 Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars " + i);
                 if (transitionTransform != null)
                 {
-                    GameObject transitiohnObject = transitionTransform.gameObject;
-                    stars[i - 1] = transitiohnObject;
-                    Debug.Log(transitiohnObject.name);
-                    transitiohnObject.gameObject.SetActive(false);
+                    stars[i - 1] = transitionTransform.gameObject;
+                    Debug.Log(transitionTransform.gameObject.name);
+                    transitionTransform.gameObject.SetActive(false);
                 }
             }
 
@@ -225,10 +224,11 @@ public class MainButtons : MonoBehaviour
 
     private void ButtonInteractible()
     {
-        for (int i = MaxLevel; i < LevelButtons.Length; i++)
+        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+        for (int j = 0; j < LevelButtons.Length; j++)
         {
-            LevelButtons[i].enabled = false;
-            LevelButtons[i].image.sprite = ButtonOffLevel;
+            LevelButtons[j].enabled = true;
+            LevelButtons[j].image.sprite = ButtonOnLevel;
         }
     }
 }

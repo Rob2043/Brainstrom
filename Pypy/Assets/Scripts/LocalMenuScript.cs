@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class LocalMenuScript : MonoBehaviour
 {
@@ -16,8 +14,11 @@ public class LocalMenuScript : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource AudioForButton;
 
+    private int maxLevel;
+
     private void Start()
     {
+        maxLevel = PlayerPrefs.GetInt("MaxLevel",1);
         StartCoroutine(AnimationClound());
         if (PlayerPrefs.HasKey("isSoundOn"))
         {
@@ -42,7 +43,6 @@ public class LocalMenuScript : MonoBehaviour
 
     public IEnumerator AnimationClound()
     {
-        Debug.Log("Test Local");
         Cloud1Animator.SetBool("CloseClound", true);
         Cloud2Animator.SetBool("CloseClound2", true);
         yield return new WaitForSeconds(1);
@@ -56,18 +56,23 @@ public class LocalMenuScript : MonoBehaviour
     public void NextLevel()
     {
         AudioForButton.Play();
-        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if (currentLevel < SceneManager.sceneCountInBuildSettings)
-        {
-            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
-            PlayerPrefs.Save(); // Save the PlayerPrefs data
-            SceneManager.LoadScene(currentLevel);
-        }
-        else
-        {
-            // Если это последняя сцена в сборке, то можно загрузить меню или что-то другое.
-            SceneManager.LoadScene("MainMenu");
-        }
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+            if (currentLevel < SceneManager.sceneCountInBuildSettings - 2)
+            {
+                if(maxLevel > currentLevel){
+                    SceneManager.LoadScene(currentLevel);
+                } else {
+                    PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex); // Save the current level to PlayerPrefs
+                    PlayerPrefs.Save(); // Save the PlayerPrefs data
+                    SceneManager.LoadScene(currentLevel);
+                }
+            }
+            else
+            {
+                // Если это последняя сцена в сборке, то можно загрузить меню или что-то другое.
+                SceneManager.LoadScene("MainMenu");
+            }
+        
     }
 
     public void ToMainMenu()

@@ -1,6 +1,4 @@
-﻿
-using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StarActivetes : MonoBehaviour
