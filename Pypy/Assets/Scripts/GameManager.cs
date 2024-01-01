@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -134,14 +133,14 @@ public class GameManager : MonoBehaviour
                     check = false;
                     if (ThirdPlayer.name == "Player" || ThirdPlayer.name == "White Player")
                     {
-                        Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
+                        Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
                         GameObject newScin = Instantiate(ThirdPlayer, newPosition, ThirdPlayer.transform.rotation);
                         newScin.tag = ThirdPlayer.tag;
                         Destroy(EmptyPlayer);
                     }
                     else
                     {
-                        Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0f, EmptyPlayer.transform.position.z);
+                        Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0f, EmptyPlayer.transform.position.z);
                         GameObject newScin = Instantiate(ThirdPlayer, newPosition, ThirdPlayer.transform.rotation);
                         newScin.tag = ThirdPlayer.tag;
                         Destroy(EmptyPlayer);
@@ -151,7 +150,7 @@ public class GameManager : MonoBehaviour
             if (check == true)
             {
                 Debug.Log("Basick Player");
-                Vector3 newPosition = new Vector3(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
+                Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
                 check = false;
             }
@@ -224,7 +223,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetString(player.name, hasSkin.ToString());
+        PlayerPrefs.SetString(player.name, $"{hasSkin}");
         PlayerPrefs.Save();
     }
 }
