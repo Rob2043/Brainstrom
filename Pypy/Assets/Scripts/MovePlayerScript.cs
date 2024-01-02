@@ -82,13 +82,13 @@ public class MovePlayerScript : MonoBehaviour
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
             CheckAmountStar checkAmountStar = gameManager.GetComponent<CheckAmountStar>();
-            //float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
-            //float EndLevelValue = Level - (int)Level;
-            //if (EndLevelValue == 0)
-            //{
-            //    InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
-            //    Ads.ShowAd();
-            //}
+            float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
+            float EndLevelValue = Level - (int)Level;
+            if (EndLevelValue == 0)
+            {
+                InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
+                Ads.ShowAd();
+            }
             foreach (GameObject b in Box)
             {
                 b.GetComponent<Cup>().checkLevel = false;
