@@ -11,11 +11,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     string _adUnitId = null; // This will remain null for unsupported platforms
 
     void Awake()
-    {
+    {        
         // Get the Ad Unit ID for the current platform:
         RuntimePlatform platform = Application.platform;
 
-        if (platform == RuntimePlatform.Android || platform == RuntimePlatform.OSXPlayer)
+        if (platform == RuntimePlatform.Android)
         {
             _adUnitId = _androidAdUnitId;
             Debug.Log("Device is running Android.");
@@ -29,13 +29,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         }
         else
         {
-            _adUnitId = _androidAdUnitId;
+            _adUnitId= _androidAdUnitId;
         }
-
         // Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
     }
-
 
     private void Start()
     {

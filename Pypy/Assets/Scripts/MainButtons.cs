@@ -157,22 +157,7 @@ public class MainButtons : MonoBehaviour
     public void ButtonQuit()
     {
         Audio[2].Play();
-
-        // Проверка платформы - если это iOS
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            // Выход из приложения на iOS
-            Application.Quit();
-        }
-        else
-        {
-            // Для других платформ - минимизация приложения
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
-        }
+        Application.Quit();
     }
 
     public void ButtonSettingsOpen()

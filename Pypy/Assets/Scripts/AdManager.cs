@@ -11,19 +11,30 @@ public class AdManager : MonoBehaviour , IUnityAdsInitializationListener
     void Awake()
     {
         InitializeAds();
-        // Другие действия в Awake
     }
 
     public void InitializeAds()
     {
-        _gameId = (Application.platform == RuntimePlatform.IPhonePlayer) ? _iOSGameId : _androidGameId;
+        _gameId = _androidGameId;
+        RuntimePlatform platform = Application.platform;
 
+        if (platform == RuntimePlatform.Android)
+        {
+            _gameId = _androidGameId;
+        }
+        else if (platform == RuntimePlatform.IPhonePlayer)
+        {
+            _gameId = _iOSGameId;
+        }
+        else
+        {
+            _gameId = _androidGameId;
+        }
         if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
             Advertisement.Initialize(_gameId, _testMode, this);
         }
     }
-
 
 
     public void OnInitializationComplete()
