@@ -15,21 +15,13 @@ public class AdManager : MonoBehaviour , IUnityAdsInitializationListener
 
     public void InitializeAds()
     {
-        _gameId = _androidGameId;
-        RuntimePlatform platform = Application.platform;
-
-        if (platform == RuntimePlatform.Android)
-        {
-            _gameId = _androidGameId;
-        }
-        else if (platform == RuntimePlatform.IPhonePlayer)
-        {
+#if UNITY_IOS
             _gameId = _iOSGameId;
-        }
-        else
-        {
-            _gameId = _androidGameId;
-        }
+#elif UNITY_ANDROID
+        _gameId = _androidGameId;
+#elif UNITY_EDITOR
+            _gameId = _androidGameId; //Only for testing the functionality in the Editor
+#endif
         if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
             Advertisement.Initialize(_gameId, _testMode, this);

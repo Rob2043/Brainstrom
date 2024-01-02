@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using UnityEditor;
 
 public class MainButtons : MonoBehaviour
 {
@@ -158,6 +159,11 @@ public class MainButtons : MonoBehaviour
     {
         Audio[2].Play();
         Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     public void ButtonSettingsOpen()
