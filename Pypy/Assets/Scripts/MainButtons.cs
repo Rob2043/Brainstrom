@@ -76,6 +76,7 @@ public class MainButtons : MonoBehaviour
     }
     public void OnAnotherMapLevels()
     {
+        Audio[2].Play();
         bool checkCountPanel = true;
         for (int i = 0; i < PanelLevelArray.Length; i++)
         {
@@ -83,7 +84,7 @@ public class MainButtons : MonoBehaviour
             {
                 if (PanelLevelArray[i].activeSelf && checkCountPanel)
                 {
-                    if (i != 4)
+                    if (i != 3)
                     {
                         PanelLevelArray[i].SetActive(false);
                         PanelLevelArray[i + 1].SetActive(true);
@@ -114,11 +115,11 @@ public class MainButtons : MonoBehaviour
     {
         Audio[2].Play();
         bool checkCountPanel = true;
-        for (int i = 1; i <= PanelLevelArray.Length; i++)
+        for (int i = 0; i <= PanelLevelArray.Length; i++)
         {
             if (PanelLevelArray[i].activeSelf && checkCountPanel)
             {
-                if (i != 1)
+                if (i != 0)
                 {
                     PanelLevelArray[i].SetActive(false);
                     PanelLevelArray[i - 1].SetActive(true);

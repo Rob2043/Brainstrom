@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,10 +17,12 @@ public class MovePlayerScript : MonoBehaviour
     public bool allowForBuy = false;
     public DataItems dataScins;
     private GameObject[] Box = { };
+    public AudioSource audio;
 
 
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
         SwipeScript1.SwipeEvent += HandleSwipePlayer;
@@ -74,6 +78,7 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
+            audio.Play();
             panel.SetActive(true);
             speed = 0f;
             PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
@@ -115,12 +120,17 @@ public class MovePlayerScript : MonoBehaviour
                     gameManager.GetComponent<GameManager>().CountStars += 0;
                 }
                 Time.SetActive(false);
-                gameObject.SetActive(false);
-
+                StartCoroutine(OffGameObject());
             }
             TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
             PlayerPrefs.SetInt("CountStars", gameManager.GetComponent<GameManager>().CountStars);
             PlayerPrefs.Save();
         }
+    }
+
+    public IEnumerator OffGameObject()
+    { 
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
     }
 }
