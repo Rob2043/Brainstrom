@@ -56,7 +56,7 @@ public class LocalMenuScript : MonoBehaviour
     public void NextLevel()
     {
         AudioForButton.Play();
-        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
             if (currentLevel < SceneManager.sceneCountInBuildSettings - 2)
             {
                 if(maxLevel > currentLevel){
