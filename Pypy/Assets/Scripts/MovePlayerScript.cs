@@ -81,8 +81,11 @@ public class MovePlayerScript : MonoBehaviour
             audio.Play();
             panel.SetActive(true);
             speed = 0f;
-            PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
-            PlayerPrefs.Save(); // Save the PlayerPrefs data
+            if (PlayerPrefs.GetInt("MaxLevel") <= SceneManager.GetActiveScene().buildIndex + 1)
+            {
+                PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex + 1); // Save the current level to PlayerPrefs
+                PlayerPrefs.Save(); // Save the PlayerPrefs data
+            }
             GameObject gameManager = GameObject.FindGameObjectWithTag("GlobalManager");
             GameObject Time = GameObject.FindGameObjectWithTag("Time");
             GameObject ThirdStar = gameManager.GetComponent<GameManager>().ThirdStar;
@@ -129,7 +132,7 @@ public class MovePlayerScript : MonoBehaviour
     }
 
     public IEnumerator OffGameObject()
-    { 
+    {
         yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
     }

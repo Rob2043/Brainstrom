@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2504,8 +2504,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 1391.9951
+  MaxDistance: 1391.9951
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4994,8 +4994,16 @@ PrefabInstance:
       value: 4020.1191
       objectReference: {fileID: 0}
     - target: {fileID: 4194323299385848982, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4467.7812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194323299385848982, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 194
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194323299385848982, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -47.9977
       objectReference: {fileID: 0}
     - target: {fileID: 4250062766925004212, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7028,7 +7036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 230328410115948837, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
       propertyPath: _testMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 230328410115948837, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
       propertyPath: _iOSGameId
