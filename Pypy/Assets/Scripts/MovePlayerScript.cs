@@ -18,6 +18,7 @@ public class MovePlayerScript : MonoBehaviour
     public DataItems dataScins;
     private GameObject[] Box = { };
     public AudioSource audio;
+    public AudioSource MainAudio;
 
 
     private void Awake()
@@ -79,6 +80,7 @@ public class MovePlayerScript : MonoBehaviour
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
             audio.Play();
+            MainAudio.enabled = false;
             panel.SetActive(true);
             speed = 0f;
             if (PlayerPrefs.GetInt("MaxLevel") <= SceneManager.GetActiveScene().buildIndex + 1)
@@ -123,17 +125,11 @@ public class MovePlayerScript : MonoBehaviour
                     gameManager.GetComponent<GameManager>().CountStars += 0;
                 }
                 Time.SetActive(false);
-                StartCoroutine(OffGameObject());
+                
             }
             TextCountStars.GetComponent<Text>().text = gameManager.GetComponent<GameManager>().CountStars.ToString();
             PlayerPrefs.SetInt("CountStars", gameManager.GetComponent<GameManager>().CountStars);
             PlayerPrefs.Save();
         }
-    }
-
-    public IEnumerator OffGameObject()
-    {
-        yield return new WaitForSeconds(2);
-        gameObject.SetActive(false);
     }
 }
