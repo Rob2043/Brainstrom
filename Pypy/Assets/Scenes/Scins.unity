@@ -268,14 +268,13 @@ GameObject:
   - component: {fileID: 233308737}
   - component: {fileID: 233308736}
   - component: {fileID: 233308735}
-  - component: {fileID: 233308739}
   m_Layer: 5
   m_Name: Ads Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &233308735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +319,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 233308739}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
         m_MethodName: ShowAd
         m_Mode: 1
@@ -390,22 +389,6 @@ RectTransform:
   m_AnchoredPosition: {x: 703, y: 943}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &233308739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233308734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6c2e61541175744ad18eca8cecc573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showAdButton: {fileID: 1280931343}
-  _androidAdUnitId: Rewarded_Android
-  _iOSAdUnitId: Rewarded_iOS
-  gameManager: {fileID: 0}
 --- !u!1001 &289088589
 PrefabInstance:
   m_ObjectHideFlags: 0
