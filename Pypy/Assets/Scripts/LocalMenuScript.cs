@@ -20,7 +20,7 @@ public class LocalMenuScript : MonoBehaviour
     private void Start()
     {
         MovePlayerScript player = FindAnyObjectByType<MovePlayerScript>();
-        WonAudio = player.audio;
+        WonAudio = player.Audio;
         player.MainAudio = audioSource;
         maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         StartCoroutine(AnimationClound());

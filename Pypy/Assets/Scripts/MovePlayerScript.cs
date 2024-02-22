@@ -17,13 +17,13 @@ public class MovePlayerScript : MonoBehaviour
     public bool allowForBuy = false;
     public DataItems dataScins;
     private GameObject[] Box = { };
-    public AudioSource audio;
+    public AudioSource Audio;
     public AudioSource MainAudio;
 
 
     private void Awake()
     {
-        audio = GetComponent<AudioSource>();
+        Audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         SwipeScript.SwipeEvent += HandleSwipePlayer;
         SwipeScript1.SwipeEvent += HandleSwipePlayer;
@@ -79,7 +79,7 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (gameObject.CompareTag("Player") && other.CompareTag("Finish"))
         {
-            audio.Play();
+            Audio.Play();
             MainAudio.enabled = false;
             panel.SetActive(true);
             speed = 0f;
