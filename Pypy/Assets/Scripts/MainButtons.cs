@@ -220,14 +220,11 @@ public class MainButtons : MonoBehaviour
 
     public IEnumerator Animation()
     {
-        Debug.Log("Test Active");
         playNextGame.sceneSelect = sceneSelect;
         Cloud1Animator.SetBool("IsActiveCloud", true);
         Cloud2Animator.SetBool("IsCloundActive2", true);
         yield return new WaitForSeconds(1);
         checkAnimation = true;
-/*         playNextGame.NextGame(sceneSelect); */
-/*         SceneManager.LoadScene($"Level {sceneSelect}"); */
     }
 
     private void ButtonInteractible()

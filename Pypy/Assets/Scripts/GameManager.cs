@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //PlayerPrefs.DeleteAll();
-        //playerSkins.Clear();
+/*         PlayerPrefs.DeleteAll();
+        playerSkins.Clear(); */
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void Start()
