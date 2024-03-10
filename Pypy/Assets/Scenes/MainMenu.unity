@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1503,6 +1503,7 @@ MonoBehaviour:
   ButtonOffLevel: {fileID: 21300000, guid: e1228deb81b3c4648b77b884ab4b9b4b, type: 3}
   Cloud1Animator: {fileID: 708918384}
   Cloud2Animator: {fileID: 369146333}
+  playNextGame: {fileID: 1356723262}
   PanelLevelArray:
   - {fileID: 872263236}
   - {fileID: 168337231}
@@ -2106,6 +2107,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1356723262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5106528280662055916, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
+  m_PrefabInstance: {fileID: 3858687757373194119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194a0b60d6b566b469bc3128fb0bd51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1357164842 stripped

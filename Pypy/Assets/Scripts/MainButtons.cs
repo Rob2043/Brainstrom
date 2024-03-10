@@ -19,6 +19,7 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private Sprite ButtonOffLevel;
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
+    [SerializeField] private PlayNextGame playNextGame;
     [SerializeField] private GameObject[] PanelLevelArray;
     [SerializeField] private CheckAmountStar checkAmountStar;
 
@@ -117,6 +118,7 @@ public class MainButtons : MonoBehaviour
         bool checkCountPanel = true;
         for (int i = 0; i <= PanelLevelArray.Length; i++)
         {
+            Debug.Log(i);
             if (PanelLevelArray[i].activeSelf && checkCountPanel)
             {
                 if (i != 0)
@@ -219,14 +221,11 @@ public class MainButtons : MonoBehaviour
 
     public IEnumerator Animation()
     {
-        Debug.Log("Test Active");
+        playNextGame.sceneSelect = sceneSelect;
         Cloud1Animator.SetBool("IsActiveCloud", true);
         Cloud2Animator.SetBool("IsCloundActive2", true);
         yield return new WaitForSeconds(1);
         checkAnimation = true;
-        Debug.Log(checkAnimation);
-        Debug.Log(sceneSelect);
-        SceneManager.LoadScene($"Level {sceneSelect}");
     }
 
     private void ButtonInteractible()
