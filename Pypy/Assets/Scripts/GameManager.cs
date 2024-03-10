@@ -54,48 +54,30 @@ public class GameManager : MonoBehaviour
                 {
                     bool Secondvalue = PlayerPrefs.GetString("SaveFalse" + player.name) != "False";
                     bool accurateValue = FirstValue == Secondvalue;
-                    //Debug.Log("First" + player.name + FirstValue);
-                    //Debug.Log("Second" + player.name + Secondvalue);
-                    Debug.Log(player.name + accurateValue);
                     if (accurateValue)
                     {
                         if (!playerSkins.ContainsKey(player))
-                        {
                             playerSkins.Add(player, accurateValue);
-                        }
                     }
                     if (playerSkins.ContainsKey(player))
-                    {
-                        Debug.Log(player.name + "Has Key: " + accurateValue);
                         playerSkins[player] = accurateValue;
-                    }
                     else
-                    {
-                        Debug.Log(player.name + "Not Has Key");
                         playerSkins.Add(player, accurateValue);
-                    }
+                    
                 }
                 else
                 {
                     bool accurateValue = FirstValue;
                     Debug.Log(player.name + accurateValue);
                     if (accurateValue)
-                    {
                         if (!playerSkins.ContainsKey(player))
                         {
                             playerSkins.Add(player, accurateValue);
                         }
-                    }
                     if (playerSkins.ContainsKey(player))
-                    {
-                        Debug.Log(player.name + "Has Key");
                         playerSkins[player] = accurateValue;
-                    }
                     else
-                    {
-                        Debug.Log(player.name + "Not Has Key");
                         playerSkins.Add(player, accurateValue);
-                    }
                 }
             }
         }
@@ -140,7 +122,7 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0f, EmptyPlayer.transform.position.z);
+                        Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0.3f, EmptyPlayer.transform.position.z);
                         GameObject newScin = Instantiate(ThirdPlayer, newPosition, ThirdPlayer.transform.rotation);
                         newScin.tag = ThirdPlayer.tag;
                         Destroy(EmptyPlayer);
@@ -149,7 +131,6 @@ public class GameManager : MonoBehaviour
             }
             if (check == true)
             {
-                Debug.Log("Basick Player");
                 Vector3 newPosition = new(EmptyPlayer.transform.position.x, 0.5f, EmptyPlayer.transform.position.z);
                 Instantiate(BasicPlayer, newPosition, EmptyPlayer.transform.rotation);
                 check = false;
@@ -186,9 +167,7 @@ public class GameManager : MonoBehaviour
         foreach (var objectInDict in playerSkins)
         {
             if (objectInDict.Value == true && objectInDict.Key != null)
-            {
                 keysToUpdate.Add(objectInDict);
-            }
         }
 
         // Обновляем значения после завершения итерации
@@ -200,7 +179,6 @@ public class GameManager : MonoBehaviour
             {
                 if (player != null && keyValuePair.Key.name == player.name)
                 {
-                    Debug.Log("Change bool" + keyValuePair.Key.name);
                     playerSkins[keyValuePair.Key] = true;
                     PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, "True");
                 }
@@ -209,7 +187,6 @@ public class GameManager : MonoBehaviour
                     playerSkins[keyValuePair.Key] = transition;
                     GameObject Scin = GameObject.Find(keyValuePair.Key.name);
                     Scin.GetComponent<MovePlayerScript>().checkScin = transition;
-                    Debug.Log(keyValuePair.Key.name + " False");
                     PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
                 }
             }
@@ -218,7 +195,6 @@ public class GameManager : MonoBehaviour
                 playerSkins[keyValuePair.Key] = transition;
                 GameObject Scin = GameObject.Find(keyValuePair.Key.name);
                 Scin.GetComponent<MovePlayerScript>().checkScin = transition;
-                Debug.Log(keyValuePair.Key.name + " False");
                 PlayerPrefs.SetString("SaveFalse" + keyValuePair.Key.name, transition.ToString());
             }
         }

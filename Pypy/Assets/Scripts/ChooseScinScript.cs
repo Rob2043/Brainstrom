@@ -21,7 +21,7 @@ public class ChooseScinScript : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.instance;
         if (PlayerPrefs.HasKey("isSoundOn"))
         {
             if (PlayerPrefs.GetInt("isSoundOn") == 0)
@@ -44,8 +44,12 @@ public class ChooseScinScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        playerCheck = checkScin.ScanObjct;
-        CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
+        if(checkScin.ScanObjct != null)
+        {
+            playerCheck = checkScin.ScanObjct;
+            CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
+        }
+
         TextForCountStars.text = $"{gameManager.CountStars}";
         if (CheckBuy != null)
         {
