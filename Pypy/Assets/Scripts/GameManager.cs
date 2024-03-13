@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,8 +28,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-/*         PlayerPrefs.DeleteAll();
-        playerSkins.Clear(); */
+        PlayerPrefs.DeleteAll();
+        playerSkins.Clear();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void Start()
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
                         playerSkins[player] = accurateValue;
                     else
                         playerSkins.Add(player, accurateValue);
-                    
+
                 }
                 else
                 {

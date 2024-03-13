@@ -118,6 +118,7 @@ public class MainButtons : MonoBehaviour
         bool checkCountPanel = true;
         for (int i = 0; i <= PanelLevelArray.Length; i++)
         {
+            Debug.Log(i);
             if (PanelLevelArray[i].activeSelf && checkCountPanel)
             {
                 if (i != 0)

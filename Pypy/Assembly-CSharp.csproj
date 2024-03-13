@@ -59,12 +59,13 @@
     <UnityVersion>2022.3.13f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\rober\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\rober\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.13f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.13f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\StarAnimation.cs" />
+    <Compile Include="Assets\Scripts\CanvasScaler.cs" />
     <Compile Include="Assets\Scripts\CheckAmountStar.cs" />
     <Compile Include="Assets\Scripts\SaveArea.cs" />
     <Compile Include="Assets\CameraScaler\CameraScaler.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\TextStarScript.cs" />
     <Compile Include="Assets\Scripts\SwipScript.cs" />
+    <Compile Include="Assets\Scripts\Scaler.cs" />
     <Compile Include="Assets\Scripts\MovePlayerScript.cs" />
     <Compile Include="Assets\Scripts\SkipButton.cs" />
     <Compile Include="Assets\Scripts\MainButtons.cs" />
