@@ -7,7 +7,6 @@ public class StarAnimation : MonoBehaviour
     public float Freq = 2;
     public float Offset = 0;
     public Vector3 StartPos;
-    public bool checkAnimation = true;
 
     void Start()
     {
@@ -16,12 +15,9 @@ public class StarAnimation : MonoBehaviour
 
     void Update()
     {
-        if (checkAnimation)
-        {
-            t += Time.deltaTime;
-            Offset = Amp * Mathf.Sin(t * Freq);
+        t += Time.deltaTime;
+        Offset = Amp * Mathf.Sin(t * Freq);
 
-            transform.position = StartPos + new Vector3(0, Offset, 0);
-        }
+        transform.position = StartPos + new Vector3(0, Offset, 0);
     }
 }

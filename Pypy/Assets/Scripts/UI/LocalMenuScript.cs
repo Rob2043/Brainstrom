@@ -4,47 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class LocalMenuScript : MonoBehaviour
 {
+    [SerializeField] private AudioSource[] Audio;
     [SerializeField] private GameObject PanelExit;
     [SerializeField] private GameObject PanelClound;
     [SerializeField] private GameObject ButtonExit;
     [SerializeField] private GameObject MainPanel;
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
-    [SerializeField] private TextStarScript time;
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource AudioForButton;
-    private AudioSource WonAudio;
 
     private int maxLevel;
 
     private void Start()
     {
-        MovePlayerScript player = FindAnyObjectByType<MovePlayerScript>();
-        WonAudio = player.Audio;
-        player.MainAudio = audioSource;
         maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         StartCoroutine(AnimationClound());
-        if (PlayerPrefs.HasKey("isSoundOn"))
-        {
-            if (PlayerPrefs.GetInt("isSoundOn") == 0)
-            {
-                audioSource.enabled = false;
-                AudioForButton.enabled = false;
-                WonAudio.enabled = false; 
-            }
-            else
-            {
-                audioSource.enabled = true;
-                AudioForButton.enabled = true;
-                WonAudio.enabled = true;
-            }
-        }
-        else
-        {
-            audioSource.enabled = true;
-            AudioForButton.enabled = true;
-        }
-
     }
 
     public IEnumerator AnimationClound()
@@ -55,25 +29,24 @@ public class LocalMenuScript : MonoBehaviour
         Cloud1Animator.SetBool("CloseClound", false);
         Cloud2Animator.SetBool("CloseClound2", false);
         yield return new WaitForSeconds(1);
-        time.CanTime = true;
         PanelClound.SetActive(false);
     }
 
     public void NextLevel()
     {
         AudioForButton.Play();
-        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
         if (currentLevel < SceneManager.sceneCountInBuildSettings - 2)
         {
-            if (maxLevel > currentLevel)
+            if (maxLevel > currentLevel + 1)
             {
-                SceneManager.LoadScene(currentLevel);
+                SceneManager.LoadScene(currentLevel + 1);
             }
             else
             {
-                PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex); // Save the current level to PlayerPrefs
+                PlayerPrefs.SetInt("MaxLevel", currentLevel); // Save the current level to PlayerPrefs
                 PlayerPrefs.Save(); // Save the PlayerPrefs data
-                SceneManager.LoadScene(currentLevel);
+                SceneManager.LoadScene(currentLevel + 1);
             }
         }
         else
@@ -104,7 +77,7 @@ public class LocalMenuScript : MonoBehaviour
     public void NoReturn()
     {
         AudioForButton.Play();
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         PanelExit.SetActive(false);
         ButtonExit.SetActive(true);
     }
@@ -112,5 +85,20 @@ public class LocalMenuScript : MonoBehaviour
     {
         AudioForButton.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    private void AudioEnable(bool isActiveButtonSound){
+        for (int i = 0; i < Audio.Length; i++)
+        {
+            Audio[i].enabled = isActiveButtonSound;
+        }
+        int n = isActiveButtonSound ? 1 : 0;
+        PlayerPrefs.SetInt("isSoundOn", n);
+        PlayerPrefs.Save();
+    }
+    private void OnEnable() {
+        MainButtons.CheckButton += AudioEnable;
+    }
+    private void OnDisable() {
+        MainButtons.CheckButton -= AudioEnable;
     }
 }

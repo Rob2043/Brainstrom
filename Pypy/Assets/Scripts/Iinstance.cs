@@ -29,6 +29,7 @@ public class Iinstance : MonoBehaviour
     }
     public void SaveData(){
         PlayerPrefs.SetFloat("CountStars", stars);
+        PlayerPrefs.Save();
     } 
     private void OnApplicationQuit() {
         SaveData();

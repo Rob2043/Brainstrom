@@ -9,9 +9,11 @@ public class SkipButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     [SerializeField] Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
-    [SerializeField] private GameManager gameManager;
-    string _adUnitId = null; // This will remain null for unsupported platforms
+    readonly string _adUnitId = null; // This will remain null for unsupported platforms
     private int maxLevel;
+    private void Start() {
+        maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+    }
 
     void Awake()
     {
@@ -24,11 +26,6 @@ public class SkipButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
 
         // Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
-    }
-
-    private void Start()
-    {
-        gameManager = GameObject.Find("GlobalManager").GetComponent<GameManager>();
     }
 
     // Call this public method when you want to get an ad ready to show.
@@ -88,20 +85,19 @@ public class SkipButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
 
     private void GrantReward()
     {
-        gameManager.CountStars += 1;
-        PlayerPrefs.SetInt("CountStars", gameManager.CountStars);
-        gameManager.GetComponent<CheckAmountStar>().SaveStartData(true,false,false);
-        int currentLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if (currentLevel < SceneManager.sceneCountInBuildSettings - 2)
+        Iinstance.instance.stars += 1;
+        Iinstance.instance.SaveData();
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        if (currentLevel + 1 < SceneManager.sceneCountInBuildSettings - 2)
         {
-            if (maxLevel > currentLevel)
+            if (maxLevel > currentLevel + 1)
             {
-                SceneManager.LoadScene(currentLevel);
+                SceneManager.LoadScene(currentLevel + 1);
             }
             else
             {
-                PlayerPrefs.SetInt("MaxLevel", SceneManager.GetActiveScene().buildIndex); // Save the current level to PlayerPrefs
-                SceneManager.LoadScene(currentLevel);
+                PlayerPrefs.SetInt("MaxLevel", currentLevel); // Save the current level to PlayerPrefs
+                SceneManager.LoadScene(currentLevel + 1);
             }
         }
         else

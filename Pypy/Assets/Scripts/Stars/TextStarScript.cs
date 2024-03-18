@@ -2,22 +2,19 @@
 using UnityEngine.UI;
 
 public class TextStarScript : MonoBehaviour
-{
-
-    private Text text;
+{  
     [SerializeField] private GameObject ThirdStar;
+    
+    private readonly Text text;
 
-    public bool CanTime = true;
     public float DieTime;
-
     void Start()
     {
-        text = GetComponent<Text>();
         text.text = $"{DieTime}";
     }
     void Update()
     {
-        if (CanTime)
+        if (Time.timeScale == 1f)
         {
             if (DieTime > 0)
             {
@@ -25,12 +22,11 @@ public class TextStarScript : MonoBehaviour
             }
             if (DieTime <= 0)
             {
-                CanTime = false;
                 ThirdStar.SetActive(false);
             }
         }
     }
     private void LateUpdate() {
-        text.text = $"{(int)DieTime}";
+        if(Time.timeScale == 1f) text.text = $"{(int)DieTime}";
     }
 }

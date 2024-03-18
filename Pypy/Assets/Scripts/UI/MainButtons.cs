@@ -38,37 +38,20 @@ public class MainButtons : MonoBehaviour
             LevelButtons[i].image.sprite = ButtonOffLevel;
         }
         Time.timeScale = 1f;
-        if (PlayerPrefs.HasKey("isSoundOn"))
+        if(PlayerPrefs.GetInt("isSoundOn", 1) is 1) 
         {
-            if (PlayerPrefs.GetInt("isSoundOn") == 0)
-            {
-                AudioButton.image.sprite = ButtonOffSprite;
-                isActiveButtonSound = false;
-                for (int i = 0; i < Audio.Length; i++)
-                {
-                    Audio[i].enabled = false;
-                }
-            }
-            else
-            {
-                AudioButton.image.sprite = ButtonOnSprite;
-                isActiveButtonSound = true;
-                for (int i = 0; i < Audio.Length; i++)
-                {
-                    Audio[i].enabled = true;
-                }
-            }
-        }
-        else
-        {
-            AudioButton.image.sprite = ButtonOnSprite;
             isActiveButtonSound = true;
-            for (int i = 0; i < Audio.Length; i++)
-            {
-                Audio[i].enabled = true;
-            }
+        } else
+        {
+            isActiveButtonSound = false;
         }
-
+        Audio[2].Play();
+        for (int i = 0; i < Audio.Length; i++)
+        {
+            Audio[i].enabled = isActiveButtonSound;
+        }
+        AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
+        CheckButton.Invoke(isActiveButtonSound);
     }
     private void LateUpdate()
     {
@@ -143,17 +126,15 @@ public class MainButtons : MonoBehaviour
     {
         isActiveButtonSound = !isActiveButtonSound;
         Audio[2].Play();
-            AudioButton.image.sprite = ButtonOnSprite;
-            for (int i = 0; i < Audio.Length; i++)
-            {
-                Audio[i].enabled = isActiveButtonSound;
-            }
+        for (int i = 0; i < Audio.Length; i++)
+        {
+            Audio[i].enabled = isActiveButtonSound;
+        }
         int n = isActiveButtonSound ? 1 : 0;
-
         PlayerPrefs.SetInt("isSoundOn", n);
-            
-        AudioButton.image.sprite = ButtonOffSprite;
         PlayerPrefs.Save();
+        AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
+        CheckButton.Invoke(isActiveButtonSound);
     }
 
     public void BackToMainMenu()
