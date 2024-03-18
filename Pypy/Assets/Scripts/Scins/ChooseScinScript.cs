@@ -4,75 +4,9 @@ using UnityEngine.UI;
 
 public class ChooseScinScript : MonoBehaviour
 {
-    [SerializeField] private MovePlayerScript CheckBuy;
-    [SerializeField] private GameObject ButtonBuy;
-    [SerializeField] private Text TextButtonBuy;
-    [SerializeField] private GameObject ButtonChoose;
-    [SerializeField] private Text TextForPrice;
-    [SerializeField] private Text TextForCountStars;
-    [SerializeField] private Text TextName;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField]  AudioSource AudioForButton;
-    private GameObject playerCheck;
+    [SerializeField] private AudioSource AudioForButton;
 
     private bool isRotating = false;
-
-    private void Start()
-    {
-        gameManager = GameManager.instance;
-        if (PlayerPrefs.HasKey("isSoundOn"))
-        {
-            if (PlayerPrefs.GetInt("isSoundOn") == 0)
-            {
-                audioSource.enabled = false;
-                AudioForButton.enabled = false;
-            }
-            else
-            {
-                audioSource.enabled = true;
-                AudioForButton.enabled = true;
-            }
-        }
-        else
-        {
-            audioSource.enabled = true;
-            AudioForButton.enabled = true;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if(checkScin.ScanObjct != null)
-        {
-            playerCheck = checkScin.ScanObjct;
-            CheckBuy = playerCheck.GetComponent<MovePlayerScript>();
-        }
-
-        TextForCountStars.text = $"{gameManager.CountStars}";
-        if (CheckBuy != null)
-        {
-            TextName.text = $"{CheckBuy.dataScins.Name}";
-            if (CheckBuy.checkScin == true)
-            {
-                TextButtonBuy.text = "Selected";
-            }
-            else
-            {
-                TextButtonBuy.text = "Choose";
-            }
-            if (CheckBuy.allowForBuy == false)
-            {
-                ButtonBuy.SetActive(true);
-                TextForPrice.text = $"Buy {CheckBuy.dataScins.Price}";
-                ButtonChoose.SetActive(false);
-            }
-            else
-            {
-                ButtonBuy.SetActive(false);
-                ButtonChoose.SetActive(true);
-            }
-        }
-    }
 
     public void LeftChoose()
     {

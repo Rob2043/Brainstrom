@@ -2,15 +2,16 @@
 public class Cup : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;
-    private Rigidbody rb;
     [SerializeField] private float speed;
+
+    private Rigidbody rb;
+    
     public bool checkLevel;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); 
-        SwipeScript.SwipeEvent += HandleSwipe;
-        SwipeScript1.SwipeEvent += HandleSwipe;
+
         checkLevel = true;
     }
     private void HandleSwipe(Vector2 direction)
@@ -41,5 +42,13 @@ public class Cup : MonoBehaviour
             }
         }
 
+    }
+    private void OnEnable() {
+        SwipeScript.SwipeEvent += HandleSwipe;
+        SwipeScript1.SwipeEvent += HandleSwipe;
+    }
+    private void OnDisable() {
+        SwipeScript.SwipeEvent -= HandleSwipe;
+        SwipeScript1.SwipeEvent -= HandleSwipe;
     }
 }

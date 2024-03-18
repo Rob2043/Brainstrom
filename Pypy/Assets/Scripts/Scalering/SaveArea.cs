@@ -9,7 +9,6 @@ public class SaveArea : MonoBehaviour
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
         safeArea = Screen.safeArea;
         minAchor = safeArea.position;
         maxAchor = minAchor + safeArea.size;
