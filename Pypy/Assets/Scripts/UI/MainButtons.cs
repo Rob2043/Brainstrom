@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
-using UnityEditor;
 
 public class MainButtons : MonoBehaviour
 {
-
     [SerializeField] private Button[] LevelButtons;
     [SerializeField] private AudioSource[] Audio;
     [SerializeField] private Button AudioButton;
@@ -21,12 +20,15 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private Animator Cloud2Animator;
     [SerializeField] private PlayNextGame playNextGame;
     [SerializeField] private GameObject[] PanelLevelArray;
-    [SerializeField] private CheckAmountStar checkAmountStar;
 
+    private int index = 0;
     private int MaxLevel;
     private bool checkAnimation = false;
     private bool isActiveButtonSound;
     private string sceneSelect;
+
+    public delegate void AudioEnable(bool isEnabled);
+    public static event AudioEnable CheckButton;
     private void Start()
     {
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
@@ -75,63 +77,27 @@ public class MainButtons : MonoBehaviour
             ButtonInteractible();
         }
     }
-    public void OnAnotherMapLevels()
+    public void NextPanel()
     {
         Audio[2].Play();
-        bool checkCountPanel = true;
-        for (int i = 0; i < PanelLevelArray.Length; i++)
-        {
-            if (i >= 0 && i <= PanelLevelArray.Length)
-            {
-                if (PanelLevelArray[i].activeSelf && checkCountPanel)
-                {
-                    if (i != 3)
-                    {
-                        PanelLevelArray[i].SetActive(false);
-                        PanelLevelArray[i + 1].SetActive(true);
-                        checkCountPanel = false;
-                    }
-                    else
-                    {
-                        PanelLevelArray[i].SetActive(false);
-                        PanelLevelArray[i - 1].SetActive(true);
-                        checkCountPanel = false;
-                    }
-                }
-            }
-
-        }
+        PanelLevelArray[index].SetActive(false);
+        PanelLevelArray[index + 1].SetActive(true);
+        index++;
     }
-
+    public void PreviousPanel()
+    {
+        Audio[2].Play();
+        PanelLevelArray[index].SetActive(false);
+        PanelLevelArray[index - 1].SetActive(true);
+        index--;
+    }
     public void ToHome()
     {
         Audio[2].Play();
-        for (int i = 0; i < PanelLevelArray.Length; i++)
-        {
-            PanelLevelArray[i].SetActive(false);
-        }
+        PanelLevelArray[index].SetActive(false);
+        index = 0;
     }
-
-    public void BackLevelPanel()
-    {
-        Audio[2].Play();
-        bool checkCountPanel = true;
-        for (int i = 0; i <= PanelLevelArray.Length; i++)
-        {
-            Debug.Log(i);
-            if (PanelLevelArray[i].activeSelf && checkCountPanel)
-            {
-                if (i != 0)
-                {
-                    PanelLevelArray[i].SetActive(false);
-                    PanelLevelArray[i - 1].SetActive(true);
-                    checkCountPanel = false;
-                }
-            }
-        }
-    }
-
-    public void MainButtonPlayOnClick()
+    public void MainButtonPlayOnClick() // шиза ебейшая, хз как это переписать
     {
         Audio[2].Play();
         panelLevel.SetActive(true);
@@ -153,8 +119,6 @@ public class MainButtons : MonoBehaviour
                     transitionTransform.gameObject.SetActive(false);
                 }
             }
-
-            checkAmountStar.CheckStarsData(stars, j + 1);
         }
     }
 
@@ -177,27 +141,18 @@ public class MainButtons : MonoBehaviour
 
     public void ButtonSoundOnClick()
     {
+        isActiveButtonSound = !isActiveButtonSound;
         Audio[2].Play();
-        if (isActiveButtonSound)
-        {
             AudioButton.image.sprite = ButtonOnSprite;
             for (int i = 0; i < Audio.Length; i++)
             {
-                Audio[i].enabled = true;
+                Audio[i].enabled = isActiveButtonSound;
             }
-            PlayerPrefs.SetInt("isSoundOn", 1);
-            isActiveButtonSound = false;
-        }
-        else
-        {
-            AudioButton.image.sprite = ButtonOffSprite;
-            for (int i = 0; i < Audio.Length; i++)
-            {
-                Audio[i].enabled = false;
-            }
-            PlayerPrefs.SetInt("isSoundOn", 0);
-            isActiveButtonSound = true;
-        }
+        int n = isActiveButtonSound ? 1 : 0;
+
+        PlayerPrefs.SetInt("isSoundOn", n);
+            
+        AudioButton.image.sprite = ButtonOffSprite;
         PlayerPrefs.Save();
     }
 
@@ -207,7 +162,7 @@ public class MainButtons : MonoBehaviour
         panelSettings.SetActive(false);
     }
 
-    public void ScinClic()
+    public void LoadScinScene()
     {
         Audio[2].Play();
         SceneManager.LoadScene("Scins");

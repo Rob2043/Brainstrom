@@ -11,8 +11,6 @@ public class ChooseScinScript : MonoBehaviour
     [SerializeField] private Text TextForPrice;
     [SerializeField] private Text TextForCountStars;
     [SerializeField] private Text TextName;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private CheckScin checkScin;
     [SerializeField] private AudioSource audioSource;
     [SerializeField]  AudioSource AudioForButton;
     private GameObject playerCheck;
