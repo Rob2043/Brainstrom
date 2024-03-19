@@ -12,6 +12,9 @@ public class MovePlayerScript : MonoBehaviour
     private Rigidbody rb;
     public AudioSource Audio;
     public AudioSource MainAudio;
+    private int star = 0;
+    public delegate void StarsEnable();
+    public static event StarsEnable CheckEnd;
 
 
     private void Awake()
@@ -52,6 +55,7 @@ public class MovePlayerScript : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
+            CheckEnd.Invoke();
             Time.timeScale = 0f;
             Audio.Play();
             MainAudio.enabled = false;
@@ -69,6 +73,18 @@ public class MovePlayerScript : MonoBehaviour
             //    InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
             //    Ads.ShowAd();
             //}
+        } else if(other.CompareTag("star")){
+            star = 1;
         }
+    }
+    private int OnStar(ref int stars){
+        stars += star;
+        return SceneManager.GetActiveScene().buildIndex + 1;
+    }
+    private void OnEnable() {
+        MainButtons.CheckStars += OnStar;
+    }
+    private void OnDisable() {
+        MainButtons.CheckStars -= OnStar;
     }
 }

@@ -8,4 +8,9 @@ public class LevelButton : MonoBehaviour
     private void Start() {
         stars = GetComponentsInChildren<StarsLevel>();
     }
+    public void ActiveStars(int amount){
+        for(int i = 0; i < amount; i++){
+            stars[i].gameObject.SetActive(true);
+        }
+    }
 }

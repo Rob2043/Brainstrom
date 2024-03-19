@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class MainButtons : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private AudioSource[] Audio;
     [SerializeField] private Button AudioButton;
     [SerializeField] private GameObject panelSettings;
-    [SerializeField] private GameObject panelLevel;
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
     [SerializeField] private Sprite ButtonOnLevel;
@@ -23,14 +23,22 @@ public class MainButtons : MonoBehaviour
 
     private int index = 0;
     private int MaxLevel;
-    private bool checkAnimation = false;
     private bool isActiveButtonSound;
     private string sceneSelect;
+    private List<LevelButton> levelButtons;
 
     public delegate void AudioEnable(bool isEnabled);
     public static event AudioEnable CheckButton;
+    public delegate int StarsEnable(ref int stars);
+    public static event StarsEnable CheckStars;
     private void Start()
     {
+        for(int i = 0; i < PanelLevelArray.Length; i++){
+            LevelButton[] massive = PanelLevelArray[i].GetComponentsInChildren<LevelButton>();
+            for(int j = 0; j < massive.Length; j++){
+                levelButtons.Add(massive[j]);
+            }
+        }
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         for (int i = MaxLevel; i < LevelButtons.Length; i++)
         {
@@ -80,29 +88,10 @@ public class MainButtons : MonoBehaviour
         PanelLevelArray[index].SetActive(false);
         index = 0;
     }
-    public void MainButtonPlayOnClick() // шиза ебейшая, хз как это переписать
+    public void MainButtonPlayOnClick()
     {
         Audio[2].Play();
-        panelLevel.SetActive(true);
-        GameObject[] stars = new GameObject[3];
-
-        for (int j = 0; j < LevelButtons.Length; j++)
-        {
-            Debug.Log("Level");
-            // Очистка массива перед использованием
-            Array.Clear(stars, 0, stars.Length);
-
-            for (int i = 1; i <= 3; i++)
-            {
-                Transform transitionTransform = LevelButtons[j].gameObject.transform.Find($"Stars " + i);
-                if (transitionTransform != null)
-                {
-                    stars[i - 1] = transitionTransform.gameObject;
-                    Debug.Log(transitionTransform.gameObject.name);
-                    transitionTransform.gameObject.SetActive(false);
-                }
-            }
-        }
+        PanelLevelArray[0].SetActive(true);
     }
 
     public void ButtonQuit()
@@ -161,7 +150,6 @@ public class MainButtons : MonoBehaviour
         Cloud1Animator.SetBool("IsActiveCloud", true);
         Cloud2Animator.SetBool("IsCloundActive2", true);
         yield return new WaitForSeconds(1);
-        checkAnimation = true;
     }
 
     private void ButtonInteractible()
@@ -171,6 +159,24 @@ public class MainButtons : MonoBehaviour
         {
             LevelButtons[j].enabled = true;
             LevelButtons[j].image.sprite = ButtonOnLevel;
+        }
+    }
+    private void StartCheck(){
+        int stars = 0;
+        int scene = CheckStars.Invoke(ref stars);
+        Debug.Log(scene);
+        levelButtons[scene].ActiveStars(stars);
+        SavePlayerPrefsData(scene, stars);
+    }
+    private void OnEnable() {
+        MovePlayerScript.CheckEnd += StartCheck;
+    }
+    private void OnDisable() {
+        MovePlayerScript.CheckEnd -= StartCheck;
+    }
+    private void SavePlayerPrefsData(int scene, int amountStar){
+        for(int i = 0; i < amountStar; i++){
+            PlayerPrefs.SetInt($"{levelButtons[scene].transform.name}_{levelButtons[scene].stars[i].name}", 1);
         }
     }
 }
