@@ -18,12 +18,12 @@ public class SkipButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLis
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
-#if UNITY_IOS
+/* #if UNITY_IOS
         _adUnitId = _iOSAdUnitId;
 #elif UNITY_ANDROID
         _adUnitId = _androidAdUnitId;
 #endif
-
+ */
         // Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
     }
