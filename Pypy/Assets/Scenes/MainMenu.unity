@@ -1496,7 +1496,6 @@ MonoBehaviour:
   - {fileID: 1568297287}
   AudioButton: {fileID: 494876423}
   panelSettings: {fileID: 822772558}
-  panelLevel: {fileID: 872263236}
   ButtonOnSprite: {fileID: 21300000, guid: 65ededd0ff2e17840a8c8bdbb743e304, type: 3}
   ButtonOffSprite: {fileID: 21300000, guid: 5b9a50d63c3ca1b4ea63a8937d6d4dc3, type: 3}
   ButtonOnLevel: {fileID: 21300000, guid: df06950f0e16824498a3090780f38ca7, type: 3}
@@ -1509,7 +1508,6 @@ MonoBehaviour:
   - {fileID: 168337231}
   - {fileID: 1672422088}
   - {fileID: 1903505352}
-  checkAmountStar: {fileID: 1906938724}
 --- !u!4 &931592616
 Transform:
   m_ObjectHideFlags: 0
@@ -2098,6 +2096,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1331580171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331580173}
+  - component: {fileID: 1331580172}
+  m_Layer: 0
+  m_Name: Iinstance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1331580172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331580171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d81c82a065ddde428839c11af4ab274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stars: 0
+  SelectScin: {fileID: 0}
+--- !u!4 &1331580173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331580171}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 436.23868, y: 162.12228, z: -3.9309356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1351173388 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 40446616394600667, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
@@ -3142,17 +3186,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6206698187953077308, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
   m_PrefabInstance: {fileID: 3858687757373194119}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1906938724 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2196859147077960714, guid: 7c263941a1ca77f419e2837e85e0d06b, type: 3}
-  m_PrefabInstance: {fileID: 7807628842322629318}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f655ffd3fed4bf40b1888b38c5fb7a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1940092074 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5102347588998906058, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
@@ -4171,7 +4204,7 @@ PrefabInstance:
       objectReference: {fileID: 931592615}
     - target: {fileID: 1644390305292265625, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScinClic
+      value: LoadScinScene
       objectReference: {fileID: 0}
     - target: {fileID: 1668056535092311883, guid: 64bbdf3d7883b7b4983bc1a38e34e9f1, type: 3}
       propertyPath: m_Name
@@ -7227,3 +7260,4 @@ SceneRoots:
   - {fileID: 2111098959}
   - {fileID: 7807628842322629318}
   - {fileID: 3858687757373194119}
+  - {fileID: 1331580173}

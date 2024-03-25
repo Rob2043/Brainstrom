@@ -100,8 +100,9 @@ GameObject:
   - component: {fileID: -3890680581968749955}
   - component: {fileID: -4021902371685039838}
   - component: {fileID: 5388480363260552661}
+  - component: {fileID: 576953907374987337}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Pypy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,12 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0, z: 1}
+  endPanel: {fileID: 0}
   speed: 10
-  panel: {fileID: 0}
-  checkScin: 0
-  checkStar: 0
-  allowForBuy: 1
-  dataScins: {fileID: 11400000, guid: c01c9edf326af4844ab6288d8f819423, type: 2}
   Audio: {fileID: 0}
   MainAudio: {fileID: 0}
 --- !u!114 &-3890680581968749955
@@ -366,3 +363,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &576953907374987337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5710957474220187629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ff9088d09b5cc47a0160fdba120266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataItems: {fileID: 11400000, guid: c01c9edf326af4844ab6288d8f819423, type: 2}

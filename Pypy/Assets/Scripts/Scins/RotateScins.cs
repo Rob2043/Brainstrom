@@ -8,6 +8,7 @@ public class ChooseScinScript : MonoBehaviour
 
     private bool isRotating = false;
 
+
     public void LeftChoose()
     {
         AudioForButton.Play();
