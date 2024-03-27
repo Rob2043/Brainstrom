@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,13 +7,9 @@ public class Iinstance : MonoBehaviour
 {
     public static Iinstance instance;
     public float stars;
-    public GameObject SelectScin;
-    public Dictionary<string, int> DataScins = new Dictionary<string, int>();
-    public Dictionary<string, GameObject> SpawnScin = new Dictionary<string, GameObject>();
-
+    public GameObject SelectScin {get; set;}
     private void Awake()
     {
-        stars = PlayerPrefs.GetFloat("CountStars", 0);
         if (instance == null)
         {
             instance = this;
@@ -25,31 +20,19 @@ public class Iinstance : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Load();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    private void Start() {
+        stars = PlayerPrefs.GetFloat("CountStars",0);
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
-    private void Load()
-    {
-        if (PlayerPrefs.HasKey("SelectScin"))
-            SelectScin = SpawnScin[(PlayerPrefs.GetString("SelectScin"))];
-        foreach (string Scin in DataScins.Keys)
-        {
-            if (PlayerPrefs.HasKey(Scin))
-                DataScins.Add(Scin,PlayerPrefs.GetInt(Scin));
-        }
     }
-    public void SaveData()
-    {
-        PlayerPrefs.SetString("SelectScin", SelectScin.name);
+    public void SaveData(){
         PlayerPrefs.SetFloat("CountStars", stars);
-        foreach (string Scin in DataScins.Keys)
-        {
-            PlayerPrefs.SetInt(Scin, DataScins[Scin]);
-        }
         PlayerPrefs.Save();
-    }
-    private void OnApplicationQuit()
-    {
+    } 
+    private void OnApplicationQuit() {
         SaveData();
     }
 }

@@ -162,7 +162,7 @@ public class MainButtons : MonoBehaviour
         }
     }
     private void StartCheck(){
-        int stars = 0;
+        int stars = 1;
         int scene = CheckStars.Invoke(ref stars);
         Debug.Log(scene);
         levelButtons[scene].ActiveStars(stars);
