@@ -24,6 +24,13 @@ public class MovePlayerScript : MonoBehaviour
         SwipeScript.SwipeEvent += HandleSwipePlayer;
         SwipeScript1.SwipeEvent += HandleSwipePlayer;
     }
+    private void Start() {
+        if(gameObject != Iinstance.instance.SelectScin){
+            gameObject.SetActive(false);
+            Instantiate(gameObject,transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
     private void HandleSwipePlayer(Vector2 direction)
     {
         if (rb != null)
