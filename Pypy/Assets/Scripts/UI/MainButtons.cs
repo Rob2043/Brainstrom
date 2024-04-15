@@ -33,9 +33,11 @@ public class MainButtons : MonoBehaviour
     public static event StarsEnable CheckStars;
     private void Start()
     {
-        for(int i = 0; i < PanelLevelArray.Length; i++){
+        for (int i = 0; i < PanelLevelArray.Length; i++)
+        {
             LevelButton[] massive = PanelLevelArray[i].GetComponentsInChildren<LevelButton>();
-            for(int j = 0; j < massive.Length; j++){
+            for (int j = 0; j < massive.Length; j++)
+            {
                 levelButtons.Add(massive[j]);
             }
         }
@@ -46,10 +48,11 @@ public class MainButtons : MonoBehaviour
             LevelButtons[i].image.sprite = ButtonOffLevel;
         }
         Time.timeScale = 1f;
-        if(PlayerPrefs.GetInt("isSoundOn", 1) is 1) 
+        if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
         {
             isActiveButtonSound = true;
-        } else
+        }
+        else
         {
             isActiveButtonSound = false;
         }
@@ -161,21 +164,26 @@ public class MainButtons : MonoBehaviour
             LevelButtons[j].image.sprite = ButtonOnLevel;
         }
     }
-    private void StartCheck(){
+    private void StartCheck()
+    {
         int stars = 1;
         int scene = CheckStars.Invoke(ref stars);
         Debug.Log(scene);
         levelButtons[scene].ActiveStars(stars);
         SavePlayerPrefsData(scene, stars);
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         MovePlayerScript.CheckEnd += StartCheck;
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         MovePlayerScript.CheckEnd -= StartCheck;
     }
-    private void SavePlayerPrefsData(int scene, int amountStar){
-        for(int i = 0; i < amountStar; i++){
+    private void SavePlayerPrefsData(int scene, int amountStar)
+    {
+        for (int i = 0; i < amountStar; i++)
+        {
             PlayerPrefs.SetInt($"{levelButtons[scene].transform.name}_{levelButtons[scene].stars[i].name}", 1);
         }
     }

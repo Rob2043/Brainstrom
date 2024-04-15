@@ -21,7 +21,6 @@ public class Cup : MonoBehaviour
             bool isPositionXFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionX) != 0;
             bool isPositionYFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionY) != 0;
             bool isPositionZFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionZ) != 0;
-            // Здесь вы можете выполнить необходимые действия в зависимости от направления свайпа.
             if (direction == Vector2.left && isPositionXFrozen & isPositionYFrozen)
             {
                 rb.velocity -= moveDirection * speed;
