@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChooseScinScript : MonoBehaviour
 {
@@ -43,5 +43,10 @@ public class ChooseScinScript : MonoBehaviour
 
         transform.eulerAngles = newRotation; // Устанавливаем окончательный угол
         isRotating = false;
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

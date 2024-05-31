@@ -1,31 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.MPE;
+using CustomEventBus;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Scin : MonoBehaviour
 {
-    [SerializeField] private Button clickButton;
+    public Button clickButton;
     [SerializeField] private int price;
-    private TMP_Text textButton;
-
-    private delegate void RefreshButton(GameObject scin);
-    private static event RefreshButton CheckButton;
+    private Text textButton;
+    [SerializeField] private string text;
     private void Start()
     {
-        textButton = clickButton.GetComponentInChildren<TMP_Text>();
+        textButton = clickButton.GetComponentInChildren<Text>();
         if (PlayerPrefs.GetInt($"{gameObject.name}_enable", 0) == 1)
         {
             Iinstance.instance.SelectScin = gameObject;
-            textButton.text = "Selected";
+            text = "Selected";
         }
         else if (PlayerPrefs.GetInt($"{gameObject.name}_isBuy", 0) == 1)
         {
-            textButton.text = "Select";
+            text = "Select";
         }
-        else textButton.text = "Buy";
+        else text = $"Buy {price}";
     }
     public void OnClick()
     {
@@ -33,21 +28,33 @@ public class Scin : MonoBehaviour
         {
             Iinstance.instance.SelectScin = gameObject;
             textButton.text = "Selected";
-            CheckButton.Invoke(gameObject);
-            SaveData(1, 1);
+            EventBus.ScinCheckButton.Invoke(gameObject);
         }
-        else if (textButton.text == "Buy")
+        else if (textButton.text == $"Buy {price}")
         {
             if (price <= Iinstance.instance.stars)
             {
                 textButton.text = "Selected";
                 Iinstance.instance.SelectScin = gameObject;
                 Iinstance.instance.stars -= price;
-                CheckButton.Invoke(gameObject);
-                SaveData(1, 1);
+                EventBus.ScinCheckButton.Invoke(gameObject);
+                // SaveData(1, 1);
             }
             else return;
         }
+    }
+
+    private void OnEnable()
+    {
+        EventBus.ScinCheckButton += Check;
+        EventBus.ChangeNameText += ChangeText;
+        // EventBus.ChangeNameText += ChangeButtonFunc;
+    }
+    private void OnDisable()
+    {
+        EventBus.ScinCheckButton -= Check;
+        EventBus.ChangeNameText -= ChangeText;
+        // EventBus.ChangeNameText -= ChangeButtonFunc;
     }
     private void Check(GameObject ingameObject)
     {
@@ -56,15 +63,22 @@ public class Scin : MonoBehaviour
             textButton.text = "Select";
             SaveData(0, 1);
         }
+        else
+            SaveData(1, 1);
     }
-    private void OnEnable()
+    private void ChangeText(GameObject ingameObject)
     {
-        CheckButton += Check;
+        if (ingameObject == gameObject)
+            textButton.text = text;        
     }
-    private void OnDisable()
-    {
-        CheckButton -= Check;
-    }
+
+    // private void ChangeButtonFunc(GameObject ingameObject)
+    // {
+    //     clickButton.onClick.RemoveAllListeners();        
+    //     if (ingameObject == gameObject)
+    //         Debug.Log(gameObject.name + "work");
+    //         clickButton.onClick.AddListener(OnClick);
+    // }
     private void SaveData(int enable, int isBuy)
     {
         PlayerPrefs.SetInt($"{gameObject.name}_enable", enable);

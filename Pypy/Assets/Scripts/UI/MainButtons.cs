@@ -33,6 +33,7 @@ public class MainButtons : MonoBehaviour
     public static event StarsEnable CheckStars;
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
         for (int i = 0; i < PanelLevelArray.Length; i++)
         {
             LevelButton[] massive = PanelLevelArray[i].GetComponentsInChildren<LevelButton>();
