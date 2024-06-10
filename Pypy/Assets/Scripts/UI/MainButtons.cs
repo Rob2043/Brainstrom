@@ -3,9 +3,8 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System;
 using System.Collections.Generic;
-
+using CustomEventBus;
 public class MainButtons : MonoBehaviour
 {
     [SerializeField] private Button[] LevelButtons;
@@ -26,11 +25,6 @@ public class MainButtons : MonoBehaviour
     private bool isActiveButtonSound;
     private string sceneSelect;
     private List<LevelButton> levelButtons;
-
-    public delegate void AudioEnable(bool isEnabled);
-    public static event AudioEnable CheckButton;
-    public delegate int StarsEnable(ref int stars);
-    public static event StarsEnable CheckStars;
     private void Start()
     {
         PlayerPrefs.DeleteAll();
@@ -63,7 +57,15 @@ public class MainButtons : MonoBehaviour
             Audio[i].enabled = isActiveButtonSound;
         }
         AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
-        CheckButton.Invoke(isActiveButtonSound);
+        EventBus.CheckButton.Invoke(isActiveButtonSound);
+    }
+    private void OnEnable()
+    {
+        EventBus.CheckEnd += StartCheck;
+    }
+    private void OnDisable()
+    {
+        EventBus.CheckEnd -= StartCheck;
     }
     private void LateUpdate()
     {
@@ -98,16 +100,7 @@ public class MainButtons : MonoBehaviour
         PanelLevelArray[0].SetActive(true);
     }
 
-    public void ButtonQuit()
-    {
-        Audio[2].Play();
-        Application.Quit();
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
+
 
     public void ButtonSettingsOpen()
     {
@@ -127,7 +120,7 @@ public class MainButtons : MonoBehaviour
         PlayerPrefs.SetInt("isSoundOn", n);
         PlayerPrefs.Save();
         AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
-        CheckButton.Invoke(isActiveButtonSound);
+        EventBus.CheckButton.Invoke(isActiveButtonSound);
     }
 
     public void BackToMainMenu()
@@ -167,25 +160,28 @@ public class MainButtons : MonoBehaviour
     }
     private void StartCheck()
     {
-        int stars = 1;
-        int scene = CheckStars.Invoke(ref stars);
+        int stars,scene = 1;
+        (scene, stars) = EventBus.CheckStars.Invoke(1);
         Debug.Log(scene);
         levelButtons[scene].ActiveStars(stars);
         SavePlayerPrefsData(scene, stars);
     }
-    private void OnEnable()
-    {
-        MovePlayerScript.CheckEnd += StartCheck;
-    }
-    private void OnDisable()
-    {
-        MovePlayerScript.CheckEnd -= StartCheck;
-    }
+
     private void SavePlayerPrefsData(int scene, int amountStar)
     {
         for (int i = 0; i < amountStar; i++)
         {
             PlayerPrefs.SetInt($"{levelButtons[scene].transform.name}_{levelButtons[scene].stars[i].name}", 1);
         }
+    }
+    public void ButtonQuit()
+    {
+        Audio[2].Play();
+        Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

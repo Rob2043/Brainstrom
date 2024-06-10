@@ -1,18 +1,27 @@
-﻿using UnityEngine;
+﻿using CustomEventBus;
+using UnityEngine;
 public class Cup : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;
     [SerializeField] private float speed;
 
     private Rigidbody rb;
-    
+
     public bool checkLevel;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();
 
         checkLevel = true;
+    }
+    private void OnEnable()
+    {
+        EventBus.WasMoving += HandleSwipe;
+    }
+    private void OnDisable()
+    {
+        EventBus.WasMoving -= HandleSwipe;
     }
     private void HandleSwipe(Vector2 direction)
     {
@@ -40,14 +49,6 @@ public class Cup : MonoBehaviour
                 rb.velocity += moveDirection * speed;
             }
         }
+    }
 
-    }
-    private void OnEnable() {
-        SwipeScript.SwipeEvent += HandleSwipe;
-        SwipeScript1.SwipeEvent += HandleSwipe;
-    }
-    private void OnDisable() {
-        SwipeScript.SwipeEvent -= HandleSwipe;
-        SwipeScript1.SwipeEvent -= HandleSwipe;
-    }
 }

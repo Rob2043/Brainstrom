@@ -1,16 +1,14 @@
-﻿using UnityEngine;
+﻿using CustomEventBus;
+using UnityEngine;
 
 
 public class SwipeScript : MonoBehaviour
 {
+    [SerializeField] private float deadZone = 10f;
     private Vector2 tapPosition;
     private Vector2 swipeDelta;
-    [SerializeField] private float deadZone = 10f;
     private bool isSwiping;
     private readonly bool isMobile = Application.isMobilePlatform;
-    public static event OnSwipeInput SwipeEvent;
-    public delegate void OnSwipeInput(Vector2 direction);
-
     private void Update()
     {
         if (!isMobile)
@@ -21,9 +19,7 @@ public class SwipeScript : MonoBehaviour
                 tapPosition = Input.mousePosition;
             }
             else if (Input.GetMouseButtonUp(0))
-            {
                 ResetSwipe();
-            }
         }
         else
         {
@@ -41,14 +37,12 @@ public class SwipeScript : MonoBehaviour
                 }
             }
         }
-
         CheckSwipe();
     }
 
     private void CheckSwipe()
     {
         swipeDelta = Vector2.zero;
-
         if (isSwiping)
         {
             if (!isMobile && Input.GetMouseButton(0))
@@ -56,21 +50,19 @@ public class SwipeScript : MonoBehaviour
             else if (Input.touchCount > 0)
                 swipeDelta = Input.GetTouch(0).position - tapPosition;
         }
-
         if (swipeDelta.magnitude > deadZone)
         {
-            if (SwipeEvent != null) // Проверка наличия подписчиков
+            if (EventBus.WasMoving != null)
             {
                 if (swipeDelta.y > 0 && swipeDelta.x > 0)
-                    SwipeEvent(Vector2.right);
+                    EventBus.WasMoving.Invoke(Vector2.right);
                 if (swipeDelta.y < 0 && swipeDelta.x > 0)
-                    SwipeEvent(Vector2.down);
+                    EventBus.WasMoving.Invoke(Vector2.down);
                 if (swipeDelta.y > 0 && swipeDelta.x < 0)
-                    SwipeEvent(Vector2.up);
+                    EventBus.WasMoving.Invoke(Vector2.up);
                 if (swipeDelta.y < 0 && swipeDelta.x < 0)
-                    SwipeEvent(Vector2.left);
+                    EventBus.WasMoving.Invoke(Vector2.left);
             }
-
             ResetSwipe();
         }
     }

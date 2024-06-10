@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using CustomEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +21,14 @@ public class LocalMenuScript : MonoBehaviour
         maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         StartCoroutine(AnimationClound());
     }
-
+    private void OnEnable()
+    {
+        EventBus.CheckButton += AudioEnable;
+    }
+    private void OnDisable()
+    {
+        EventBus.CheckButton -= AudioEnable;
+    }
     public IEnumerator AnimationClound()
     {
         Cloud1Animator.SetBool("CloseClound", true);
@@ -86,7 +94,8 @@ public class LocalMenuScript : MonoBehaviour
         AudioForButton.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    private void AudioEnable(bool isActiveButtonSound){
+    private void AudioEnable(bool isActiveButtonSound)
+    {
         for (int i = 0; i < Audio.Length; i++)
         {
             Audio[i].enabled = isActiveButtonSound;
@@ -94,11 +103,5 @@ public class LocalMenuScript : MonoBehaviour
         int n = isActiveButtonSound ? 1 : 0;
         PlayerPrefs.SetInt("isSoundOn", n);
         PlayerPrefs.Save();
-    }
-    private void OnEnable() {
-        MainButtons.CheckButton += AudioEnable;
-    }
-    private void OnDisable() {
-        MainButtons.CheckButton -= AudioEnable;
     }
 }
