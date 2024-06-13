@@ -1,41 +1,22 @@
 using CustomEventBus;
+using Pypy;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 
-public class PlayerMoving : MonoBehaviour
+public class PlayerMoving : MonoBehaviour, IInstansePlayer
 {
-    [SerializeField] private Vector3 moveDirection;
-    [SerializeField] private GameObject endPanel;
-    [SerializeField] private float speed;
-    public AudioSource MainAudio;
+    private Vector3 moveDirection  = new Vector3(1,0,1);
+    private float speed = 10;
+    [SerializeField] private DataOfPlayer _dataOfPlayer;
+    public DataOfPlayer DataOfPlayer { get => _dataOfPlayer; set => _dataOfPlayer = value; }
     private int star = 0;
-    public AudioSource Audio;
     private Rigidbody rb;
 
     private void Awake()
     {
-        Audio = GetComponent<AudioSource>();
+        DataOfPlayer = _dataOfPlayer;
         rb = GetComponent<Rigidbody>();
         EventBus.WasMoving = HandleSwipePlayer;
-    }
-    private void Start()
-    {
-        if (gameObject != Iinstance.instance.SelectScin)
-        {
-            gameObject.SetActive(false);
-            Instantiate(gameObject, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
-    private void OnEnable()
-    {
-        EventBus.CheckStars += OnStar;
-    }
-    private void OnDisable()
-    {
-        EventBus.CheckStars -= OnStar;
     }
     private void HandleSwipePlayer(Vector2 direction)
     {
@@ -61,39 +42,11 @@ public class PlayerMoving : MonoBehaviour
             rb.AddForce(force, ForceMode.VelocityChange);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Finish"))
+        if(other.CompareTag("Wall"))
         {
-            EventBus.CheckEnd.Invoke();
-            Time.timeScale = 0f;
-            Audio.Play();
-            MainAudio.enabled = false;
-            endPanel.SetActive(true);
-            float localScene = SceneManager.GetActiveScene().buildIndex;
-            if (PlayerPrefs.GetInt("MaxLevel") <= localScene + 1)
-            {
-                PlayerPrefs.SetInt("MaxLevel", (int)(localScene + 1));
-
-                PlayerPrefs.Save();
-            }
-            //float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
-            //float EndLevelValue = Level - (int)Level;
-            //if (EndLevelValue == 0)
-            //{
-            //    InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
-            //    Ads.ShowAd();
-            //}
-        }
-        else if (other.CompareTag("star"))
-        {
-            star = 1;
+            rb.AddForce(Vector3.zero,ForceMode.VelocityChange);
         }
     }
-    private (int, int) OnStar(int stars)
-    {
-        return (SceneManager.GetActiveScene().buildIndex + 1, stars += star);
-    }
-
 }

@@ -5,37 +5,49 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEventBus;
+using Pypy;
+using System;
 public class MainButtons : MonoBehaviour
 {
+    [Header("Animation")]
+    
+    [SerializeField] private Animator Cloud1Animator;
+    [SerializeField] private Animator Cloud2Animator;
+
+    [Header("Objcts")]
+    [SerializeField] private GameObject playNextGame;
+    [SerializeField] private GameObject[] PanelLevelArray;
+    [SerializeField] private GameObject[] MapsArray;
+    [SerializeField] private GameObject panelSettings;
+    [Header("Audio")]
     [SerializeField] private Button[] LevelButtons;
     [SerializeField] private AudioSource[] Audio;
-    [SerializeField] private Button AudioButton;
-    [SerializeField] private GameObject panelSettings;
+    [SerializeField] private Button AudioButton;    
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
     [SerializeField] private Sprite ButtonOnLevel;
-    [SerializeField] private Sprite ButtonOffLevel;
-    [SerializeField] private Animator Cloud1Animator;
-    [SerializeField] private Animator Cloud2Animator;
-    [SerializeField] private PlayNextGame playNextGame;
-    [SerializeField] private GameObject[] PanelLevelArray;
+    [SerializeField] private Sprite ButtonOffLevel;    
+    
 
     private int index = 0;
     private int MaxLevel;
     private bool isActiveButtonSound;
     private string sceneSelect;
-    private List<LevelButton> levelButtons;
+    private List<GameObject> levelButtons;
+    private void Awake()
+    {
+        for (int i = 0; i < MapsArray.Length; i++)
+        {
+            Button[] massive =  MapsArray[i].GetComponentsInChildren<Button>();
+            for (int j = 0; j < massive.Length; j++)
+            {
+                levelButtons.Add(massive[j].gameObject);
+            }
+        }
+    }
     private void Start()
     {
         PlayerPrefs.DeleteAll();
-        for (int i = 0; i < PanelLevelArray.Length; i++)
-        {
-            LevelButton[] massive = PanelLevelArray[i].GetComponentsInChildren<LevelButton>();
-            for (int j = 0; j < massive.Length; j++)
-            {
-                levelButtons.Add(massive[j]);
-            }
-        }
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         for (int i = MaxLevel; i < LevelButtons.Length; i++)
         {
@@ -44,18 +56,12 @@ public class MainButtons : MonoBehaviour
         }
         Time.timeScale = 1f;
         if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
-        {
             isActiveButtonSound = true;
-        }
         else
-        {
-            isActiveButtonSound = false;
-        }
+            isActiveButtonSound = false;    
         Audio[2].Play();
         for (int i = 0; i < Audio.Length; i++)
-        {
             Audio[i].enabled = isActiveButtonSound;
-        }
         AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
         EventBus.CheckButton.Invoke(isActiveButtonSound);
     }
@@ -99,15 +105,11 @@ public class MainButtons : MonoBehaviour
         Audio[2].Play();
         PanelLevelArray[0].SetActive(true);
     }
-
-
-
     public void ButtonSettingsOpen()
     {
         Audio[2].Play();
         panelSettings.SetActive(true);
     }
-
     public void ButtonSoundOnClick()
     {
         isActiveButtonSound = !isActiveButtonSound;
@@ -138,15 +140,15 @@ public class MainButtons : MonoBehaviour
     {
         Audio[2].Play();
         sceneSelect = localeButton.name;
-        StartCoroutine(Animation());
+        StartCoroutine(Animation(sceneSelect));
     }
 
-    public IEnumerator Animation()
+    public IEnumerator Animation(string sceneSelect)
     {
-        playNextGame.sceneSelect = sceneSelect;
         Cloud1Animator.SetBool("IsActiveCloud", true);
         Cloud2Animator.SetBool("IsCloundActive2", true);
         yield return new WaitForSeconds(1);
+        SceneManager.LoadScene($"Level {sceneSelect}");
     }
 
     private void ButtonInteractible()
@@ -160,10 +162,10 @@ public class MainButtons : MonoBehaviour
     }
     private void StartCheck()
     {
-        int stars,scene = 1;
+        int stars, scene = 1;
         (scene, stars) = EventBus.CheckStars.Invoke(1);
         Debug.Log(scene);
-        levelButtons[scene].ActiveStars(stars);
+        levelButtons[scene].GetComponent<ISetButtons>().ActiveStars(stars);
         SavePlayerPrefsData(scene, stars);
     }
 
@@ -171,7 +173,9 @@ public class MainButtons : MonoBehaviour
     {
         for (int i = 0; i < amountStar; i++)
         {
-            PlayerPrefs.SetInt($"{levelButtons[scene].transform.name}_{levelButtons[scene].stars[i].name}", 1);
+            string key = levelButtons[scene].transform.name;
+            string value =  levelButtons[scene].GetComponent<ISetButtons>().stars[i].name;
+            PlayerPrefs.SetInt($"{key}_{value}", 1);
         }
     }
     public void ButtonQuit()
