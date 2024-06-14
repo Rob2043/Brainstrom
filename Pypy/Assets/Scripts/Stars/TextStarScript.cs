@@ -2,23 +2,19 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CustomEventBus;
-using System;
-
 public class TextStarScript : MonoBehaviour
 {
     [SerializeField] private GameObject ThirdStar;
     [field: SerializeField] private float DieTime;
-    private readonly Text text;
+    private Text text;
     private int star = 1;
-
-
-    private void Start() =>
-        text.text = $"{DieTime}";
-    private void OnDisable()
+    private void Start() 
     {
-        EventBus.CheckStars += OnStar;
+        EventBus.CheckStars = OnStar;
+        text = gameObject.GetComponent<Text>();
+        text.text = $"{DieTime}";
     }
-
+ 
     void Update()
     {
         if (Time.timeScale == 1f)
@@ -38,9 +34,9 @@ public class TextStarScript : MonoBehaviour
     {
         if (Time.timeScale == 1f && DieTime > 0) text.text = $"{(int)DieTime}";
     }
-    private (int,int) OnStar(int stars)
+    private int OnStar()
     {
-        return (SceneManager.GetActiveScene().buildIndex + 1,stars+= star); 
+        return star; 
     }
 
 }

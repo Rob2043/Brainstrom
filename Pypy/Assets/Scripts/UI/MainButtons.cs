@@ -10,35 +10,34 @@ using System;
 public class MainButtons : MonoBehaviour
 {
     [Header("Animation")]
-    
+
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
 
     [Header("Objcts")]
-    [SerializeField] private GameObject playNextGame;
     [SerializeField] private GameObject[] PanelLevelArray;
     [SerializeField] private GameObject[] MapsArray;
     [SerializeField] private GameObject panelSettings;
     [Header("Audio")]
     [SerializeField] private Button[] LevelButtons;
     [SerializeField] private AudioSource[] Audio;
-    [SerializeField] private Button AudioButton;    
+    [SerializeField] private Button AudioButton;
     [SerializeField] private Sprite ButtonOnSprite;
     [SerializeField] private Sprite ButtonOffSprite;
     [SerializeField] private Sprite ButtonOnLevel;
-    [SerializeField] private Sprite ButtonOffLevel;    
-    
+    [SerializeField] private Sprite ButtonOffLevel;
+
 
     private int index = 0;
     private int MaxLevel;
     private bool isActiveButtonSound;
     private string sceneSelect;
-    private List<GameObject> levelButtons;
+    private List<GameObject> levelButtons = new();
     private void Awake()
     {
         for (int i = 0; i < MapsArray.Length; i++)
         {
-            Button[] massive =  MapsArray[i].GetComponentsInChildren<Button>();
+            Button[] massive = MapsArray[i].GetComponentsInChildren<Button>();
             for (int j = 0; j < massive.Length; j++)
             {
                 levelButtons.Add(massive[j].gameObject);
@@ -47,7 +46,7 @@ public class MainButtons : MonoBehaviour
     }
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
         MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         for (int i = MaxLevel; i < LevelButtons.Length; i++)
         {
@@ -58,20 +57,11 @@ public class MainButtons : MonoBehaviour
         if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
             isActiveButtonSound = true;
         else
-            isActiveButtonSound = false;    
+            isActiveButtonSound = false;
         Audio[2].Play();
         for (int i = 0; i < Audio.Length; i++)
             Audio[i].enabled = isActiveButtonSound;
         AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
-        EventBus.CheckButton.Invoke(isActiveButtonSound);
-    }
-    private void OnEnable()
-    {
-        EventBus.CheckEnd += StartCheck;
-    }
-    private void OnDisable()
-    {
-        EventBus.CheckEnd -= StartCheck;
     }
     private void LateUpdate()
     {
@@ -122,7 +112,6 @@ public class MainButtons : MonoBehaviour
         PlayerPrefs.SetInt("isSoundOn", n);
         PlayerPrefs.Save();
         AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
-        EventBus.CheckButton.Invoke(isActiveButtonSound);
     }
 
     public void BackToMainMenu()
@@ -158,24 +147,6 @@ public class MainButtons : MonoBehaviour
         {
             LevelButtons[j].enabled = true;
             LevelButtons[j].image.sprite = ButtonOnLevel;
-        }
-    }
-    private void StartCheck()
-    {
-        int stars, scene = 1;
-        (scene, stars) = EventBus.CheckStars.Invoke(1);
-        Debug.Log(scene);
-        levelButtons[scene].GetComponent<ISetButtons>().ActiveStars(stars);
-        SavePlayerPrefsData(scene, stars);
-    }
-
-    private void SavePlayerPrefsData(int scene, int amountStar)
-    {
-        for (int i = 0; i < amountStar; i++)
-        {
-            string key = levelButtons[scene].transform.name;
-            string value =  levelButtons[scene].GetComponent<ISetButtons>().stars[i].name;
-            PlayerPrefs.SetInt($"{key}_{value}", 1);
         }
     }
     public void ButtonQuit()

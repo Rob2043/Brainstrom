@@ -14,6 +14,7 @@ public class SpawnPlayer : MonoBehaviour
             if(spawnobject.WasBuying && spawnobject.WasChousing)
             {
                 GameObject newObject = Instantiate(dataOfPlayer[i], transform);
+                newObject.transform.localPosition = new Vector3(0,0,0);
                 _camera.transform.SetParent(newObject.transform);
             }
         }

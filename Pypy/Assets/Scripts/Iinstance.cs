@@ -1,13 +1,16 @@
+using CustomEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Iinstance : MonoBehaviour
 {
     public static Iinstance instance;
-    public float stars;
-    public GameObject SelectScin {get; set;}
+    public int stars;
+    public GameObject SelectScin { get; set; }
     private void Awake()
     {
+        EventBus.AddStars = AddStars;
+        EventBus.GetStars = GetStars;
         if (instance == null)
         {
             instance = this;
@@ -18,19 +21,23 @@ public class Iinstance : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Start() {
-        stars = PlayerPrefs.GetFloat("CountStars",0);
+    private void Start()
+    {
+        stars = PlayerPrefs.GetInt("CountStars", 0);
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-
-    }
-    public void SaveData(){
-        PlayerPrefs.SetFloat("CountStars", stars);
-        PlayerPrefs.Save();
+    private void AddStars(int CountStars) => stars += CountStars;
+    private int GetStars()
+    {
+        return stars;
     } 
-    private void OnApplicationQuit() {
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("CountStars", stars);
+        PlayerPrefs.Save();
+    }
+    private void OnApplicationQuit()
+    {
         SaveData();
     }
 }

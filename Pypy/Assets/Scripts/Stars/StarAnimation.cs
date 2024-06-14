@@ -1,4 +1,5 @@
 using UnityEngine;
+using CustomEventBus;
 
 public class StarAnimation : MonoBehaviour
 {
@@ -18,5 +19,13 @@ public class StarAnimation : MonoBehaviour
         _time += Time.deltaTime;
         Offset = Amp * Mathf.Sin(_time * Freq);
         transform.position = StartPos + new Vector3(0, Offset, 0);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            EventBus.AddStarsInPlay.Invoke();
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -4,7 +4,7 @@ public class StarsLevel : MonoBehaviour
 {
     private void Start()
     {
-        if (PlayerPrefs.GetInt($"{transform.parent.name}_{name}", 0) == 0)
+        if (PlayerPrefs.GetInt($"{transform.parent.name}_{name}", 0) is 0)
         {
             gameObject.SetActive(false);
         }
