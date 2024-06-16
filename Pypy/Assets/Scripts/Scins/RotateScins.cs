@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 public class ChooseScinScript : MonoBehaviour
 {
     [SerializeField] private AudioSource AudioForButton;
-
     private bool isRotating = false;
-
-
     public void LeftChoose()
     {
         AudioForButton.Play();
@@ -30,7 +27,7 @@ public class ChooseScinScript : MonoBehaviour
     private IEnumerator RotateTo(Vector3 newRotation)
     {
         isRotating = true;
-        float duration = 0.5f; // Продолжительность анимации в секундах
+        float duration = 0.5f;
         float elapsedTime = 0f;
         Vector3 initialRotation = transform.eulerAngles;
 
@@ -41,7 +38,7 @@ public class ChooseScinScript : MonoBehaviour
             yield return null;
         }
 
-        transform.eulerAngles = newRotation; // Устанавливаем окончательный угол
+        transform.eulerAngles = newRotation;
         isRotating = false;
     }
 

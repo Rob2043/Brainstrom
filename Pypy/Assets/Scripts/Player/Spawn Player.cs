@@ -1,3 +1,4 @@
+using CustomEventBus;
 using Pypy;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class SpawnPlayer : MonoBehaviour
 
     private void Awake()
     {
+        EventBus.GetSave.Invoke();
         for(int i = 0; i < dataOfPlayer.Length; i++)
         {
             DataOfPlayer spawnobject = dataOfPlayer[i].GetComponent<IInstansePlayer>().DataOfPlayer;

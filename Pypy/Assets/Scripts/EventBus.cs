@@ -6,14 +6,13 @@ namespace CustomEventBus
 {
     public static class EventBus
     {
-        #region OptionsAndSaves 
+        #region OptionsAndSaves
+        public static Action Save;
+        public static Action GetSave; 
         public static Func<int> CheckStars;
-        public static Action CheckEnd;
-        public static Action<GameObject> ScinCheckButton;
         public static Action<GameObject> ChangeNameText;
         #endregion OptionsAndSaves
         #region  MovingPlayer
-
         public static Action<Vector2> WasMoving;
         #endregion MovingPlayer
         #region  Audio

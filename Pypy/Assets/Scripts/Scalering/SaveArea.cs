@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class SaveArea : MonoBehaviour
 {
-    RectTransform rectTransform;
-    Rect safeArea;
-    Vector2 minAchor;
-    Vector2 maxAchor;
+    private RectTransform rectTransform;
+    private Rect safeArea;
+    private Vector2 minAchor;
+    private Vector2 maxAchor;
 
     private void Awake()
     {

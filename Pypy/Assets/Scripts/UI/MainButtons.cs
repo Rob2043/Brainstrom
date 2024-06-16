@@ -35,6 +35,7 @@ public class MainButtons : MonoBehaviour
     private List<GameObject> levelButtons = new();
     private void Awake()
     {
+        EventBus.GetSave.Invoke();
         for (int i = 0; i < MapsArray.Length; i++)
         {
             Button[] massive = MapsArray[i].GetComponentsInChildren<Button>();

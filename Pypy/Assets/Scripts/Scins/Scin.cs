@@ -1,88 +1,61 @@
 using CustomEventBus;
+using Pypy;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Scin : MonoBehaviour
 {
-    public Button clickButton;
-    [SerializeField] private int price;
-    private Text textButton;
-    [SerializeField] private string text;
-    private void Start()
+    [SerializeField] private TMP_Text _buttonText;
+    [SerializeField] private TMP_Text _textForNamePlayer;
+    [SerializeField] private TMP_Text _textForCountSatrs;
+    private DataOfPlayer[] _ArraydataOfPlayer = new DataOfPlayer[10];
+    private DataOfPlayer _dataOfPlayer;
+
+    private void Awake()
     {
-        textButton = clickButton.GetComponentInChildren<Text>();
-        if (PlayerPrefs.GetInt($"{gameObject.name}_enable", 0) == 1)
-        {
-            Iinstance.instance.SelectScin = gameObject;
-            text = "Selected";
-        }
-        else if (PlayerPrefs.GetInt($"{gameObject.name}_isBuy", 0) == 1)
-        {
-            text = "Select";
-        }
-        else text = $"Buy {price}";
+        _textForCountSatrs.text = $"{EventBus.GetStars.Invoke()}";
+        _ArraydataOfPlayer = Iinstance.instance._dataOfPlayer;
+        EventBus.ChangeNameText = ChangeScins;
     }
-    public void OnClick()
+
+    private void ChangeScins(GameObject scin)
     {
-        if (textButton.text == "Select")
+        _dataOfPlayer = scin.GetComponent<IInstansePlayer>().DataOfPlayer;
+        _textForNamePlayer.text = _dataOfPlayer.NameOfScins;
+        if (_dataOfPlayer.WasBuying == true)
+            _buttonText.text = "Choose";
+        else _buttonText.text = $"Buy {_dataOfPlayer.price}";
+        if (_dataOfPlayer.WasChousing == true)
+            _buttonText.text = "Selected";
+    }
+
+    public void ChooseScin()
+    {
+        if (_dataOfPlayer.WasBuying == false)
         {
-            Iinstance.instance.SelectScin = gameObject;
-            textButton.text = "Selected";
-            EventBus.ScinCheckButton.Invoke(gameObject);
-        }
-        else if (textButton.text == $"Buy {price}")
-        {
-            if (price <= Iinstance.instance.stars)
+            if (_dataOfPlayer.price <= EventBus.GetStars.Invoke())
             {
-                textButton.text = "Selected";
-                Iinstance.instance.SelectScin = gameObject;
-                Iinstance.instance.stars -= price;
-                EventBus.ScinCheckButton.Invoke(gameObject);
-                // SaveData(1, 1);
+                EventBus.AddStars.Invoke(-_dataOfPlayer.price);
+                _dataOfPlayer.WasBuying = true;
+                _buttonText.text = "Choose";
+                _textForCountSatrs.text = $"{EventBus.GetStars.Invoke()}";
             }
             else return;
         }
-    }
-
-    private void OnEnable()
-    {
-        EventBus.ScinCheckButton += Check;
-        EventBus.ChangeNameText += ChangeText;
-        // EventBus.ChangeNameText += ChangeButtonFunc;
-    }
-    private void OnDisable()
-    {
-        EventBus.ScinCheckButton -= Check;
-        EventBus.ChangeNameText -= ChangeText;
-        // EventBus.ChangeNameText -= ChangeButtonFunc;
-    }
-    private void Check(GameObject ingameObject)
-    {
-        if (textButton.text == "Selected" && ingameObject != gameObject)
-        {
-            textButton.text = "Select";
-            SaveData(0, 1);
-        }
         else
-            SaveData(1, 1);
-    }
-    private void ChangeText(GameObject ingameObject)
-    {
-        if (ingameObject == gameObject)
-            textButton.text = text;        
-    }
-
-    // private void ChangeButtonFunc(GameObject ingameObject)
-    // {
-    //     clickButton.onClick.RemoveAllListeners();        
-    //     if (ingameObject == gameObject)
-    //         Debug.Log(gameObject.name + "work");
-    //         clickButton.onClick.AddListener(OnClick);
-    // }
-    private void SaveData(int enable, int isBuy)
-    {
-        PlayerPrefs.SetInt($"{gameObject.name}_enable", enable);
-        PlayerPrefs.SetInt($"{gameObject.name}_isBuy", isBuy);
-        PlayerPrefs.Save();
+        {
+            if (_dataOfPlayer.WasChousing == false)
+            {
+                _buttonText.text = "Selected";
+                for (int i = 0; i < _ArraydataOfPlayer.Length; i++)
+                {
+                    if (_ArraydataOfPlayer[i].NameOfScins == _dataOfPlayer.NameOfScins)
+                        _dataOfPlayer.WasChousing = true;
+                    else _ArraydataOfPlayer[i].WasChousing = false;
+                }
+            }
+            else return;
+        }
+        EventBus.Save.Invoke();
     }
 }
