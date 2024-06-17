@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class StarAnimation : MonoBehaviour
 {
+    [SerializeField] private GameObject SecondStar;
     public float _time = 0;
     public float Amp = 0.25f;
     public float Freq = 2;
@@ -25,6 +26,7 @@ public class StarAnimation : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SecondStar.SetActive(true);
             if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 2}_Stars {3}", 0) == 0)
                 EventBus.AddStarsInPlay.Invoke();
             gameObject.SetActive(false);

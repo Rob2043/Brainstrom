@@ -36,6 +36,7 @@ public class TextStarScript : MonoBehaviour
     }
     private int OnStar()
     {
+        ThirdStar.SetActive(true);
         if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 2}_Stars {2}", 0) == 0)
             return star;
         else return 0; 

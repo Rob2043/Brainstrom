@@ -4,8 +4,8 @@ Shader "SKGames/Height Fog" {
 	Properties{
 		[Header(Main properties)]
 		[PerRendererData] _Color("Diffuse Color", Color) = (1,1,1,1)
-        [PerRendererData][HDR] _FogEmissionColor("Fog Emission Color", Color) = (1,1,1,1)
-		[PerRendererData] _EmissionColor("Emission Color", Color) = (1,1,1,1)
+        [PerRendererData][HDR] _FogEmissionColor("Fog Emission Color", Color) = (1,0.5,0,1) // Изменено на оранжевый цвет
+		[PerRendererData] _EmissionColor("Emission Color", Color) = (1,0.5,0,1) // Изменено на оранжевый цвет
 		[PerRendererData] _EmissionPower("Emission Power", Range(0, 1)) = 1
 		_SpecularPower("Specular Power", Range(0, 1)) = 0.4
 		_Metallic("Metallic Power", Range(0, 1)) = 0.9
@@ -21,7 +21,7 @@ Shader "SKGames/Height Fog" {
 
 		[Header(Fog properties)]
 		[PerRendererData][Enum(World,1,Local,0)] _FogRelativeWorldOrLocal("Fog Simulation Space", Int) = 1
-		[PerRendererData] _FogColor("Fog Color", Color) = (1,1,1,1)
+		[PerRendererData] _FogColor("Fog Color", Color) = (1,0.5,0,1) // Изменено на оранжевый цвет
 		[PerRendererData] _FogMin("Height Fog Min", Float) = -20
 		[PerRendererData] _FogMax("Height Fog Max", Float) = 0
 		[PerRendererData][PowerSlider(3.0)] _FogEmissionPower("Fog Emission Power", Range(0, 100)) = 20

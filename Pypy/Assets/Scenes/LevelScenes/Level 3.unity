@@ -897,6 +897,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4966907371970030216, guid: b0faa2244990e5028aff3d5e8cc5022d, type: 3}
   m_PrefabInstance: {fileID: 1287710671}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1364500431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2656033035713392306, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
+  m_PrefabInstance: {fileID: 1082713478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1364500432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1229798230640322991, guid: 35e6836a7c3a4b44abdacf6f5de388c1, type: 3}
+  m_PrefabInstance: {fileID: 1082713478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1439760003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,6 +1033,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340049691234732049, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
       propertyPath: ImageStar2
+      value: 
+      objectReference: {fileID: 1082713479}
+    - target: {fileID: 9220930539874878684, guid: 0babff14e798d2443bc33d00e419e437, type: 3}
+      propertyPath: SecondStar
       value: 
       objectReference: {fileID: 1082713479}
     m_RemovedComponents: []
@@ -1550,6 +1564,22 @@ PrefabInstance:
       propertyPath: _gamePlayMusic
       value: 
       objectReference: {fileID: 1082713481}
+    - target: {fileID: 1015185959229867075, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
+      propertyPath: _starsArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015185959229867075, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
+      propertyPath: _starsArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1364500432}
+    - target: {fileID: 1015185959229867075, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
+      propertyPath: _starsArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1082713479}
+    - target: {fileID: 1015185959229867075, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
+      propertyPath: _starsArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 1364500431}
     - target: {fileID: 5735294281028574207, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.46

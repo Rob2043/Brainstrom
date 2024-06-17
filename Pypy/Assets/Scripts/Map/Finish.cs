@@ -9,7 +9,7 @@ public class Finish : MonoBehaviour
     [SerializeField] private AudioSource _gamePlayMusic;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private Text _countStars;
-    private int stars;
+    private int earnstars;
     private string NameOfScene;
     private int localScene;
     private void Awake()
@@ -17,23 +17,25 @@ public class Finish : MonoBehaviour
         localScene = SceneManager.GetActiveScene().buildIndex - 2;
         NameOfScene = $"{localScene}";
         if (PlayerPrefs.GetInt($"{NameOfScene}_Stars {1}", 0) == 0)
-            stars++;
+            earnstars++;
         EventBus.AddStarsInPlay = AddStar;
     }
-    private void AddStar() => stars++;
+    private void AddStar() => earnstars++;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Time.timeScale = 0f;
-            stars += EventBus.CheckStars.Invoke();
-            EventBus.AddStars.Invoke(stars);
+            earnstars += EventBus.CheckStars.Invoke();
+            EventBus.AddStars.Invoke(earnstars);
             _countStars.text = $"{EventBus.GetStars.Invoke()}";
             _winAudio.Play();
             _gamePlayMusic.enabled = false;
             _endPanel.SetActive(true);
-            for (int i = 1; i <= stars; i++)
+            for (int i = 1; i <= earnstars; i++)
+            {
                 PlayerPrefs.SetInt($"{NameOfScene}_Stars {i}", 1);
+            }   
             if (PlayerPrefs.GetInt("MaxLevel") <= localScene++)
                 PlayerPrefs.SetInt("MaxLevel", localScene++);
             PlayerPrefs.Save();
