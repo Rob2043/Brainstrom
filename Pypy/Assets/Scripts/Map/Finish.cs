@@ -9,9 +9,15 @@ public class Finish : MonoBehaviour
     [SerializeField] private AudioSource _gamePlayMusic;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private Text _countStars;
-    private int stars = 1;
+    private int stars;
+    private string NameOfScene;
+    private int localScene;
     private void Awake()
     {
+        localScene = SceneManager.GetActiveScene().buildIndex - 2;
+        NameOfScene = $"{localScene}";
+        if (PlayerPrefs.GetInt($"{NameOfScene}_Stars {1}", 0) == 0)
+            stars++;
         EventBus.AddStarsInPlay = AddStar;
     }
     private void AddStar() => stars++;
@@ -26,12 +32,12 @@ public class Finish : MonoBehaviour
             _winAudio.Play();
             _gamePlayMusic.enabled = false;
             _endPanel.SetActive(true);
-            int localScene = SceneManager.GetActiveScene().buildIndex - 2;
             for (int i = 1; i <= stars; i++)
-                PlayerPrefs.SetInt($"{localScene}_Stars {i}", 1);
+                PlayerPrefs.SetInt($"{NameOfScene}_Stars {i}", 1);
             if (PlayerPrefs.GetInt("MaxLevel") <= localScene++)
                 PlayerPrefs.SetInt("MaxLevel", localScene++);
             PlayerPrefs.Save();
+            EventBus.Save.Invoke();
             //float Level = (float)(SceneManager.GetActiveScene().buildIndex - 1) / 3;
             //float EndLevelValue = Level - (int)Level;
             //if (EndLevelValue == 0)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4506489509757504142}
   - component: {fileID: 6676108316512609068}
   - component: {fileID: 218330495712647737}
+  - component: {fileID: 1015185959229867075}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Finish
@@ -105,3 +106,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1015185959229867075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427784652946353668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ec10af6d9710e45b3d092df436cf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winAudio: {fileID: 0}
+  _gamePlayMusic: {fileID: 0}
+  _endPanel: {fileID: 0}
+  _countStars: {fileID: 0}

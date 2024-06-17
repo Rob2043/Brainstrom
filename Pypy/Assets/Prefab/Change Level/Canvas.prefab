@@ -1368,15 +1368,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e1f6a58895224abe8632d42a6cb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: []
   PanelExit: {fileID: 1361321470964083765}
   PanelClound: {fileID: 8953981693195134220}
   ButtonExit: {fileID: 1012743210037432346}
   MainPanel: {fileID: 761267820247290500}
   Cloud1Animator: {fileID: 4886206056458551050}
   Cloud2Animator: {fileID: 6015709891480303924}
-  time: {fileID: 8461401267411278557}
-  audioSource: {fileID: 395161111300028765}
-  AudioForButton: {fileID: 7330029001698693139}
+  _localAudio: {fileID: 7330029001698693139}
 --- !u!1 &3797411558694191421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThirdStar: {fileID: 2656033035713392306}
-  CanTime: 0
   DieTime: 10
 --- !u!1 &4713786355267147611
 GameObject:

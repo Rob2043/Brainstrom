@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using CustomEventBus;
-using Pypy;
 
 public class LocalMenuScript : MonoBehaviour
 {
@@ -18,6 +16,7 @@ public class LocalMenuScript : MonoBehaviour
     private int maxLevel;
     private void Start()
     {
+        Time.timeScale = 1f;
         maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         StartCoroutine(AnimationClound());
         if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)

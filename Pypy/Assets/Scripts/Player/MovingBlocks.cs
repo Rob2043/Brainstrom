@@ -50,5 +50,11 @@ public class MovingBlocks : MonoBehaviour
             }
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
+        }
+    }
 }

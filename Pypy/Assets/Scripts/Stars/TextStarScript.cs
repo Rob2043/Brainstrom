@@ -36,7 +36,9 @@ public class TextStarScript : MonoBehaviour
     }
     private int OnStar()
     {
-        return star; 
+        if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 2}_Stars {2}", 0) == 0)
+            return star;
+        else return 0; 
     }
 
 }

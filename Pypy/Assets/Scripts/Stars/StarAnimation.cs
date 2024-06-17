@@ -1,5 +1,6 @@
 using UnityEngine;
 using CustomEventBus;
+using UnityEngine.SceneManagement;
 
 public class StarAnimation : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class StarAnimation : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            EventBus.AddStarsInPlay.Invoke();
+            if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 2}_Stars {3}", 0) == 0)
+                EventBus.AddStarsInPlay.Invoke();
             gameObject.SetActive(false);
         }
     }
