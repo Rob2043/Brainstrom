@@ -40,32 +40,40 @@ public class SwipeScript : MonoBehaviour
         CheckSwipe();
     }
 
-    private void CheckSwipe()
+private void CheckSwipe()
+{
+    swipeDelta = Vector2.zero;
+
+    if (isSwiping)
     {
-        swipeDelta = Vector2.zero;
-        if (isSwiping)
+        if (!isMobile && Input.GetMouseButton(0))
+            swipeDelta = (Vector2)Input.mousePosition - tapPosition;
+        else if (Input.touchCount > 0)
+            swipeDelta = Input.GetTouch(0).position - tapPosition;
+    }
+    if (swipeDelta.magnitude > deadZone)
+    {
+        if (EventBus.WasMoving != null)
         {
-            if (!isMobile && Input.GetMouseButton(0))
-                swipeDelta = (Vector2)Input.mousePosition - tapPosition;
-            else if (Input.touchCount > 0)
-                swipeDelta = Input.GetTouch(0).position - tapPosition;
-        }
-        if (swipeDelta.magnitude > deadZone)
-        {
-            if (EventBus.WasMoving != null)
+            if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
             {
-                if (swipeDelta.y > 0 && swipeDelta.x > 0)
+                if (swipeDelta.x > 0)
                     EventBus.WasMoving.Invoke(Vector2.right);
-                if (swipeDelta.y < 0 && swipeDelta.x > 0)
-                    EventBus.WasMoving.Invoke(Vector2.down);
-                if (swipeDelta.y > 0 && swipeDelta.x < 0)
-                    EventBus.WasMoving.Invoke(Vector2.up);
-                if (swipeDelta.y < 0 && swipeDelta.x < 0)
+                else
                     EventBus.WasMoving.Invoke(Vector2.left);
             }
-            ResetSwipe();
+            else
+            {
+                if (swipeDelta.y > 0)
+                    EventBus.WasMoving.Invoke(Vector2.up);
+                else
+                    EventBus.WasMoving.Invoke(Vector2.down);
+            }
         }
+        ResetSwipe();
     }
+}
+
 
 
     private void ResetSwipe()

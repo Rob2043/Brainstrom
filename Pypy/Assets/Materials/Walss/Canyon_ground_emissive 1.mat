@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Canyon_ground_non_emissive 1
+  m_Name: Canyon_ground_emissive 1
   m_Shader: {fileID: 4800000, guid: 5a1405ce32c0b534ebf969b4706c9285, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -17,7 +17,7 @@ Material:
   - OVERRIDE_FOG_COLOR
   - STANDART_FOG
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -86,40 +86,48 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionPower: 0
-    - _FogEmissionFalloff: 0.01
-    - _FogEmissionPower: 0
-    - _FogFalloff: 2.54
-    - _FogMax: 4
-    - _FogMin: -10
+    - _FogEmissionFalloff: 0.5
+    - _FogEmissionPower: 2
+    - _FogFalloff: 1
+    - _FogMax: 1.3
+    - _FogMin: -20
     - _FogRelativeWorldOrLocal: 1
-    - _FogWaveAmplitudeX: 1
-    - _FogWaveAmplitudeZ: 0.3
-    - _FogWaveFreqX: 0.3
-    - _FogWaveFreqZ: 0.5
-    - _FogWaveSpeedX: 5
-    - _FogWaveSpeedZ: 0
+    - _FogSpeedX: 0.14
+    - _FogSpeedY: 7.74
+    - _FogSpeedZ: 1
+    - _FogWaveAmplitude: 0
+    - _FogWaveAmplitudeX: 0.3
+    - _FogWaveAmplitudeZ: 0.1
+    - _FogWaveFreq: 0
+    - _FogWaveFreqX: 1
+    - _FogWaveFreqZ: 1
+    - _FogWaveSpeed: 20
+    - _FogWaveSpeedX: 1
+    - _FogWaveSpeedZ: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MetChannel: 3
-    - _Metallic: 1
+    - _MetChannel: 4
+    - _Metallic: 0.169
     - _Mode: 0
     - _NormalAmount: 3
     - _OVERRIDE_FOG_COLOR: 1
+    - _OVERRIDE_FOG_RANGES: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _STANDARD_FOG: 1
     - _STANDART_FOG: 1
     - _SmoothnessTextureChannel: 0
-    - _SpecChannel: 3
+    - _SpecChannel: 4
     - _SpecularHighlights: 1
     - _SpecularPower: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseFogWave: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColor: {r: 1, g: 0.32661325, b: 0, a: 1}
-    - _FogEmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FogColor: {r: 0, g: 0.37195015, b: 1, a: 1}
+    - _FogEmissionColor: {r: 0, g: 1.4901961, b: 4, a: 1}
   m_BuildTextureStacks: []
