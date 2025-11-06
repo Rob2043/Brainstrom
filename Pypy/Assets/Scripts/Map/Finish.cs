@@ -2,13 +2,14 @@ using CustomEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Finish : MonoBehaviour
 {
     [SerializeField] private AudioSource _winAudio;
     [SerializeField] private AudioSource _gamePlayMusic;
     [SerializeField] private GameObject _endPanel;
-    [SerializeField] private Text _countStars;
+    [SerializeField] private TMP_Text _countStars;
     private int earnstars;
     private string NameOfScene;
     private int localScene;
@@ -35,7 +36,7 @@ public class Finish : MonoBehaviour
             for (int i = 1; i <= earnstars; i++)
             {
                 PlayerPrefs.SetInt($"{NameOfScene}_Stars {i}", 1);
-            }   
+            }
             if (PlayerPrefs.GetInt("MaxLevel") <= localScene++)
                 PlayerPrefs.SetInt("MaxLevel", localScene++);
             PlayerPrefs.Save();
