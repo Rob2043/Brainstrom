@@ -16,7 +16,7 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
     {
         DataOfPlayer = _dataOfPlayer;
         rb = GetComponent<Rigidbody>();
-        EventBus.WasMoving = HandleSwipePlayer;
+        EventBus.WasMoving += HandleSwipePlayer;
     }
     private void HandleSwipePlayer(Vector2 direction)
     {
