@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+namespace HUETA
+{
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -203,4 +204,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString(player.name, $"{hasSkin}");
         PlayerPrefs.Save();
     }
+}
 }

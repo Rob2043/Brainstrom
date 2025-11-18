@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
+using HUETA;
 
 
 public class SkipButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener

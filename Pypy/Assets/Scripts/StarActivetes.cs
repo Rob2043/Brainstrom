@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using HUETA;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StarActivetes : MonoBehaviour
