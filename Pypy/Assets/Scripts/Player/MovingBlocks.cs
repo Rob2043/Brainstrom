@@ -27,7 +27,6 @@ public class MovingBlocks : MonoBehaviour
     {
         if (rb != null && checkLevel)
         {
-            Debug.Log("Test");
             bool isPositionXFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionX) != 0;
             bool isPositionYFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionY) != 0;
             bool isPositionZFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionZ) != 0;
