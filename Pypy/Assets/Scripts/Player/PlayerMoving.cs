@@ -3,6 +3,7 @@ using Pypy;
 using UnityEngine;
 
 
+
 public class PlayerMoving : MonoBehaviour, IInstansePlayer
 {
     private Vector3 moveDirection  = new Vector3(1,0,1);
@@ -42,11 +43,12 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
             rb.AddForce(force, ForceMode.VelocityChange);
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if(other.CompareTag("Wall"))
+      if(collision.gameObject.CompareTag("Wall"))
         {
             rb.AddForce(Vector3.zero,ForceMode.VelocityChange);
-        }
+        }  
     }
 }
