@@ -16,7 +16,7 @@ public class BackgroundMoving : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (BackIsReady == false)
+        if (BackIsReady )
         {
             rb.velocity += moveDirection * speed;
         }
@@ -28,7 +28,7 @@ public class BackgroundMoving : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player"))
         {
             BackIsReady = !BackIsReady;
         }
