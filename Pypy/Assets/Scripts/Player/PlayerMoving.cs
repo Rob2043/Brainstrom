@@ -48,7 +48,7 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
     {
       if(collision.gameObject.CompareTag("Wall"))
         {
-            rb.AddForce(Vector3.zero,ForceMode.VelocityChange);
+            rb.velocity = Vector3.zero;
         }  
     }
 }

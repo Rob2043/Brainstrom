@@ -52,9 +52,9 @@ public class MovingBlocks : MonoBehaviour
     }
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-      if(collision.gameObject.CompareTag("Wall"))
+      if(collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player"))
         {
-            rb.AddForce(Vector3.zero,ForceMode.VelocityChange);
+            rb.velocity = Vector3.zero;
         }  
     }
 }
