@@ -16,12 +16,14 @@ public class BackgroundMoving : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (BackIsReady )
+        if (BackIsReady)
         {
             rb.velocity += moveDirection * speed;
+            Debug.Log("Moving Background");
         }
         else
         {
+            Debug.Log("Moving Background Back");
             rb.velocity -= moveDirection * speed;
         }
     }
