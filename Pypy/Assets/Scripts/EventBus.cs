@@ -23,6 +23,9 @@ namespace CustomEventBus
         public static Action AddStarsInPlay;
         public static Func<int> GetStars;
         #endregion Economy
+        #region Mechanics
+        public static Action Reverseblocks;
+        #endregion Mechanics
     }
 
 }

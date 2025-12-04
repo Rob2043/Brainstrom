@@ -18,10 +18,16 @@ public class MovingBlocks : MonoBehaviour
     private void OnEnable()
     {
         EventBus.WasMoving += HandleSwipe;
+        EventBus.Reverseblocks += OnReverseBlocks;
     }
     private void OnDisable()
     {
         EventBus.WasMoving -= HandleSwipe;
+        EventBus.Reverseblocks -= OnReverseBlocks;
+    }
+    private void OnReverseBlocks()
+    {
+        moveDirection = -1*moveDirection;
     }
     private void HandleSwipe(Vector2 direction)
     {
