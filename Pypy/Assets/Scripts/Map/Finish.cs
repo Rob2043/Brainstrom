@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class Finish : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Finish : MonoBehaviour
             earnstars += EventBus.CheckStars.Invoke();
             EventBus.AddStars.Invoke(earnstars);
             _countStars.text = $"{EventBus.GetStars.Invoke()}";
+            MusicTransaction(_gamePlayMusic, _winAudio);
             _winAudio.Play();
             _gamePlayMusic.enabled = false;
             _endPanel.SetActive(true);
@@ -48,6 +50,17 @@ public class Finish : MonoBehaviour
             //    InterstitialAdExample Ads = GetComponent<InterstitialAdExample>();
             //    Ads.ShowAd();
             //}
+        }
+    }
+    IEnumerator MusicTransaction(AudioSource satartAudio, AudioSource endAudio)
+    {
+        float time = 0.1f;
+        while (satartAudio.volume > 0)
+        {
+            yield return new WaitForSeconds(time);
+            satartAudio.volume -= time;
+            endAudio.volume += time;
+            yield return null;
         }
     }
 }
