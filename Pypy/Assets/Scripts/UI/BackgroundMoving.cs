@@ -30,7 +30,7 @@ public class BackgroundMoving : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             BackIsReady = !BackIsReady;
         }
