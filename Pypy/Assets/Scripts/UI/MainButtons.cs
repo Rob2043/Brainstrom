@@ -33,15 +33,23 @@ public class MainButtons : MonoBehaviour
     private bool isActiveButtonSound;
     private string sceneSelect;
     private List<GameObject> levelButtons = new();
+
+    void OnEnable()
+    {
+        EventBus.ActivateClouds += CloudAnimation;
+    }
     private void Awake()
     {
-        EventBus.GetSave.Invoke();
-        for (int i = 0; i < MapsArray.Length; i++)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            Button[] massive = MapsArray[i].GetComponentsInChildren<Button>();
-            for (int j = 0; j < massive.Length; j++)
+            EventBus.GetSave.Invoke();
+            for (int i = 0; i < MapsArray.Length; i++)
             {
-                levelButtons.Add(massive[j].gameObject);
+                Button[] massive = MapsArray[i].GetComponentsInChildren<Button>();
+                for (int j = 0; j < massive.Length; j++)
+                {
+                    levelButtons.Add(massive[j].gameObject);
+                }
             }
         }
     }
@@ -126,19 +134,27 @@ public class MainButtons : MonoBehaviour
         Audio[2].Play();
         SceneManager.LoadScene("Scins");
     }
+
+
+    private void CloudAnimation()
+    {
+        StartCoroutine(Animation(sceneSelect));
+    }
     public void LevelButtonOnClick(GameObject localeButton)
     {
         Audio[2].Play();
         sceneSelect = localeButton.name;
-        StartCoroutine(Animation(sceneSelect));
+        CloudAnimation();
     }
 
     public IEnumerator Animation(string sceneSelect)
     {
         Cloud1Animator.SetBool("IsActiveCloud", true);
         Cloud2Animator.SetBool("IsCloundActive2", true);
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene($"Level {sceneSelect}");
+        yield return new WaitForSeconds(1.25f);
+        EventBus.LodingScene?.Invoke($"Level {sceneSelect}");
+        Cloud1Animator.SetBool("IsActiveCloud", false);
+        Cloud2Animator.SetBool("IsCloundActive2", false);
     }
 
     private void ButtonInteractible()
@@ -159,5 +175,10 @@ public class MainButtons : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    void OnDisable()
+    {
+        EventBus.ActivateClouds -= CloudAnimation;
     }
 }
