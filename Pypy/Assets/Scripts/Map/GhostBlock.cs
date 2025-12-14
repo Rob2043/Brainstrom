@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class GhostBlock : MonoBehaviour
 {
+    [SerializeField] private float _timeToFall = 7f;
     private Rigidbody _rd;
     private Collider _collider;
     private Renderer _rend;
@@ -28,7 +29,7 @@ public class GhostBlock : MonoBehaviour
     private IEnumerator enumerator()
     {
         _rend.material.color = Color.Lerp(_rend.material.color, Color.red, 1);
-        yield return new WaitForSeconds(1 * Time.deltaTime);
+        yield return new WaitForSeconds(_timeToFall * Time.deltaTime);
         _rd.useGravity = true;
         _rd.mass = 20;
         _collider.isTrigger = true;
