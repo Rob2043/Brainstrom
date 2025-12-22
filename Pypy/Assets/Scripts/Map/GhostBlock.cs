@@ -11,7 +11,7 @@ public class GhostBlock : MonoBehaviour
     private Rigidbody _rd;
     private Collider _collider;
     private Renderer _rend;
-    private void Start()
+    private void Awake()
     {
         _rd = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();

@@ -21,11 +21,9 @@ public class BackgroundMoving : MonoBehaviour
         if (BackIsReady)
         {
             rb.velocity += moveDirection * speed;
-            Debug.Log("Moving Background");
         }
         else
         {
-            Debug.Log("Moving Background Back");
             rb.velocity -= moveDirection * speed;
         }
     }
