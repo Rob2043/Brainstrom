@@ -10,7 +10,6 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
     private float speed = 10;
     [SerializeField] private DataOfPlayer _dataOfPlayer;
     public DataOfPlayer DataOfPlayer { get => _dataOfPlayer; set => _dataOfPlayer = value; }
-    private int star = 0;
     private Rigidbody rb;
 
     private void Awake()
@@ -40,7 +39,7 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
             {
                 force = new Vector3(moveDirection.x * speed, 0, 0);
             }
-            rb.AddForce(force, ForceMode.VelocityChange);
+            rb.AddForce(force*Time.fixedDeltaTime * 40, ForceMode.VelocityChange);
         }
     }
 
