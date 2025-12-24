@@ -16,5 +16,9 @@ namespace Pypy
     {
         public string sceneSelect{get; set;}
     }
+    public interface ICannon
+    {
+        public bool isActive{get; set;}
+    }
 }
 

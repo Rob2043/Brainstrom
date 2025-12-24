@@ -30,6 +30,7 @@ namespace CustomEventBus
         #region UI
         public static Action<string> LodingScene;
         public static Action ActivateClouds;
+        public static Action DeathPlayer;
         #endregion UI
     }
 
