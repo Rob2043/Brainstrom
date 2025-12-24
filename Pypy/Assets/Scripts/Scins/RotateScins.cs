@@ -1,29 +1,26 @@
 ﻿using System.Collections;
+using CustomEventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChooseScinScript : MonoBehaviour
 {
-    [SerializeField] private AudioSource AudioForButton;
     private bool isRotating = false;
-    public void LeftChoose()
+    private void CheckSwipe(Vector2 direction)
     {
-        AudioForButton.Play();
-        if (!isRotating)
+        if (isRotating)
+        {
+            return;
+        }
+        Vector3 force = Vector3.zero;
+        if (direction == Vector2.left)
         {
             StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y - 40, 0)));
-        }
-    }
-
-    public void RightChoose()
-    {
-        AudioForButton.Play();
-        if (!isRotating)
+        } else if(direction == Vector2.right)
         {
             StartCoroutine(RotateTo(new Vector3(0, transform.eulerAngles.y + 40, 0)));
         }
     }
-
     private IEnumerator RotateTo(Vector3 newRotation)
     {
         isRotating = true;
@@ -41,7 +38,14 @@ public class ChooseScinScript : MonoBehaviour
         transform.eulerAngles = newRotation;
         isRotating = false;
     }
-
+    void OnEnable()
+    {
+        EventBus.WasMoving += CheckSwipe;
+    }
+    void OnDisable()
+    {
+        EventBus.WasMoving -= CheckSwipe;
+    }
     public void Exit()
     {
         SceneManager.LoadScene("MainMenu");
