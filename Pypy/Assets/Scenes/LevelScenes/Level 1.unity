@@ -20,14 +20,14 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.26415092, g: 0.24795298, b: 0.24795298, a: 1}
+  m_AmbientEquatorColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+  m_AmbientGroundColor: {r: 0.5727572, g: 0.5754717, b: 0.57344776, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.6037736, g: 0.6009256, b: 0.6009256, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 2d796ced94d61438fbab81b194038162, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.698
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 661456091}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 867cec9d4eee6644389ada408ec1631b, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 7a7370f40f7676649b74e4ae1b2c855c, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: f4f2a8e28e4c4b948ab790b9f6a97e8f, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ae8c556789201b44a975cee0f92100d4, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -310,6 +310,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_ShadowAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1454013250658578318, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.95
@@ -359,6 +391,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+--- !u!108 &661456091 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 899293895892799934, guid: ad5e8c3c94082774fadd570d58918dc6, type: 3}
+  m_PrefabInstance: {fileID: 661456090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800464766
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +604,10 @@ PrefabInstance:
     - target: {fileID: 523293141232188451, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
       propertyPath: m_Name
       value: White Cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 523293141232188451, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6136371770236879269, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -892,6 +933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 523293141232188451, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6136371770236879269, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
       propertyPath: m_LocalScale.z
       value: 3
@@ -1101,15 +1146,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317452186511958932, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.003921569
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3317452186511958932, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.3137255
+      value: 0.3264463
       objectReference: {fileID: 0}
     - target: {fileID: 3317452186511958932, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.95294124
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317452186511958932, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -1281,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: 523293141232188451, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
       propertyPath: m_Name
       value: White Cube (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 523293141232188451, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6136371770236879269, guid: 57a7c21bd4e04805eae2c7d3c1319ea2, type: 3}
       propertyPath: m_LocalScale.x

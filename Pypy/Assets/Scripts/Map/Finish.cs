@@ -16,7 +16,7 @@ public class Finish : MonoBehaviour
     private int localScene;
     private void Awake()
     {
-        localScene = SceneManager.GetActiveScene().buildIndex - 2;
+        localScene = SceneManager.GetActiveScene().buildIndex - 3;
         NameOfScene = $"{localScene}";
         if (PlayerPrefs.GetInt($"{NameOfScene}_Stars {1}", 0) == 0)
             earnstars++;
