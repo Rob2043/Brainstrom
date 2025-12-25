@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMoving : MonoBehaviour, IInstansePlayer
 {
     private Vector3 moveDirection  = new(1,0,1);
-    private float speed = 10;
+    private float speed = 12;
     [SerializeField] private DataOfPlayer _dataOfPlayer;
     public DataOfPlayer DataOfPlayer { get => _dataOfPlayer; set => _dataOfPlayer = value; }
     private Rigidbody rb;

@@ -1158,6 +1158,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!1001 &541167482
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 996446878}
+    m_Modifications:
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033898288677550028, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      propertyPath: m_Name
+      value: GreenPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3482597970484565346, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4033898288677550028, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299511987}
+  m_SourcePrefab: {fileID: 100100000, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
 --- !u!1 &611543871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1811,7 @@ Transform:
   - {fileID: 510487053158987644}
   - {fileID: 6349206433453301220}
   - {fileID: 1073877577}
+  - {fileID: 1299511981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 320, z: 0}
 --- !u!1 &1053804024
@@ -2466,6 +2528,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284010291}
   m_CullTransparentMesh: 1
+--- !u!1 &1299511980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4033898288677550028, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+  m_PrefabInstance: {fileID: 541167482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1299511981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 231863173675858094, guid: 327ea851086e60e44b0da775604b1b9a, type: 3}
+  m_PrefabInstance: {fileID: 541167482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299511987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299511980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b37abee0fd4a848a679c44edd5c56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataOfPlayer: {fileID: 11400000, guid: 4f691e44487336b4c9d8be9d109e4562, type: 2}
 --- !u!1 &1307045331
 GameObject:
   m_ObjectHideFlags: 0

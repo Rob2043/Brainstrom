@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pypy;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BlockCannon : MonoBehaviour, ICannon
 {
-    [SerializeField] private int Period;
+    [SerializeField] private float Period;
     [SerializeField] private GameObject Prefab;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Vector3 direction;
     public bool isActive { get; set; } = true;
     private Queue<Rigidbody> _pool = new Queue<Rigidbody>();
-    private const float DELAY = 5;
+    private const float DELAY = 1;
     private const float SPEED = 10f;
     void Awake()
     {
@@ -37,7 +39,7 @@ public class BlockCannon : MonoBehaviour, ICannon
             yield return new WaitForSeconds(Period);
             var obj = _pool.Dequeue();
             obj.gameObject.SetActive(true);
-            obj.AddForce(Vector3.left * SPEED, ForceMode.Impulse);
+            obj.AddForce(direction * SPEED, ForceMode.Impulse);
             StartCoroutine(BackToPool(obj));
         }
     }
