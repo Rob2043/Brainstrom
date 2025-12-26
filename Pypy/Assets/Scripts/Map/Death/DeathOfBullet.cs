@@ -15,6 +15,7 @@ namespace Pypy.Death
                 gameObject.GetComponentInParent<ICannon>().isActive = false;
                 //I will add effects of destruction of bullet here
                 gameObject.SetActive(false);
+                collision.gameObject.SetActive(false);
             }
         }
     }

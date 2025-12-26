@@ -1,6 +1,5 @@
 using UnityEngine;
 using Pypy.Consts;
-using JetBrains.Annotations;
 using CustomEventBus;
 
 public class Lose : MonoBehaviour
