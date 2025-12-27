@@ -55,28 +55,34 @@ public class MainButtons : MonoBehaviour
     }
     private void Start()
     {
-        // PlayerPrefs.DeleteAll();
-        MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
-        for (int i = MaxLevel; i < LevelButtons.Length; i++)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            LevelButtons[i].enabled = false;
-            LevelButtons[i].image.sprite = ButtonOffLevel;
+            MaxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
+            for (int i = MaxLevel; i < LevelButtons.Length; i++)
+            {
+                LevelButtons[i].enabled = false;
+                LevelButtons[i].image.sprite = ButtonOffLevel;
+            }
+            Time.timeScale = 1f;
+            if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
+                isActiveButtonSound = true;
+            else
+                isActiveButtonSound = false;
+            Audio[2].Play();
+            for (int i = 0; i < Audio.Length; i++)
+                Audio[i].enabled = isActiveButtonSound;
+            AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
         }
-        Time.timeScale = 1f;
-        if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
-            isActiveButtonSound = true;
-        else
-            isActiveButtonSound = false;
-        Audio[2].Play();
-        for (int i = 0; i < Audio.Length; i++)
-            Audio[i].enabled = isActiveButtonSound;
-        AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
+
     }
     private void LateUpdate()
     {
-        if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            ButtonInteractible();
+            if (MaxLevel != PlayerPrefs.GetInt("MaxLevel", 1))
+            {
+                ButtonInteractible();
+            }
         }
     }
     public void NextPanel()

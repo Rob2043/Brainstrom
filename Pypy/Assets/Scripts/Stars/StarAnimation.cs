@@ -27,7 +27,7 @@ public class StarAnimation : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SecondStar.SetActive(true);
-            if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 2}_Stars {3}", 0) == 0)
+            if(PlayerPrefs.GetInt($"{SceneManager.GetActiveScene().buildIndex - 3}_Stars {3}", 0) == 0)
                 EventBus.AddStarsInPlay.Invoke();
             gameObject.SetActive(false);
         }

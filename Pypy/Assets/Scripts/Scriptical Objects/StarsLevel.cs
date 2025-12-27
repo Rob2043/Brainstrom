@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StarsLevel : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         if (PlayerPrefs.GetInt($"{transform.parent.name}_{name}", 0) is 0)
         {
