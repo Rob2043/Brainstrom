@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\UI\AnimationText.cs" />
     <Compile Include="Assets\Scripts\Scins\Collision.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoving.cs" />
+    <Compile Include="Assets\Scripts\Map\Portal.cs" />
     <Compile Include="Assets\Scripts\Iinstance.cs" />
     <Compile Include="Assets\Scripts\Scalering\SaveArea.cs" />
     <Compile Include="Assets\Scripts\Scins\Scin.cs" />
@@ -101,8 +102,10 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Resources\Plugins\BitmapFontImporter\Examples\Font1\font1.fnt" />
+    <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_SETTINGS.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Resources\Plugins\BitmapFontImporter\Examples\Font2\font2.fnt" />
+    <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Resources\Plugins\BitmapFontImporter\Examples\font3\font3.fnt" />
@@ -118,6 +121,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\SimpleSky\ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Prefabs\Texts\_Make your own text effect.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_PASSES.cginc" />
     <None Include="Assets\Resources\Height Fog\Legacy Renderers\Shaders\HeightFog.shader" />
     <None Include="Assets\CameraScaler\docs.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -128,6 +133,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Resources\Plugins\BitmapFontImporter\Shaders\Font3.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_URP.cginc" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Resources\Plugins\BitmapFontImporter\Shaders\Font2.shader" />
@@ -1128,6 +1134,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj" />
+    <ProjectReference Include="KinoBloom.Runtime.csproj" />
+    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj" />
+    <ProjectReference Include="CFXRRuntime.csproj" />
+    <ProjectReference Include="CFXREditor.csproj" />
+    <ProjectReference Include="CFXRDemo.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
