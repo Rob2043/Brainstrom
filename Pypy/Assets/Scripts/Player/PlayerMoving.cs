@@ -1,7 +1,7 @@
 using CustomEventBus;
 using Pypy;
 using UnityEngine;
-
+using Pypy.Consts;
 
 
 public class PlayerMoving : MonoBehaviour, IInstansePlayer
@@ -11,16 +11,24 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
     [SerializeField] private DataOfPlayer _dataOfPlayer;
     public DataOfPlayer DataOfPlayer { get => _dataOfPlayer; set => _dataOfPlayer = value; }
     private Rigidbody rb;
+    private bool isMoving = true;
 
     private void Awake()
     {
         DataOfPlayer = _dataOfPlayer;
         rb = GetComponent<Rigidbody>();
         EventBus.WasMoving += HandleSwipePlayer;
+        EventBus.CallOffMoving += OffMoving;
+    }
+    private void OffMoving()
+    {
+       isMoving = false; 
+       rb.velocity = Vector3.zero;
+       rb.constraints = RigidbodyConstraints.FreezeAll;
     }
     private void HandleSwipePlayer(Vector2 direction)
     {
-        if (rb != null)
+        if (rb != null && isMoving)
         {
             Vector3 force = Vector3.zero;
             if (direction == Vector2.left)
@@ -45,7 +53,7 @@ public class PlayerMoving : MonoBehaviour, IInstansePlayer
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-      if(collision.gameObject.CompareTag("Wall"))
+      if(collision.gameObject.CompareTag(StringConstants.WALL_TAG))
         {
             rb.velocity = Vector3.zero;
         }  

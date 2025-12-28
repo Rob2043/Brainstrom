@@ -1,11 +1,13 @@
 using UnityEngine;
 using CustomEventBus;
 using System.Collections;
+using Pypy.Consts;
 
 public class MovingBlocks : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;
     [SerializeField] private float speed;
+    private bool isMoving = true;
 
     private Rigidbody rb;
 
@@ -20,19 +22,22 @@ public class MovingBlocks : MonoBehaviour
     {
         EventBus.WasMoving += HandleSwipe;
         EventBus.Reverseblocks += OnReverseBlocks;
+        EventBus.CallOffMoving += OffMoving;
     }
     private void OnDisable()
     {
         EventBus.WasMoving -= HandleSwipe;
         EventBus.Reverseblocks -= OnReverseBlocks;
+        EventBus.CallOffMoving -= OffMoving;
     }
     private void OnReverseBlocks()
     {
         moveDirection = -1*moveDirection;
     }
+    private void OffMoving() => isMoving = false;
     private void HandleSwipe(Vector2 direction)
     {
-        if (rb != null && checkLevel)
+        if (rb != null && checkLevel && isMoving)
         {
             bool isPositionXFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionX) != 0;
             bool isPositionYFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionY) != 0;
@@ -59,7 +64,7 @@ public class MovingBlocks : MonoBehaviour
     }
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-      if(collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player"))
+      if(collision.gameObject.CompareTag(StringConstants.WALL_TAG) || collision.gameObject.CompareTag(StringConstants.PLAYER_TAG))
         {
             rb.velocity = Vector3.zero;
         }  

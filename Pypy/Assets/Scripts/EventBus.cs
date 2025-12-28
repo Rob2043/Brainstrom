@@ -25,12 +25,15 @@ namespace CustomEventBus
         #endregion Economy
         #region Mechanics
         public static Action Reverseblocks;
+        public static Action CallOffMoving;
         
         #endregion Mechanics
         #region UI
         public static Action<string> LodingScene;
         public static Action ActivateClouds;
         public static Action DeathPlayer;
+        public static Action OnWinFireworks;
+
         #endregion UI
     }
 

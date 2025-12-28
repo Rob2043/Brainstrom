@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 1675962260}
     - target: {fileID: 5735294281028574207, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 5735294281028574207, guid: 6979c3ab16cfbd5c18ecec6bc3761d8c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1484,6 +1484,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 593479326065260756, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593479326065260759, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: cullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3317452186511958932, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
       propertyPath: m_ClearFlags
       value: 1
@@ -1576,6 +1584,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Left Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7991380144331502562, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: _fireworks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991380144331502562, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: _fireworks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1713758148}
+    - target: {fileID: 7991380144331502562, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: _fireworks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1713758147}
+    - target: {fileID: 7991380144331502562, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+      propertyPath: _fireworks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1713758146}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1584,6 +1608,21 @@ PrefabInstance:
 --- !u!1 &1713758145 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7225062939359334365, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+  m_PrefabInstance: {fileID: 1713758144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713758146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8790587846119654995, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+  m_PrefabInstance: {fileID: 1713758144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713758147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 593479326065260756, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
+  m_PrefabInstance: {fileID: 1713758144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713758148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7565977021812683057, guid: 2f89e4ec3f738ea40bee57fb8f171dcf, type: 3}
   m_PrefabInstance: {fileID: 1713758144}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &1745826942 stripped

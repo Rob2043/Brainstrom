@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using Pypy.Consts;
 
 public class Finish : MonoBehaviour
 {
@@ -25,9 +26,9 @@ public class Finish : MonoBehaviour
     private void AddStar() => earnstars++;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(StringConstants.PLAYER_TAG))
         {
-            Time.timeScale = 0f;
+            EventBus.CallOffMoving.Invoke();
             earnstars += EventBus.CheckStars.Invoke();
             EventBus.AddStars.Invoke(earnstars);
             _countStars.text = $"{EventBus.GetStars.Invoke()}";
@@ -35,6 +36,7 @@ public class Finish : MonoBehaviour
             _winAudio.Play();
             _gamePlayMusic.enabled = false;
             _endPanel.SetActive(true);
+            EventBus.OnWinFireworks.Invoke();
             for (int i = 1; i <= earnstars; i++)
             {
                 PlayerPrefs.SetInt($"{NameOfScene}_Stars {i}", 1);
