@@ -118,6 +118,7 @@ Transform:
   m_LocalScale: {x: 0.45, y: 0.4, z: 0.45}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8364966565641141953}
   - {fileID: 2490986479532143068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -328,3 +329,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataOfPlayer: {fileID: 11400000, guid: 77c6814ae0168fd4e8340ee87e2a90f3, type: 2}
+--- !u!1001 &1788171191831210845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2819116695960463987}
+    m_Modifications:
+    - target: {fileID: 810861553040625173, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017858161538053119, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_Name
+      value: Wind_Bihind_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017858161538053119, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.2222223
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2222223
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+--- !u!4 &8364966565641141953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7838102817693799836, guid: a340f8867404d2a41b617e52d0289b07, type: 3}
+  m_PrefabInstance: {fileID: 1788171191831210845}
+  m_PrefabAsset: {fileID: 0}
