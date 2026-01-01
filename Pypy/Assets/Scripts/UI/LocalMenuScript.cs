@@ -1,26 +1,36 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using CustomEventBus;
 
 public class LocalMenuScript : MonoBehaviour
 {
-    [SerializeField] private AudioSource[] Audio;
+    [Header("UI Panels")]
+    [SerializeField] private RawImage[] Stars = new RawImage[3];
     [SerializeField] private GameObject PanelExit;
     [SerializeField] private GameObject PanelClound;
     [SerializeField] private GameObject ButtonExit;
     [SerializeField] private GameObject MainPanel;
+    [Header("Cloud Animation")]
     [SerializeField] private Animator Cloud1Animator;
     [SerializeField] private Animator Cloud2Animator;
+    [Header("Audio")]
     [SerializeField] private AudioSource _localAudio;
 
     private int maxLevel;
     private void Start()
     {
+        EventBus.ShowAllStars += OnStars;
         Time.timeScale = 1f;
         maxLevel = PlayerPrefs.GetInt("MaxLevel", 1);
         StartCoroutine(AnimationClound());
         if (PlayerPrefs.GetInt("isSoundOn", 1) is 1)
             _localAudio.Play();
+    }
+    private void OnStars(int count)
+    {
+        StartCoroutine(ShowAllStars(count));
     }
     public IEnumerator AnimationClound()
     {
@@ -84,5 +94,14 @@ public class LocalMenuScript : MonoBehaviour
     {
         _localAudio.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    private IEnumerator ShowAllStars(int countOfWonStars)
+    {
+        Debug.Log(countOfWonStars);
+        for (int i = 0; i < countOfWonStars; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Stars[i].color = Color.white;
+        }
     }
 }

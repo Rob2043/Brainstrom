@@ -6,7 +6,6 @@ using TMPro;
 
 public class TextStarScript : MonoBehaviour
 {
-    [SerializeField] private GameObject ThirdStar;
     [SerializeField] private TMP_Text text;
     [field: SerializeField] private float DieTime;
     private int star = 1;
@@ -27,7 +26,6 @@ public class TextStarScript : MonoBehaviour
             if (DieTime <= 0)
             {
                 star = 0;
-                ThirdStar.SetActive(false);
             }
         }
     }

@@ -26,6 +26,7 @@ namespace CustomEventBus
         #region Mechanics
         public static Action Reverseblocks;
         public static Action CallOffMoving;
+        public static Func<Vector3> GetDirectionOfCannon;
         
         #endregion Mechanics
         #region UI
@@ -33,6 +34,7 @@ namespace CustomEventBus
         public static Action ActivateClouds;
         public static Action DeathPlayer;
         public static Action OnWinFireworks;
+        public static Action<int> ShowAllStars;
 
         #endregion UI
     }

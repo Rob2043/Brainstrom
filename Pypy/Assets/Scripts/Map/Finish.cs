@@ -12,7 +12,8 @@ public class Finish : MonoBehaviour
     [SerializeField] private AudioSource _gamePlayMusic;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private TMP_Text _countStars;
-    private int earnstars;
+    private int earnstars = 0;
+    private int alredyEarnedStars = 0;
     private string NameOfScene;
     private int localScene;
     private void Awake()
@@ -21,6 +22,11 @@ public class Finish : MonoBehaviour
         NameOfScene = $"{localScene}";
         if (PlayerPrefs.GetInt($"{NameOfScene}_Stars {1}", 0) == 0)
             earnstars++;
+        for(int i = 1; i < 4; i++)
+        {
+            if (PlayerPrefs.GetInt($"{NameOfScene}_Stars {i}", 0) == 1)
+                alredyEarnedStars++;
+        }
         EventBus.AddStarsInPlay = AddStar;
     }
     private void AddStar() => earnstars++;
@@ -30,13 +36,21 @@ public class Finish : MonoBehaviour
         {
             EventBus.CallOffMoving.Invoke();
             earnstars += EventBus.CheckStars.Invoke();
+            int count;
+            if (alredyEarnedStars >= earnstars)
+                count = alredyEarnedStars;
+            else
+                count = earnstars;
+            EventBus.ShowAllStars.Invoke(count);
             EventBus.AddStars.Invoke(earnstars);
+            EventBus.OnWinFireworks.Invoke();
+            
             _countStars.text = $"{EventBus.GetStars.Invoke()}";
             MusicTransaction(_gamePlayMusic, _winAudio);
             _winAudio.Play();
             _gamePlayMusic.enabled = false;
             _endPanel.SetActive(true);
-            EventBus.OnWinFireworks.Invoke();
+            
             for (int i = 1; i <= earnstars; i++)
             {
                 PlayerPrefs.SetInt($"{NameOfScene}_Stars {i}", 1);

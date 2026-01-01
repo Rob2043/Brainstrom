@@ -597,7 +597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e1f6a58895224abe8632d42a6cb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Audio: []
+  Stars:
+  - {fileID: 8703005613559459707}
+  - {fileID: 7288483273675382085}
+  - {fileID: 4715010283663590832}
   PanelExit: {fileID: 5310603982297245123}
   PanelClound: {fileID: 1916915507190135817}
   ButtonExit: {fileID: 3823457286262315259}
@@ -605,6 +608,7 @@ MonoBehaviour:
   Cloud1Animator: {fileID: 8712760892100598023}
   Cloud2Animator: {fileID: 4709414696084836687}
   _localAudio: {fileID: 6074051996210465943}
+  Audio: []
 --- !u!1 &1916915507190135817
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2057,7 +2061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2660,7 +2664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8509037902740574125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2701,7 +2705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3115,7 +3119,7 @@ AudioSource:
   m_GameObject: {fileID: 5817135206522676628}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 80eae9b31c7e02b499884779bf7f636e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 72625ed13536b5e4689fb227e79df106, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4921,7 +4925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4450b16706560eb46aeb6bbe2a6ebaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThirdStar: {fileID: 2279005026135824416}
   text: {fileID: 8160725011735558625}
   DieTime: 15
 --- !u!1 &8558883190240983875
@@ -4965,7 +4968,7 @@ AudioSource:
   m_GameObject: {fileID: 8558883190240983875}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 80eae9b31c7e02b499884779bf7f636e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2571e8ed904d1874e8e54fb0923b352d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5226,7 +5229,7 @@ AudioSource:
   m_GameObject: {fileID: 9147427319805481711}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 80eae9b31c7e02b499884779bf7f636e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 08e69d4bd72b7004ebadf74031074dcb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

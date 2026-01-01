@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using CustomEventBus;
 using Pypy;
 using System;
+using UnityEngine.Audio;
 public class MainButtons : MonoBehaviour
 {
     [Header("Animation")]
@@ -18,8 +19,10 @@ public class MainButtons : MonoBehaviour
     [SerializeField] private GameObject[] PanelLevelArray;
     [SerializeField] private GameObject[] MapsArray;
     [SerializeField] private GameObject panelSettings;
-    [Header("Audio")]
     [SerializeField] private Button[] LevelButtons;
+
+    [Header("Audio")] 
+    [SerializeField] private AudioMixer mixer;
     [SerializeField] private AudioSource[] Audio;
     [SerializeField] private Button AudioButton;
     [SerializeField] private Sprite ButtonOnSprite;
@@ -69,8 +72,7 @@ public class MainButtons : MonoBehaviour
             else
                 isActiveButtonSound = false;
             Audio[2].Play();
-            for (int i = 0; i < Audio.Length; i++)
-                Audio[i].enabled = isActiveButtonSound;
+            mixer.SetFloat("MainVolume", isActiveButtonSound ? 0f : -80f);
             AudioButton.image.sprite = isActiveButtonSound ? ButtonOnSprite : ButtonOffSprite;
         }
 
@@ -119,10 +121,7 @@ public class MainButtons : MonoBehaviour
     {
         isActiveButtonSound = !isActiveButtonSound;
         Audio[2].Play();
-        for (int i = 0; i < Audio.Length; i++)
-        {
-            Audio[i].enabled = isActiveButtonSound;
-        }
+        mixer.SetFloat("MainVolume", isActiveButtonSound ? 0f : -80f);
         int n = isActiveButtonSound ? 1 : 0;
         PlayerPrefs.SetInt("isSoundOn", n);
         PlayerPrefs.Save();
